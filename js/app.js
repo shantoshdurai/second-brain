@@ -610,7 +610,7 @@ function renderLandingPage() {
 
   let html = `
         <div class="landing-container">
-            <div class="landing-hero">
+            <div class="landing-hero staggered-fade">
                 <h1>Asif's Second Brain</h1>
                 <p class="landing-subtitle">
                     A digital garden of thoughts, curated definitions, and evolving ideas.
