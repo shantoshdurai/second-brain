@@ -3,12 +3,21 @@
 // Note: 'wikiData' is already loaded from data.js
 // ==========================================
 
-const navTree = document.getElementById("navTree");
 const contentDisplay = document.getElementById("contentDisplay");
-const sidebar = document.getElementById("sidebar");
 const themeToggle = document.getElementById("themeToggle");
 let currentDocId = null;
 let logsViewMode = localStorage.getItem('logsViewMode') || 'calendar';
+
+// ==========================================
+// 📚 STACKED NOTES (Andy Matuschak Style)
+// ==========================================
+
+const NOTE_WIDTH = 750;
+const NOTE_OFFSET = 40;
+
+let stackedIds = [];
+let stackedMode = false;
+let isRendering = false;
 
 // ==========================================
 // 🚀 INITIALIZATION
@@ -24,10 +33,8 @@ function setTheme(theme) {
 
 function initTheme() {
   const saved = localStorage.getItem("theme");
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initialTheme = saved || (prefersDark ? "dark" : "light");
+  // Default to dark mode if no preference has been saved previously
+  const initialTheme = saved || "dark";
 
   setTheme(initialTheme);
 
@@ -57,16 +64,43 @@ function init() {
     return;
   }
 
-  // --- EVENT DELEGATION: SIDEBAR ---
-  // Handle clicks for all .nav-item elements (Sidebar & Search Results)
-  navTree.addEventListener("click", (e) => {
-    const navItem = e.target.closest(".nav-item");
-    if (navItem && navItem.dataset.id) {
-      e.preventDefault();
-      loadContent(navItem.dataset.id);
-    }
-  });
+  // Setup Home Button (Logo Click)
+  const headerBrand = document.getElementById("headerBrand");
+  if (headerBrand) {
+    headerBrand.addEventListener("click", () => {
+      renderLandingPage();
+    });
+  }
 
+  // Setup Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const headerActions = document.getElementById("headerActions");
+  const globalHeader = document.querySelector(".global-header");
+
+  if (mobileMenuBtn && headerActions && globalHeader) {
+    mobileMenuBtn.addEventListener("click", () => {
+      globalHeader.classList.toggle("mobile-menu-open");
+      const icon = mobileMenuBtn.querySelector('i');
+      if (globalHeader.classList.contains("mobile-menu-open")) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    // Close menu when an action is triggered
+    headerActions.addEventListener("click", (e) => {
+      if (e.target.closest('button') || e.target.closest('a')) {
+        globalHeader.classList.remove("mobile-menu-open");
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+  }
+
+  // Sidebar is removed, navigation is mostly through homepage and search.
   // --- EVENT DELEGATION: MAIN CONTENT ---
   // Handle clicks for Back Buttons, Shelf Cards, and Internal Links
   contentDisplay.addEventListener("click", (e) => {
@@ -83,6 +117,14 @@ function init() {
     if (shelfCard && shelfCard.dataset.id) {
       e.preventDefault();
       loadContent(shelfCard.dataset.id);
+      return;
+    }
+
+    // 2.5 Handle Backlink Card
+    const backlinkCard = e.target.closest(".backlink-card");
+    if (backlinkCard && backlinkCard.dataset.id) {
+      e.preventDefault();
+      addToStack(backlinkCard.dataset.id);
       return;
     }
 
@@ -112,7 +154,7 @@ function init() {
 
       if (lookup(targetId)) {
         e.preventDefault();
-        loadContent(targetId);
+        addToStack(targetId);
       }
     }
   });
@@ -143,45 +185,413 @@ function init() {
     });
   }
 
-  renderSidebar();
+  initStackedNotes();
+
+  // Only render landing page if NOT loading from a stacked URL
+  if (getStackedIdsFromUrl().length === 0) {
+    renderLandingPage();
+  }
 
   // Handle Brand Clicks (Home)
   const brands = document.querySelectorAll(".brand, .mobile-brand");
   brands.forEach((el) => {
     el.style.cursor = "pointer";
     el.addEventListener("click", () => {
-      renderLandingPage();
-      if (window.innerWidth <= 768) {
-        // specific for mobile brand click if we want to ensure sidebar state?
-        // Actually sidebar brand is inside sidebar, mobile brand is in header.
-        // If sidebar is open and we click sidebar brand -> close sidebar
-        const sidebar = document.getElementById("sidebar");
-        const backdrop = document.getElementById("sidebarBackdrop");
-        if (sidebar.classList.contains("open")) {
-          sidebar.classList.remove("open");
-          if (backdrop) backdrop.classList.remove("visible");
-        }
+      if (stackedMode) {
+        exitStackedMode();
+        return;
       }
+      renderLandingPage();
     });
   });
-
-  renderSidebar();
 
   // --- KEYBOARD SHORTCUTS ---
   document.addEventListener('keydown', (e) => {
     // Check for Ctrl+K (Windows/Linux) or Cmd+K (Mac) or '/'
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k' || (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
-      e.preventDefault(); // Prevent default browser search or typing '/'
-      if (window.innerWidth <= 768) {
-        toggleMobileSearch();
-      } else {
-        const searchInput = document.getElementById('desktopSearchInput');
-        if (searchInput) searchInput.focus();
-      }
+    if (((e.ctrlKey || e.metaKey) && e.key === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+      e.preventDefault();
+      toggleSearch();
+    }
+
+    // Escape: close top note in stacked mode
+    if (e.key === 'Escape' && stackedMode) {
+      e.preventDefault();
+      removeFromStack(stackedIds.length - 1);
     }
   });
 
   renderLandingPage();
+}
+
+// ==========================================
+// 📚 STACKED NOTES — URL PARAMS
+// ==========================================
+
+function getStackedIdsFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.getAll('stackedNotes').map(id => decodeURIComponent(id).toLowerCase());
+}
+
+function updateStackedUrl(ids) {
+  const params = new URLSearchParams(window.location.search);
+  params.delete('stackedNotes');
+  ids.forEach(id => params.append('stackedNotes', id));
+  const newUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, '', newUrl);
+}
+
+// ==========================================
+// 📚 STACKED NOTES — RENDERING
+// ==========================================
+
+function isSmallScreen() {
+  return window.innerWidth <= 800;
+}
+
+function renderStackedColumns(ids) {
+  if (isRendering) return;
+  isRendering = true;
+
+  const container = document.getElementById('noteColumnsContainer');
+  const scrollContainer = document.getElementById('noteColumnsScrolling');
+
+  if (!container || !scrollContainer) {
+    isRendering = false;
+    return;
+  }
+
+  container.innerHTML = '';
+
+  ids.forEach((id, index) => {
+    const result = lookup(id);
+    if (!result) return;
+
+    const { item, parent, rootKey } = result;
+
+    const col = document.createElement('div');
+    col.className = 'note-column';
+    col.dataset.id = id;
+    col.dataset.index = index;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'note-column-close';
+    closeBtn.setAttribute('aria-label', `Close ${item.title}`);
+    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeFromStack(index);
+    });
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'note-column-content';
+
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'note-obscured-label';
+    labelDiv.textContent = item.title;
+    labelDiv.addEventListener('click', () => {
+      scrollToStackIndex(index);
+    });
+    labelDiv.addEventListener('mouseenter', () => labelDiv.classList.add('hovered'));
+    labelDiv.addEventListener('mouseleave', () => labelDiv.classList.remove('hovered'));
+
+    const inner = document.createElement('div');
+    inner.className = 'markdown-body';
+
+    if (parent) {
+      const backDiv = document.createElement('div');
+      backDiv.className = 'back-link';
+      backDiv.dataset.id = parent.id;
+      backDiv.innerHTML = `<i class="fas fa-arrow-left"></i> Back to ${parent.title}`;
+      inner.appendChild(backDiv);
+    }
+
+    if (item.content) {
+      const wikiLinkRegex = /\[\[([^|\]\n]+)(\|([^\]\n]+))?\]\]/g;
+      const processedContent = item.content.replace(
+        wikiLinkRegex,
+        (match, wid, _, label) => {
+          const linkText = label || wid;
+          return `[${linkText}](${wid.trim()})`;
+        },
+      );
+      inner.innerHTML += renderMarkdown(processedContent);
+    } else if (item.children && item.children.length > 0) {
+      const viewType = item.view || (rootKey === 'overview' ? 'list' : 'shelf');
+      if (viewType === 'list') {
+        inner.innerHTML += renderList(item);
+      } else {
+        inner.innerHTML += renderShelf(item);
+      }
+    }
+
+    if (item.tags && item.tags.length > 0) {
+      let tagsHtml = "<div style='margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;'>";
+      item.tags.forEach(tag => {
+        tagsHtml += `<span class="tag-pill">#${tag}</span>`;
+      });
+      tagsHtml += '</div>';
+      inner.innerHTML += tagsHtml;
+    }
+
+    // Insert Backlinks section
+    inner.innerHTML += generateBacklinksHTML(item);
+
+    contentDiv.appendChild(inner);
+    col.appendChild(closeBtn);
+    col.appendChild(contentDiv);
+    col.appendChild(labelDiv);
+
+    // Explicitly guarantee over-layering using DOM order mapping to z-index
+    col.style.zIndex = index + 5;
+
+    container.appendChild(col);
+  });
+
+  requestAnimationFrame(() => {
+    updateScrollState();
+    scrollToStackIndex(ids.length - 1);
+    isRendering = false;
+  });
+}
+
+
+
+function updateScrollState() {
+  const scrollContainer = document.getElementById('noteColumnsScrolling');
+  const columns = document.querySelectorAll('.note-column');
+  if (!scrollContainer || columns.length === 0) return;
+
+  const scrollX = scrollContainer.scrollLeft;
+
+  columns.forEach((col, index) => {
+    // Dynamic sliding math for Matuschak overlapping cards:
+    // Notes stay in natural flex positions unless they hit the viewport's left edge
+    const nativeX = index * NOTE_WIDTH;
+    const targetScreenX = scrollX + (index * NOTE_OFFSET);
+    const offset = Math.max(targetScreenX - nativeX, 0);
+
+    col.style.transform = `translateX(${offset}px)`;
+
+    const isOverlay = offset > 0;
+    col.classList.toggle('overlay', isOverlay);
+  });
+
+  // Calculate active index based strictly on visibility (which one takes up the left spine)
+  // Or just highlight the last one clicked? 
+  // Let activeIndex be the right-most fully visible note
+  const activeIndex = Math.min(
+    Math.max(0, Math.floor((scrollX + window.innerWidth) / NOTE_WIDTH) - 1),
+    columns.length - 1
+  );
+
+  columns.forEach((col, index) => {
+    const nativeX = index * NOTE_WIDTH;
+    const targetScreenX = scrollX + (index * NOTE_OFFSET);
+
+    // It's a "spine" (obscured) if the next note overlaps it significantly
+    // If the next note's translation brings its left edge over this note
+    let isSpine = false;
+    if (index < columns.length - 1) {
+      const nextNativeX = (index + 1) * NOTE_WIDTH;
+      const nextTargetScreenX = scrollX + ((index + 1) * NOTE_OFFSET);
+      const nextActualX = Math.max(nextTargetScreenX, nextNativeX);
+      const thisActualX = Math.max(targetScreenX, nativeX);
+      if (nextActualX - thisActualX <= NOTE_OFFSET + 10) {
+        isSpine = true;
+      }
+    }
+    col.classList.toggle('has-label', isSpine);
+    col.classList.toggle('focused', index === stackedIds.length - 1); // Set focus strictly to the end or currently targeted
+  });
+}
+
+function scrollToStackIndex(index) {
+  const scrollContainer = document.getElementById('noteColumnsScrolling');
+  if (!scrollContainer) return;
+
+  // Try to anchor the note to the right side of the screen
+  const targetScroll = Math.max(0, (index * NOTE_WIDTH) + NOTE_WIDTH - window.innerWidth + 40);
+
+  scrollContainer.scrollTo({ left: targetScroll, behavior: 'smooth' });
+
+  // Highlight the sidebar item for the focused note
+  if (stackedIds[index]) {
+    const id = stackedIds[index];
+    currentDocId = id; // Sync state so "Exit" returns here
+    document.querySelectorAll(".nav-item").forEach((el) => el.classList.remove("active"));
+    const activeNav = document.querySelector(`.nav-item[data-id="${id}"]`);
+    if (activeNav) {
+      activeNav.classList.add("active");
+      activeNav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+}
+
+function removeFromStack(fromIndex) {
+
+  if (fromIndex === 0 && stackedIds.length === 1) {
+    exitStackedMode();
+    return;
+  }
+
+  if (fromIndex === stackedIds.length - 1) {
+    stackedIds = stackedIds.slice(0, -1);
+  } else {
+    stackedIds = stackedIds.filter((_, i) => i !== fromIndex);
+  }
+
+  updateStackedUrl(stackedIds);
+  renderStackedColumns(stackedIds);
+
+  if (stackedIds.length === 0) {
+    exitStackedMode();
+  }
+}
+
+function addToStack(id) {
+  const cleanId = id.toLowerCase();
+  const result = lookup(cleanId);
+  if (!result) return;
+  const { item, rootKey } = result;
+
+  const isMdFile = item.content && (!item.children || item.children.length === 0) && rootKey !== "logs";
+
+  if (!isMdFile || isSmallScreen()) {
+    if (stackedMode) {
+      exitStackedMode();
+    }
+    loadContent(cleanId);
+    return;
+  }
+
+  if (stackedIds.includes(cleanId)) {
+    const index = stackedIds.indexOf(cleanId);
+    scrollToStackIndex(index);
+    return;
+  }
+
+  if (!stackedMode) {
+    stackedIds = [];
+    stackedMode = true;
+    document.body.classList.add('stacked-mode');
+  }
+
+  stackedIds.push(cleanId);
+  updateStackedUrl(stackedIds);
+  renderStackedColumns(stackedIds);
+  closeSidebar();
+}
+
+function exitStackedMode() {
+  stackedMode = false;
+  stackedIds = [];
+  document.body.classList.remove('stacked-mode');
+  const container = document.getElementById('noteColumnsContainer');
+  if (container) container.innerHTML = '';
+  const scrollContainer = document.getElementById('noteColumnsScrolling');
+  if (scrollContainer) scrollContainer.scrollLeft = 0;
+  updateStackedUrl([]);
+
+  if (currentDocId) {
+    const result = lookup(currentDocId);
+    if (!result) { renderLandingPage(); return; }
+    const { item, rootKey } = result;
+    const isMdFile = item.content && (!item.children || item.children.length === 0) && rootKey !== "logs";
+
+    if (!isMdFile) {
+      loadContent(currentDocId);
+    } else {
+      renderLandingPage();
+    }
+  } else {
+    renderLandingPage();
+  }
+}
+
+function initStackedNotes() {
+  const scrollContainer = document.getElementById('noteColumnsScrolling');
+  if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', updateScrollState);
+  }
+
+  window.addEventListener('resize', () => {
+    if (stackedMode) {
+      updateScrollState();
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    const ids = getStackedIdsFromUrl();
+    if (ids.length > 0) {
+      stackedIds = ids;
+      stackedMode = true;
+      document.body.classList.add('stacked-mode');
+      renderStackedColumns(stackedIds);
+    } else {
+      exitStackedMode();
+    }
+  });
+
+  const ids = getStackedIdsFromUrl();
+  if (ids.length > 0) {
+    stackedIds = ids;
+    stackedMode = true;
+    document.body.classList.add('stacked-mode');
+    renderStackedColumns(stackedIds);
+  }
+
+  // Event delegation for stacked column content (shelf cards, list items, back-links, internal links)
+  const noteColumnsScrolling = document.getElementById('noteColumnsScrolling');
+  if (noteColumnsScrolling) {
+    noteColumnsScrolling.addEventListener('click', (e) => {
+      // Back-link
+      const backLink = e.target.closest('.back-link');
+      if (backLink && backLink.dataset.id) {
+        e.preventDefault();
+        addToStack(backLink.dataset.id);
+        return;
+      }
+
+      // Shelf card
+      const shelfCard = e.target.closest('.shelf-card');
+      if (shelfCard && shelfCard.dataset.id) {
+        e.preventDefault();
+        addToStack(shelfCard.dataset.id);
+        return;
+      }
+
+      // Backlink Card
+      const backlinkCard = e.target.closest(".backlink-card");
+      if (backlinkCard && backlinkCard.dataset.id) {
+        e.preventDefault();
+        addToStack(backlinkCard.dataset.id);
+        return;
+      }
+
+      // List item
+      const listItem = e.target.closest('.list-item');
+      if (listItem && listItem.dataset.id) {
+        e.preventDefault();
+        addToStack(listItem.dataset.id);
+        return;
+      }
+
+      // Internal link
+      const link = e.target.closest('a');
+      if (link) {
+        const href = link.getAttribute('href');
+        if (!href || href.match(/^(http|https|mailto:|#)/)) {
+          if (href && href.startsWith('http')) link.target = '_blank';
+          return;
+        }
+        const targetId = decodeURIComponent(href);
+        if (lookup(targetId)) {
+          e.preventDefault();
+          addToStack(targetId);
+        }
+      }
+    });
+  }
 }
 
 function renderLandingPage() {
@@ -190,13 +600,17 @@ function renderLandingPage() {
     .forEach((el) => el.classList.remove("active"));
   currentDocId = null;
 
+  if (stackedMode) {
+    exitStackedMode();
+  }
+
   // Clear Breadcrumbs
   const breadcrumbs = document.getElementById("breadcrumbs");
   if (breadcrumbs) breadcrumbs.innerHTML = "";
 
   let html = `
         <div class="landing-container">
-            <div class="landing-hero">
+            <div class="landing-hero staggered-fade">
                 <h1>Asif's Second Brain</h1>
                 <p class="landing-subtitle">
                     A digital garden of thoughts, curated definitions, and evolving ideas.
@@ -307,46 +721,6 @@ window.openSection = function (key) {
     loadContent(section.items[0].id);
   }
 };
-
-// ==========================================
-// 🌲 SIDEBAR NAVIGATION
-// ==========================================
-
-function renderSidebar() {
-  navTree.innerHTML = "";
-
-  Object.keys(wikiData).forEach((sectionKey) => {
-    const section = wikiData[sectionKey];
-
-    // Section Header (e.g., OVERVIEW, LOGS)
-    const sectionTitle = document.createElement("div");
-    sectionTitle.className = "nav-section-title";
-    sectionTitle.innerText = section.title || sectionKey.toUpperCase();
-    navTree.appendChild(sectionTitle);
-
-    // Render Top-Level Items (Topics/Years)
-    if (section.items) {
-      section.items.forEach((item) => {
-        const navItem = document.createElement("div");
-        navItem.className = "nav-item";
-        // Security: Use data attribute instead of onclick
-        navItem.dataset.id = item.id;
-
-        navItem.innerHTML = `
-                    <i class="${item.icon || "fas fa-folder"}"></i>
-                    <span>${item.title}</span>
-                `;
-
-        navTree.appendChild(navItem);
-      });
-    }
-
-    // Spacer between sections
-    const spacer = document.createElement("div");
-    spacer.style.height = "24px";
-    navTree.appendChild(spacer);
-  });
-}
 
 // ==========================================
 // 📖 CONTENT LOADING (The "Router")
@@ -477,11 +851,43 @@ function renderMarkdown(text) {
   return html;
 }
 
+// Helper: Render Backlinks (Linked Mentions) Section
+function generateBacklinksHTML(item) {
+  if (!item.backlinks || item.backlinks.length === 0) return "";
+
+  let html = `<div class="backlinks-section" style="margin-top: 40px; border-top: 2px solid var(--border-color); padding-top: 20px;">`;
+  html += `<h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-secondary);">Linked Mentions</h3>`;
+  html += `<div class="backlinks-list" style="display: flex; flex-direction: column; gap: 8px;">`;
+
+  item.backlinks.forEach(linkId => {
+    const target = lookup(linkId);
+    if (target && target.item) {
+      // Create a small card for the backlink
+      const snippet = (target.item.content || "").replace(/[#*`_\[\]()]/g, '').substring(0, 100);
+      html += `
+        <div class="backlink-card" data-id="${target.item.id}">
+          <div class="backlink-title">${target.item.title}</div>
+          <div class="backlink-snippet">${snippet}...</div>
+        </div>
+      `;
+    }
+  });
+
+  html += `</div></div>`;
+  return html;
+}
+
 function loadContent(id) {
   const result = lookup(id);
   if (!result) return;
 
   const { item, parent, rootKey } = result;
+
+  const isMdFile = item.content && (!item.children || item.children.length === 0) && rootKey !== "logs";
+  if (isMdFile && !isSmallScreen()) {
+    addToStack(id);
+    return;
+  }
 
   // --- 0. BREADCRUMBS ---
   const path = getBreadcrumbPath(id);
@@ -567,6 +973,9 @@ function loadContent(id) {
     htmlContent += "</div>";
   }
 
+  // C. Backlinks (Linked Mentions)
+  htmlContent += generateBacklinksHTML(item);
+
   // --- 3. RENDER ---
   contentDisplay.innerHTML = htmlContent;
 
@@ -581,12 +990,7 @@ function loadContent(id) {
     });
   }
 
-  // Mobile: Close sidebar after selection
-  if (window.innerWidth <= 768) {
-    sidebar.classList.remove("open");
-    const backdrop = document.getElementById("sidebarBackdrop");
-    if (backdrop) backdrop.classList.remove("visible");
-  }
+  closeSidebar();
 
   currentDocId = id;
   window.scrollTo(0, 0);
@@ -1033,70 +1437,20 @@ function initFuse() {
   fuse = new Fuse(flatData, options);
 }
 
-function filterDocs(query) {
-  const term = query.toLowerCase().trim();
-
-  // 1. Reset if query is empty
-  if (term.length < 2) {
-    renderSidebar(); // Restore original hierarchy
-    return;
-  }
-
-  // 2. Clear Sidebar
-  navTree.innerHTML = "";
-
-  // 3. Execute Fuse Search
-  const fuseResults = fuse.search(term);
-
-  // 4. Render Results Header
-  const header = document.createElement("div");
-  header.className = "nav-section-title";
-  header.innerText = `Search Results (${fuseResults.length})`;
-  navTree.appendChild(header);
-
-  if (fuseResults.length === 0) {
-    navTree.innerHTML = `
-        <div class="empty-state" style="padding: 40px 20px;">
-            <i class="fas fa-ghost empty-state-icon" style="font-size: 2rem;"></i>
-            <div class="empty-state-title" style="font-size: 1rem;">No results found</div>
-            <div class="empty-state-desc" style="font-size: 0.8rem;">Try searching for a different keyword.</div>
-        </div>`;
-    return;
-  }
-
-  // 5. Render Results (Flat List)
-  fuseResults.forEach((result) => {
-    const item = result.item; // Fuse returns { item: {...}, score: ... }
-    const navItem = document.createElement("div");
-    navItem.className = "nav-item";
-    navItem.dataset.id = item.id;
-
-    // Add score for debugging (optional, useful to see how "fuzzy" it is)
-    // const score = Math.round((1 - result.score) * 100); 
-
-    navItem.innerHTML = `
-            <i class="${item.icon || "far fa-file"}"></i>
-            <span>${item.title}</span>
-        `;
-
-    navTree.appendChild(navItem);
-  });
-}
-
-function toggleMobileSearch() {
-  const overlay = document.getElementById("mobileSearchOverlay");
-  overlay.classList.toggle("open");
+function toggleSearch() {
+  const overlay = document.getElementById("searchOverlay");
+  overlay.classList.toggle("active");
   const input = document.getElementById("mobileSearchInput");
   const resultsContainer = document.getElementById("mobileSearchResults");
 
-  if (overlay.classList.contains("open")) {
+  if (overlay.classList.contains("active")) {
     input.focus();
     if (!input.value.trim()) {
       resultsContainer.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-search empty-state-icon"></i>
                 <div class="empty-state-title">Search Second Brain</div>
-                <div class="empty-state-desc">Find notes, definitions, and concepts instantly. Press '/' anywhere to focus.</div>
+                <div class="empty-state-desc">Find notes, definitions, and concepts instantly. Press 'Ctrl+K' anywhere to focus.</div>
             </div>`;
     }
   } else {
@@ -1146,18 +1500,88 @@ function handleMobileSearch(query) {
         `;
     resultItem.addEventListener("click", () => {
       loadContent(item.id);
-      toggleMobileSearch(); // Close overlay on selection
+      toggleSearch(); // Close overlay on selection
     });
     resultsContainer.appendChild(resultItem);
   });
 }
 
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  const backdrop = document.getElementById("sidebarBackdrop");
-  sidebar.classList.toggle("open");
-  backdrop.classList.toggle("visible");
+// ==========================================
+// 🎈 HOVER LINK PREVIEWS
+// ==========================================
+const previewPopover = document.createElement('div');
+previewPopover.id = 'link-preview-popover';
+document.body.appendChild(previewPopover);
+
+let previewTimeout = null;
+let currentPreviewLink = null;
+
+function hidePreview() {
+  clearTimeout(previewTimeout);
+  previewPopover.classList.remove('visible');
+  currentPreviewLink = null;
 }
+
+document.body.addEventListener('mouseover', (e) => {
+  const link = e.target.closest('a');
+  if (!link) {
+    // If we are moving NOT over a link and NOT over the popover, we can safely hide
+    if (currentPreviewLink && !previewPopover.contains(e.target)) {
+      // However, mouseout usually handles this. Mouseover is mostly for showing.
+    }
+    return;
+  }
+
+  const href = link.getAttribute('href');
+  if (!href || href.match(/^(http|https|mailto:|#)/)) return;
+
+  const targetId = decodeURIComponent(href);
+  const targetData = lookup(targetId);
+
+  if (targetData && targetData.item) {
+    // If we're already showing this link, don't restart
+    if (currentPreviewLink === link) return;
+
+    // If we're over a DIFFERENT link, hide the old one first
+    if (currentPreviewLink) hidePreview();
+
+    currentPreviewLink = link;
+
+    const snippet = (targetData.item.content || "").replace(/[#*`_\[\]()]/g, '').substring(0, 200).trim();
+
+    previewPopover.innerHTML = `
+      <div class="popover-title">${targetData.item.title}</div>
+      <div class="popover-snippet">${snippet}...</div>
+    `;
+
+    previewPopover.classList.add('visible');
+
+    const rect = link.getBoundingClientRect();
+    let popoverTop = rect.top - previewPopover.offsetHeight - 10;
+
+    if (popoverTop < 10) {
+      popoverTop = rect.bottom + 10;
+    }
+
+    let popoverLeft = rect.left;
+    if (popoverLeft + previewPopover.offsetWidth > window.innerWidth - 20) {
+      popoverLeft = window.innerWidth - previewPopover.offsetWidth - 20;
+    }
+
+    previewPopover.style.top = `${popoverTop}px`;
+    previewPopover.style.left = `${popoverLeft}px`;
+  }
+}, true);
+
+document.body.addEventListener('mouseout', (e) => {
+  if (!currentPreviewLink) return;
+
+  // Check if the mouse is truly leaving the current link
+  const goingTo = e.relatedTarget;
+  if (!goingTo || (!currentPreviewLink.contains(goingTo) && !previewPopover.contains(goingTo))) {
+    hidePreview();
+  }
+}, true);
 
 // Start the Engine
 init();

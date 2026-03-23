@@ -162,6 +162,39 @@ def main() -> None:
             items = build_tree(section_path)
             wiki_data[clean_key] = {"title": meta["title"], "items": items}
 
+    # --- Backlinks Processing ---
+    backlinks_index = {}
+
+    def map_links(node):
+        if "links" in node:
+            for link_id in node["links"]:
+                link_id = link_id.lower()
+                if link_id not in backlinks_index:
+                    backlinks_index[link_id] = []
+                if node["id"] not in backlinks_index[link_id]:
+                    backlinks_index[link_id].append(node["id"])
+        
+        if "children" in node:
+            for child in node["children"]:
+                map_links(child)
+
+    # Pass 2: Build the inverted index
+    for section_key, section_data in wiki_data.items():
+        for item in section_data.get("items", []):
+            map_links(item)
+
+    def inject_backlinks(node):
+        node["backlinks"] = backlinks_index.get(node["id"], [])
+        if "children" in node:
+            for child in node["children"]:
+                inject_backlinks(child)
+
+    # Pass 3: Append backlinks to tree
+    for section_key, section_data in wiki_data.items():
+        for item in section_data.get("items", []):
+            inject_backlinks(item)
+            
+    # Serialize
     js_content = f"const wikiData = {json.dumps(wiki_data, indent=4)};"
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
