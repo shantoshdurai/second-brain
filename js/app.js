@@ -19,6 +19,17 @@ let stackedIds = [];
 let stackedMode = false;
 let isRendering = false;
 
+// Helper: Escape HTML to prevent XSS
+function htmlEscape(text) {
+  if (!text) return "";
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // ==========================================
 // 🚀 INITIALIZATION
 // ==========================================
@@ -186,9 +197,10 @@ function init() {
   }
 
   initStackedNotes();
-
+  
   // Only render landing page if NOT loading from a stacked URL
-  if (getStackedIdsFromUrl().length === 0) {
+  const stackIds = getStackedIdsFromUrl();
+  if (stackIds.length === 0) {
     renderLandingPage();
   }
 
@@ -213,14 +225,21 @@ function init() {
       toggleSearch();
     }
 
-    // Escape: close top note in stacked mode
-    if (e.key === 'Escape' && stackedMode) {
-      e.preventDefault();
-      removeFromStack(stackedIds.length - 1);
+    // Escape: close search overlay first, then top note in stacked mode
+    if (e.key === 'Escape') {
+      const searchOverlay = document.getElementById('searchOverlay');
+      if (searchOverlay && searchOverlay.classList.contains('active')) {
+        e.preventDefault();
+        toggleSearch();
+        return;
+      }
+      
+      if (stackedMode) {
+        e.preventDefault();
+        removeFromStack(stackedIds.length - 1);
+      }
     }
   });
-
-  renderLandingPage();
 }
 
 // ==========================================
@@ -229,7 +248,7 @@ function init() {
 
 function getStackedIdsFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  return params.getAll('stackedNotes').map(id => decodeURIComponent(id).toLowerCase());
+  return params.getAll('stackedNotes').map(id => id.toLowerCase());
 }
 
 function updateStackedUrl(ids) {
@@ -335,6 +354,17 @@ function renderStackedColumns(ids) {
 
     // Insert Backlinks section
     inner.innerHTML += generateBacklinksHTML(item);
+
+    // Render Math (KaTeX)
+    if (window.renderMathInElement) {
+      renderMathInElement(inner, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    }
 
     contentDiv.appendChild(inner);
     col.appendChild(closeBtn);
@@ -479,7 +509,6 @@ function addToStack(id) {
   stackedIds.push(cleanId);
   updateStackedUrl(stackedIds);
   renderStackedColumns(stackedIds);
-  closeSidebar();
 }
 
 function exitStackedMode() {
@@ -516,7 +545,13 @@ function initStackedNotes() {
 
   window.addEventListener('resize', () => {
     if (stackedMode) {
-      updateScrollState();
+      if (isSmallScreen()) {
+        const lastId = stackedIds[stackedIds.length - 1];
+        exitStackedMode();
+        loadContent(lastId);
+      } else {
+        updateScrollState();
+      }
     }
   });
 
@@ -862,12 +897,12 @@ function generateBacklinksHTML(item) {
   item.backlinks.forEach(linkId => {
     const target = lookup(linkId);
     if (target && target.item) {
-      // Create a small card for the backlink
+      // Create a small card for the backlink (Escaping title/snippet for XSS)
       const snippet = (target.item.content || "").replace(/[#*`_\[\]()]/g, '').substring(0, 100);
       html += `
         <div class="backlink-card" data-id="${target.item.id}">
-          <div class="backlink-title">${target.item.title}</div>
-          <div class="backlink-snippet">${snippet}...</div>
+          <div class="backlink-title">${htmlEscape(target.item.title)}</div>
+          <div class="backlink-snippet">${htmlEscape(snippet)}...</div>
         </div>
       `;
     }
@@ -989,8 +1024,6 @@ function loadContent(id) {
       throwOnError: false
     });
   }
-
-  closeSidebar();
 
   currentDocId = id;
   window.scrollTo(0, 0);
@@ -1550,8 +1583,8 @@ document.body.addEventListener('mouseover', (e) => {
     const snippet = (targetData.item.content || "").replace(/[#*`_\[\]()]/g, '').substring(0, 200).trim();
 
     previewPopover.innerHTML = `
-      <div class="popover-title">${targetData.item.title}</div>
-      <div class="popover-snippet">${snippet}...</div>
+      <div class="popover-title">${htmlEscape(targetData.item.title)}</div>
+      <div class="popover-snippet">${htmlEscape(snippet)}...</div>
     `;
 
     previewPopover.classList.add('visible');

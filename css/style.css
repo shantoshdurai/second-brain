@@ -23,6 +23,7 @@ STYLE: Obsidian Emerald — Refined Dark/Light Theme
     --text-primary: #0A0C0A; /* Ink black with a hint of emerald */
     --text-secondary: #2C332C;
     --accent-emerald: #16A34A; /* emerald-600 */
+    --vibrant-green: var(--accent-emerald);
     --text-accent: var(--accent-emerald);
     --text-muted: #576157;
     --code-text: var(--accent-emerald);
@@ -36,6 +37,7 @@ STYLE: Obsidian Emerald — Refined Dark/Light Theme
     --font-mono: 'JetBrains Mono', monospace;
     --radius: 8px; /* Slightly rounded for "lithograph" feel */
     --shadow-ambient: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 4px 12px rgba(22, 163, 74, 0.1);
 
     /* --- GRAPH COLORS --- */
     --bg-graph: #E5E7E5; /* Muted weighted paper tint */
@@ -96,7 +98,7 @@ body {
 }
 
 /* Animations */
-@keyframes fadeUp {
+@keyframes fade-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -107,9 +109,18 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .staggered-fade > * {
   opacity: 0;
-  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .staggered-fade > *:nth-child(1) { animation-delay: 0.1s; }
@@ -1331,12 +1342,6 @@ body[data-theme="dark"] .graph-legend {
     cursor: pointer;
 }
 
-/* 1. CSS-Only Tooltips */
-[data-tooltip] {
-    position: relative;
-    cursor: pointer;
-}
-
 [data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -1496,7 +1501,7 @@ kbd.shortcut-badge {
 
 .random-btn:hover {
     background: var(--text-accent);
-    color: #0D0D0D;
+    color: var(--bg-body);
     border-color: var(--text-accent);
 }
 
@@ -1563,7 +1568,8 @@ body.stacked-mode .main-content {
     flex-shrink: 0;
     width: 750px;
     max-width: 750px;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Adjust for header height */
+    position: relative;
     overflow-y: auto;
     background-color: var(--bg-body);
     border-left: 1px solid var(--border-color);

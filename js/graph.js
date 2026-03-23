@@ -23,6 +23,7 @@ function toggleGraphView() {
   }
 
   if (graphContainer.classList.contains("active")) {
+    document.body.classList.remove("stacked-mode");
     renderGraph();
   } else if (graphNetwork) {
     graphNetwork.destroy();
