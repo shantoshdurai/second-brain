@@ -1,14 +1,14 @@
 // --- GRAPH VIEW LOGIC ---
 let graphNetwork = null;
 const categoryColors = {
-  ai: "#00d4ff",
-  cybersecurity: "#ff4757",
-  general: "#ced6e0",
-  insurance: "#ffa502",
-  philosophy: "#a55eea",
-  psychology: "#2ed573",
-  science: "#eccc68",
-  devops: "#38a89b"
+  ai: "#22C55E",           // Emerald 500
+  cybersecurity: "#16A34A", // Emerald 600
+  general: "#86EFAC",      // Emerald 300
+  insurance: "#059669",    // Emerald 600 (Dark)
+  philosophy: "#4ADE80",   // Emerald 400
+  psychology: "#10B981",   // Emerald 500
+  science: "#BBF7D0",      // Emerald 200
+  devops: "#065F46"        // Emerald 800
 };
 
 function toggleGraphView() {
@@ -105,9 +105,9 @@ function renderGraph() {
         },
         font: {
           color: labelColor,
-          size: 10,
+          size: 11,
           strokeWidth: 0,
-          face: "Inter"
+          face: "DM Sans"
         },
         title: item.desc || item.title
       });
@@ -118,7 +118,7 @@ function renderGraph() {
             id: `child-${item.id}-${child.id}`,
             from: item.id,
             to: child.id,
-            color: { opacity: 0.1, color: "#475569" },
+            color: { opacity: 0.05, color: "#22C55E" },
             width: 1,
             dashes: true
           });
@@ -133,7 +133,7 @@ function renderGraph() {
               id: `link-${item.id}-${linkId}`,
               from: item.id,
               to: linkId,
-              color: { opacity: 0.2, color: color },
+              color: { opacity: 0.08, color: "#22C55E" },
               width: 1
             });
           }

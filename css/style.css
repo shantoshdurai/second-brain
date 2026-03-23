@@ -20,11 +20,11 @@ STYLE: Obsidian Emerald — Refined Dark/Light Theme
     --surface-high: #EEEEEE;
     --surface-highest: #E2E2E2;
 
-    --text-primary: #111111;
-    --text-secondary: #333333;
+    --text-primary: #0A0C0A; /* Ink black with a hint of emerald */
+    --text-secondary: #2C332C;
     --accent-emerald: #16A34A; /* emerald-600 */
     --text-accent: var(--accent-emerald);
-    --text-muted: #737686;
+    --text-muted: #576157;
     --code-text: var(--accent-emerald);
     --text-code-block: #1A1C1C;
 
@@ -36,35 +36,43 @@ STYLE: Obsidian Emerald — Refined Dark/Light Theme
     --font-mono: 'JetBrains Mono', monospace;
     --radius: 8px; /* Slightly rounded for "lithograph" feel */
     --shadow-ambient: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+    /* --- GRAPH COLORS --- */
+    --graph-label: #576157;
+    --graph-label-focused: #0A0C0A;
 }
 
 body[data-theme="dark"] {
-    --bg-body: #0D0D0D;
-    --bg-surface: #141414;
-    --bg-sidebar: #111111;
-    --bg-input: #141414;
-    --bg-card: #181818;
-    --bg-quote: #1A1A1A;
-    --bg-tag: #1A1A1A;
-    --bg-code-inline: #1A1A1A;
-    --bg-code-block: #0D0D0D;
+    --bg-body: #090C09; /* Deep forest-tinted black */
+    --bg-surface: #0E120E;
+    --bg-sidebar: #0B0D0B;
+    --bg-input: #0E120E;
+    --bg-card: #121812;
+    --bg-quote: #151C15;
+    --bg-tag: #151C15;
+    --bg-code-inline: #151C15;
+    --bg-code-block: #090C09;
 
     /* Tonal Layering (New) */
     --surface-low: #111111;
     --surface-high: #1C1C1C;
     --surface-highest: #242424;
 
-    --text-primary: #FFFFFF;
-    --text-secondary: #D1D1D1;
+    --text-primary: #F0F4F0;
+    --text-secondary: #C8D1C8;
     --accent-emerald: #22C55E; /* emerald-500 */
     --text-accent: var(--accent-emerald);
-    --text-muted: #A0A0A0;
+    --text-muted: #96A396;
     --code-text: var(--accent-emerald);
     --text-code-block: #E5E2E1;
 
     --border-color: rgba(34, 197, 94, 0.12);
     --shadow-ambient: 0 4px 20px rgba(0, 0, 0, 0.3);
     --shadow-glow: 0 10px 30px rgba(34, 197, 94, 0.1);
+
+    /* --- GRAPH COLORS --- */
+    --graph-label: #96A396;
+    --graph-label-focused: #F0F4F0;
 }
 
 * {
@@ -175,8 +183,8 @@ body {
     transform: translateY(-1px);
 }
 
-/* Sliding Underline Effect */
-.header-btn::after {
+/* Sliding Underline Effect (Moved to ::before to avoid tooltip collision) */
+.header-btn::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -186,9 +194,10 @@ body {
     background: var(--text-accent);
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
-.header-btn:hover::after {
+.header-btn:hover::before {
     width: 60%;
 }
 
@@ -542,8 +551,7 @@ body:not([data-theme="dark"]) .search-modal {
 
 .markdown-body p {
     margin-bottom: 1.5rem;
-    color: var(--text-muted);
-    /* Slightly softer than pure black */
+    color: var(--text-primary);
 }
 
 .markdown-body a {
@@ -578,6 +586,7 @@ body:not([data-theme="dark"]) .search-modal {
 
 .markdown-body li {
     margin-bottom: 0.5rem;
+    color: var(--text-primary);
 }
 
 /* --- TABLE STYLES --- */
@@ -1320,33 +1329,46 @@ body[data-theme="dark"] .graph-legend {
     cursor: pointer;
 }
 
-[data-tooltip]::before,
-[data-tooltip]::after {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transition: none;
-    z-index: 1000;
-    pointer-events: none;
+/* 1. CSS-Only Tooltips */
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
 }
 
-/* Tooltip Arrow */
-[data-tooltip]::before {
-    content: "";
-    border: 5px solid transparent;
-}
-
-/* Tooltip Body */
 [data-tooltip]::after {
     content: attr(data-tooltip);
-    background: var(--bg-code-block);
-    color: var(--text-code-block);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--bg-surface);
+    color: var(--text-primary);
     font-size: 0.75rem;
-    font-weight: 500;
-    padding: 6px 10px;
+    font-weight: 600;
+    font-family: var(--font-main);
+    padding: 6px 12px;
     border-radius: var(--radius);
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: var(--shadow-ambient);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+    font-style: normal;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(4px);
+}
+
+body[data-theme="dark"] [data-tooltip]::after {
+    background: var(--surface-high);
+    border-color: rgba(34, 197, 94, 0.2);
 }
 
 /* Bottom Placement (Default) */
