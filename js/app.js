@@ -33,10 +33,8 @@ function setTheme(theme) {
 
 function initTheme() {
   const saved = localStorage.getItem("theme");
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initialTheme = saved || (prefersDark ? "dark" : "light");
+  // Default to dark mode if no preference has been saved previously
+  const initialTheme = saved || "dark";
 
   setTheme(initialTheme);
 
@@ -1518,9 +1516,21 @@ document.body.appendChild(previewPopover);
 let previewTimeout = null;
 let currentPreviewLink = null;
 
+function hidePreview() {
+  clearTimeout(previewTimeout);
+  previewPopover.classList.remove('visible');
+  currentPreviewLink = null;
+}
+
 document.body.addEventListener('mouseover', (e) => {
   const link = e.target.closest('a');
-  if (!link) return;
+  if (!link) {
+    // If we are moving NOT over a link and NOT over the popover, we can safely hide
+    if (currentPreviewLink && !previewPopover.contains(e.target)) {
+      // However, mouseout usually handles this. Mouseover is mostly for showing.
+    }
+    return;
+  }
 
   const href = link.getAttribute('href');
   if (!href || href.match(/^(http|https|mailto:|#)/)) return;
@@ -1529,7 +1539,12 @@ document.body.addEventListener('mouseover', (e) => {
   const targetData = lookup(targetId);
 
   if (targetData && targetData.item) {
-    clearTimeout(previewTimeout);
+    // If we're already showing this link, don't restart
+    if (currentPreviewLink === link) return;
+
+    // If we're over a DIFFERENT link, hide the old one first
+    if (currentPreviewLink) hidePreview();
+
     currentPreviewLink = link;
 
     const snippet = (targetData.item.content || "").replace(/[#*`_\[\]()]/g, '').substring(0, 200).trim();
@@ -1544,13 +1559,11 @@ document.body.addEventListener('mouseover', (e) => {
     const rect = link.getBoundingClientRect();
     let popoverTop = rect.top - previewPopover.offsetHeight - 10;
 
-    // Fallback if it clips the top of the screen
     if (popoverTop < 10) {
       popoverTop = rect.bottom + 10;
     }
 
     let popoverLeft = rect.left;
-    // Fallback if it clips the right side of the screen
     if (popoverLeft + previewPopover.offsetWidth > window.innerWidth - 20) {
       popoverLeft = window.innerWidth - previewPopover.offsetWidth - 20;
     }
@@ -1558,15 +1571,17 @@ document.body.addEventListener('mouseover', (e) => {
     previewPopover.style.top = `${popoverTop}px`;
     previewPopover.style.left = `${popoverLeft}px`;
   }
-}, true); // Use capture phase occasionally helps with deeply nested a tags
+}, true);
 
 document.body.addEventListener('mouseout', (e) => {
-  const link = e.target.closest('a');
-  if (link && link === currentPreviewLink) {
-    clearTimeout(previewTimeout);
-    previewPopover.classList.remove('visible');
-    currentPreviewLink = null;
+  if (!currentPreviewLink) return;
+
+  // Check if the mouse is truly leaving the current link
+  const goingTo = e.relatedTarget;
+  if (!goingTo || (!currentPreviewLink.contains(goingTo) && !previewPopover.contains(goingTo))) {
+    hidePreview();
   }
 }, true);
+
 // Start the Engine
 init();
