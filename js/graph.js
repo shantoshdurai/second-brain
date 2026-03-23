@@ -1,14 +1,14 @@
 // --- GRAPH VIEW LOGIC ---
 let graphNetwork = null;
 const categoryColors = {
-  ai: "#22C55E",           // Emerald 500
-  cybersecurity: "#16A34A", // Emerald 600
-  general: "#86EFAC",      // Emerald 300
-  insurance: "#059669",    // Emerald 600 (Dark)
-  philosophy: "#4ADE80",   // Emerald 400
-  psychology: "#10B981",   // Emerald 500
-  science: "#BBF7D0",      // Emerald 200
-  devops: "#065F46"        // Emerald 800
+  ai: "#22C55E",           // Emerald
+  cybersecurity: "#E11D48", // Rose/Red
+  philosophy: "#9333EA",   // Purple
+  psychology: "#0EA5E9",   // Sky Blue
+  science: "#F59E0B",      // Amber
+  insurance: "#64748B",    // Slate
+  general: "#10B981",      // Teal/Emerald
+  devops: "#F97316"        // Orange
 };
 
 function toggleGraphView() {
@@ -58,6 +58,7 @@ function renderGraph() {
           if (lookup(linkId)) {
             connectionCounts[item.id]++;
             connectionCounts[linkId] = (connectionCounts[linkId] || 0) + 1;
+            countConnections([{id: linkId}]);
           }
         });
       }
@@ -75,8 +76,8 @@ function renderGraph() {
   // 2. Build items with scaling
   seenNodes.clear();
   const style = getComputedStyle(document.body);
-  const labelColor = style.getPropertyValue('--graph-label').trim() || "rgba(255,255,255,0.6)";
-  const focusedLabelColor = style.getPropertyValue('--graph-label-focused').trim() || "rgba(255,255,255,1)";
+  const labelColor = style.getPropertyValue('--graph-label').trim() || "#96A396";
+  const focusedLabelColor = style.getPropertyValue('--graph-label-focused').trim() || "#F0F4F0";
 
   function processItems(items) {
     if (!items) return;
@@ -84,13 +85,13 @@ function renderGraph() {
       if (!item.id || seenNodes.has(item.id)) return;
       seenNodes.add(item.id);
 
-      let color = "#94a3b8a0";
+      let color = "#22C55E";
       if (item.group && categoryColors[item.group.toLowerCase()]) {
         color = categoryColors[item.group.toLowerCase()];
       }
 
-      // Obsidian-style Scaling: Base size 4, scaling by sqrt of connections
-      const size = 6 + Math.sqrt(connectionCounts[item.id] || 0) * 4;
+      // Scaling: Base 5, scaling by sqrt of connections
+      const size = 5 + Math.sqrt(connectionCounts[item.id] || 0) * 6;
 
       nodes.push({
         id: item.id,
@@ -102,6 +103,13 @@ function renderGraph() {
           border: color,
           highlight: { background: color, border: color },
           hover: { background: color, border: color }
+        },
+        shadow: {
+          enabled: true,
+          color: color + "66", // 40% opacity for the glow
+          size: 15,
+          x: 0,
+          y: 0
         },
         font: {
           color: labelColor,
@@ -173,24 +181,26 @@ function renderGraph() {
     },
     physics: {
       forceAtlas2Based: {
-        gravitationalConstant: -26,
-        centralGravity: 0.005,
-        springLength: 90,
-        springConstant: 0.08
+        gravitationalConstant: -100,
+        centralGravity: 0.015,
+        springLength: 120,
+        springConstant: 0.05,
+        avoidOverlap: 0.5
       },
       solver: "forceAtlas2Based",
       timestep: 0.35,
       stabilization: {
         enabled: true,
         iterations: 1000,
-        updateInterval: 100
+        updateInterval: 50
       }
     },
     interaction: {
       hover: true,
-      tooltipDelay: 300,
+      tooltipDelay: 200,
       zoomView: true,
-      dragView: true
+      dragView: true,
+      selectable: true
     }
   };
 
@@ -211,17 +221,23 @@ function renderGraph() {
     const neighborEdges = graphNetwork.getConnectedEdges(hoveredNodeId);
 
     // Fade all nodes except neighbors and self
-    const nodeUpdate = nodes.map(n => ({
-      id: n.id,
-      opacity: (neighbors.includes(n.id) || n.id === hoveredNodeId) ? 1 : 0.1,
-      font: { color: (neighbors.includes(n.id) || n.id === hoveredNodeId) ? focusedLabelColor : "rgba(255,255,255,0)" }
-    }));
+    const nodeUpdate = nodes.map(n => {
+      const isActive = neighbors.includes(n.id) || n.id === hoveredNodeId;
+      return {
+        id: n.id,
+        opacity: isActive ? 1 : 0.05,
+        font: { 
+          color: isActive ? (n.id === hoveredNodeId ? focusedLabelColor : n.color.background) : "rgba(0,0,0,0)",
+          size: isActive ? 12 : 0
+        }
+      };
+    });
     data.nodes.update(nodeUpdate);
 
     // Fade all edges except connected ones
     const edgeUpdate = data.edges.getIds().map(id => ({
       id: id,
-      color: { opacity: neighborEdges.includes(id) ? 0.6 : 0.02 }
+      color: { opacity: neighborEdges.includes(id) ? 0.8 : 0.01 }
     }));
     data.edges.update(edgeUpdate);
   });
@@ -231,11 +247,11 @@ function renderGraph() {
     data.nodes.update(nodes.map(n => ({
       id: n.id,
       opacity: 1,
-      font: { color: labelColor }
+      font: { color: labelColor, size: graphNetwork.getScale() < 0.6 ? 0 : 11 }
     })));
     data.edges.update(data.edges.getIds().map((id) => ({
       id: id,
-      color: { opacity: edgeOpacityMap[id] || 0.1 }
+      color: { opacity: edgeOpacityMap[id] || 0.08 }
     })));
   });
 
