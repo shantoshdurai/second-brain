@@ -1,5 +1,6 @@
 // --- GRAPH VIEW LOGIC ---
-let cosmographInstance = null;
+let graphSimulation = null;
+let initialFitTimer = null;
 const categoryColors = {
     ai: "#22C55E",           // Emerald
     cybersecurity: "#E11D48", // Rose/Red
@@ -25,9 +26,15 @@ function toggleGraphView() {
     if (graphContainer.classList.contains("active")) {
         document.body.classList.remove("stacked-mode");
         renderGraph();
-    } else if (cosmographInstance) {
-        // We can keep it or destroy it. Keeping it might be faster for next time.
-        // But if we want to reset physics/position, we might want to interact with it.
+    } else {
+        if (initialFitTimer) {
+            clearTimeout(initialFitTimer);
+            initialFitTimer = null;
+        }
+        if (graphSimulation) {
+            graphSimulation.stop();
+            graphSimulation = null;
+        }
     }
 }
 
@@ -119,7 +126,7 @@ function renderGraph() {
 
     // Subtle size scaling — capped to keep the graph clean
     nodes.forEach(node => {
-        node.size = 3 + Math.min(Math.sqrt(connectionCounts[node.id] || 0) * 1.5, 6);
+        node.size = 3 + Math.min(Math.sqrt(connectionCounts[node.id] || 0) * 2.0, 25);
     });
 
     // 2. D3 Initialization
@@ -167,23 +174,29 @@ function renderGraph() {
 
     // Standard zoomed behavior — labels fade out when zoomed out
     const LABEL_SHOW_THRESHOLD = 0.75;
+    // Standard zoomed behavior — labels show based on zoom level
+    let currentZoomK = 1.0;
     const zoom = d3.zoom()
         .scaleExtent([0.1, 4])
         .on("zoom", (event) => {
             g.attr("transform", event.transform);
-            const k = event.transform.k;
-            // Smoothly fade labels in/out around the threshold
-            const labelOpacity = k < LABEL_SHOW_THRESHOLD
-                ? Math.max(0, (k - (LABEL_SHOW_THRESHOLD - 0.2)) / 0.2)
-                : 1;
-            g.selectAll("text.graph-node-label").style("opacity", labelOpacity);
+            currentZoomK = event.transform.k;
+            // Only update zoom-based opacity if no hover is currently active
+            if (!svg.node()._hoveringNode && !svg.node()._hoveringLink) {
+                const labelOpacity = currentZoomK < LABEL_SHOW_THRESHOLD
+                    ? Math.max(0, (currentZoomK - (LABEL_SHOW_THRESHOLD - 0.2)) / 0.2)
+                    : 1;
+                label.style("opacity", labelOpacity);
+            }
         });
+
 
     svg.call(zoom);
 
     // Clean, spacious circular layout
     const radius = Math.min(width, height) * 0.35;
-    const simulation = d3.forceSimulation(nodes)
+    graphSimulation?.stop();
+    const simulation = graphSimulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(80).strength(0.4))
         .force("charge", d3.forceManyBody().strength(-600))
         .force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
@@ -253,9 +266,25 @@ function renderGraph() {
     });
 
     // Hide labels by default — only show on hover
-    label.attr("opacity", 0);
+    label.style("opacity", 0);
+
+    // Label opacity helper
+    function getZoomLabelOpacity() {
+        return currentZoomK < LABEL_SHOW_THRESHOLD
+            ? Math.max(0, (currentZoomK - (LABEL_SHOW_THRESHOLD - 0.2)) / 0.2)
+            : 1;
+    }
+
+    function resetStyles() {
+        applyLegendFilter();
+        // Restore zoom-based opacity if not hovering
+        if (!svg.node()._hoveringNode && !svg.node()._hoveringLink) {
+            label.style("opacity", getZoomLabelOpacity());
+        }
+    }
 
     node.on("mouseover", function (event, d) {
+        svg.node()._hoveringNode = true;
         const neighbors = adjacentNodes[d.id] || new Set();
         neighbors.add(d.id);
 
@@ -264,14 +293,34 @@ function renderGraph() {
             .attr("stroke", l => (l.source.id === d.id || l.target.id === d.id) ? "var(--text-accent, #7852ee)" : "var(--background-modifier-border-focus, #555)")
             .attr("stroke-opacity", l => (l.source.id === d.id || l.target.id === d.id) ? 0.9 : 0.1)
             .attr("stroke-width", l => (l.source.id === d.id || l.target.id === d.id) ? 2 : 1);
+
         label
-            .attr("opacity", n => neighbors.has(n.id) ? 1 : 0)
+            .style("opacity", n => neighbors.has(n.id) ? 1 : 0.15)
             .attr("font-weight", n => n.id === d.id ? "bold" : "normal");
     });
 
+    link.on("mouseover", function (event, d) {
+        svg.node()._hoveringLink = true;
+        const endpoints = new Set([d.source.id, d.target.id]);
+
+        node.attr("opacity", n => endpoints.has(n.id) ? 1 : 0.15);
+        link
+            .attr("stroke", l => l === d ? "var(--text-accent, #7852ee)" : "var(--background-modifier-border-focus, #555)")
+            .attr("stroke-opacity", l => l === d ? 0.9 : 0.1)
+            .attr("stroke-width", l => l === d ? 2 : 1);
+
+        label
+            .style("opacity", n => endpoints.has(n.id) ? 1 : 0.15)
+            .attr("font-weight", "normal");
+    });
+
     node.on("mouseout", function () {
-        // Reset or use active filter if any
-        applyLegendFilter();
+        svg.node()._hoveringNode = false;
+        resetStyles();
+    });
+    link.on("mouseout", function () {
+        svg.node()._hoveringLink = false;
+        resetStyles();
     });
 
     node.on("click", function (event, d) {
@@ -285,22 +334,26 @@ function renderGraph() {
     let activeFilter = null;
 
     function applyLegendFilter() {
+        const resetLabelOpacity = getZoomLabelOpacity();
+
         if (!activeFilter) {
             node.attr("opacity", 1).style("display", "block");
             link.attr("stroke-opacity", 0.4).attr("stroke-width", 1)
                 .attr("stroke", "var(--background-modifier-border-focus, #555)")
                 .style("display", "block");
-            // Always hide labels on reset — only shown on hover
-            label.attr("opacity", 0).style("display", "block");
+            label.style("opacity", resetLabelOpacity).style("display", "block");
         } else {
             node.attr("opacity", 1)
                 .style("display", n => n.category === activeFilter ? "block" : "none");
             link.style("display", l => {
-                return (l.source.category === activeFilter && l.target.category === activeFilter) ? "block" : "none";
+                const s = l.source.category || l.source.category; // handle both object and ID refs
+                const t = l.target.category || l.target.category;
+                return (s === activeFilter && t === activeFilter) ? "block" : "none";
             });
-            label.attr("opacity", 0).style("display", n => n.category === activeFilter ? "block" : "none");
+            label.style("opacity", resetLabelOpacity).style("display", n => n.category === activeFilter ? "block" : "none");
         }
     }
+
 
     window.d3GraphFilter = (group) => {
         if (activeFilter === group) {
@@ -316,7 +369,7 @@ function renderGraph() {
     setupLegend(nodes, labelColor);
 
     // Initial Zoom to fit
-    setTimeout(() => {
+    initialFitTimer = window.setTimeout(() => {
         const bounds = g.node().getBBox();
         const fullWidth = width;
         const fullHeight = height;
@@ -367,8 +420,10 @@ function setupLegend(nodes, labelColor) {
     const activeGroups = [...new Set(nodes.map(n => n.category).filter(Boolean))];
 
     activeGroups.forEach(group => {
-        const item = document.createElement("div");
+        const item = document.createElement("button");
         item.className = "legend-item";
+        item.setAttribute("aria-pressed", "false");
+        item.setAttribute("type", "button");
         const color = categoryColors[group.toLowerCase()] || "#94a3b8";
 
         item.innerHTML = `
@@ -380,9 +435,15 @@ function setupLegend(nodes, labelColor) {
             e.stopPropagation();
             const activeFilter = window.d3GraphFilter(group);
 
-            // Update UI
-            document.querySelectorAll(".legend-item").forEach(i => i.classList.remove("active"));
-            if (activeFilter) item.classList.add("active");
+            // Update UI + aria-pressed for all items
+            document.querySelectorAll(".legend-item").forEach(i => {
+                i.classList.remove("active");
+                i.setAttribute("aria-pressed", "false");
+            });
+            if (activeFilter) {
+                item.classList.add("active");
+                item.setAttribute("aria-pressed", "true");
+            }
         };
 
         legendContainer.appendChild(item);
