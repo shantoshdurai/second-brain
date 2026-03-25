@@ -5,33 +5,74 @@ tags: Security, Malware, CyberAttack, Awareness
 
 # Cybersecurity Attacks
 
-"The Digital Arsenal" ,a collection of tricks and tools used by hackers to damage, disrupt, or steal from your computer systems.
+The arsenal of the digital adversary.
 
-A **Cybersecurity Attack** is any attempt by a malicious actor (from a teenager in a basement to a professional criminal army) to break into your network. The digital world is essentially a permanent, invisible battlefield. Every day, automated scripts are "knocking" on the doors of your devices, looking for one loose lock or one forgotten window.
+Cybersecurity attacks range from simple social engineering tricks to complex, automated [[malware|malware]] that can paralyze global infrastructure. This catalogue provides a summary of the various attack vectors, malicious software, and vulnerabilities documented in this knowledge bank.
 
-Think of it like **A Field Guide to Burglars**:
-*   Some burglars use **Brute Force** (kicking the door down).
-*   Some use **Deception** (pretending to be the plumber so you let them in).
-*   Some use **Stealth** (creeping in through a loose vent in the roof).
-*   This catalog unmasks their methods so you know how to lock those doors.
+## The Catalog of Attacks
 
-## The Catalog of Chaos
-1.  **The Heavy Hitters:** [[malware|Malware]] (viruses), [[ransomware|Ransomware]] (kidnapping data), and [[ddos|DDoS]] (flooding a website so it crashes).
-2.  **The Stealth Operatives:** [[phishing|Phishing]] (tricking you into giving your password) and [[spywares|Spyware]] (watching you through your webcam).
-3.  **The Destructive Tools:** [[wipers|Wipers]] (shredding your data permanently) and [[logic-bomb|Logic Bombs]] (code that explodes on a specific date).
-4.  **The Masterminds:** [[botnets|Botnets]] (an army of "zombie" computers controlled by one hacker).
+### 1. [[malware|Malware]] (Overview)
+A broad category of malicious software; including viruses, [[worms|worms]], and [[ransomware|ransomware]]; designed specifically to harm systems, steal data, or gain unauthorized access.
 
-## FAQs
+### 2. [[phishing|Phishing]]
+Social engineering that uses deceptive emails or messages to trick users into revealing passwords, credit card numbers, or other sensitive information.
 
-*1. Who is behind these attacks?*
-It ranges from **"Script Kiddies"** (amateurs using pre-made tools for fun) to **Organized Crime Syndicates** (who do it for profit) and **Nation-States** (who do it for cyber-warfare).
+### 3. [[vishing|Vishing]]
+"Voice [[phishing|Phishing]]": Scammers use phone calls to create a sense of urgency and trick victims into granting remote access or transferring money.
 
-*2. How can I stay safe from so many threats?*
-Security is a **Habit**, not a product. The "Big Three" are: 1) Keep your software updated (to kill bugs), 2) Use a password manager and Multi-Factor Authentication (MFA), and 3) Treat every "Urgent" email or weird download with extreme suspicion.
+### 4. [[ransomware|Ransomware]]
+Digital kidnapping: [[malware|Malware]] that encrypts your files and demands a ransom (usually in Bitcoin) in exchange for the decryption key.
 
-### Further Reading
+### 5. [[wipers|Wipers]]
+The "digital shredder": Destructive [[malware|malware]] used in [[cyber-warfare|cyber warfare]] to permanently erase data from hard drives with no intention of recovery.
 
-*   **The Blueprint:** *[[cybersecurity-frameworks|Cybersecurity Frameworks]]* (How the good guys defend).
-*   **The Target:** *[[zero-day|Zero-Day Vulnerabilities]] (The holes no one knows about yet).*
-*   **The Hub:** [OWASP Top 10](https://owasp.org/www-project-top-ten/) (The most critical web risks).
-*   **Article:** *[The History of Great Cyber Attacks](https://www.csis.org/programs/strategic-technologies/significant-cyber-incidents)*.
+### 6. [[worms|Worms]]
+Standalone [[malware|malware]] that spreads automatically across networks without needing a host program or any human action.
+
+### 7. [[virus|Computer Virus]]
+A classic infection that attaches itself to a host program or file and replicates by infecting other files when the host is executed.
+
+### 8. [[trojan|Trojan Horse]]
+Malicious software that disguises itself as something useful (like a free game or tool) to trick you into inviting it into your system.
+
+### 9. [[botnets|Botnets]]
+An army of "zombie" computers (infected devices) secretly controlled by a hacker to launch massive attacks like [[ddos|DDoS]] or crypto mining.
+
+### 10. [[ddos|DDoS]] (Distributed Denial of Service)
+A "digital traffic jam": Overwhelming a website or server with a flood of traffic from a [[botnets|botnet]] to make it crash or become unreachable.
+
+### 11. [[cryptojacking|Cryptojacking]]
+A digital parasite that secretly uses your computer's processing power and electricity to mine cryptocurrency for a hacker.
+
+### 12. [[key-loggers|Keyloggers]]
+Surveillance tools (hardware or software) that secretly record everything you type to steal passwords and personal messages.
+
+### 13. [[spywares|Spyware]]
+Broad category of surveillance [[malware|malware]] that quietly tracks your activities and steals information while remaining as invisible as possible.
+
+### 14. [[rootkit|Rootkit]]
+Stealthy toolsets that give a hacker deep administrative control over a computer while hiding their presence from the [[operating-system|operating system]].
+
+### 15. [[logic-bomb|Logic Bomb]]
+Malicious code that sits dormant and "explodes" (triggers) only when a specific condition is met, such as a date or a specific event.
+
+### 16. [[supply-chain-attack|Supply Chain Attack]]
+Attacking a large organization by first compromising the smaller, less-secure vendors or suppliers that they trust.
+
+### 17. [[zero-day|Zero-Day]]
+An attack that exploits a previously unknown software flaw before the developers have had "zero days" to create a fix or patch.
+
+### 18. [[remote-code-execution|Remote Code Execution]] (RCE)
+The "Holy Grail" for hackers: A vulnerability that allows them to run their own code on a remote server from anywhere in the world.
+
+### 19. [[command-injection|Command Injection]]
+Tricking a system into obeying unauthorized commands by hiding them in legitimate-looking input fields (like a search bar).
+
+### 20. [[react2shell|React2Shell]]
+A critical vulnerability (CVE-2025-55182) that allows hackers to take control of servers running specific versions of React Server Components.
+
+### 21. [[doxing|Doxing]]
+A real-world threat: Publicly revealing someone's private identifying information online to enable harassment or physical threats.
+
+### 22. [[adware|Adware]]
+Unwanted software that bombards you with advertisements, often tracking your browsing habits to sell your data to advertisers.

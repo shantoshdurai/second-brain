@@ -5,29 +5,26 @@ tags: CyberSecurity, CyberAttack, VulnerabilityManagement
 
 # GlassWorm
 
-"The Invisible Ghost" ,a terrifyingly advanced piece of malware that hides in the whitespace of code. It uses invisible characters and the blockchain to avoid being seen by any human or antivirus.
+An "invisible" [[virus|computer virus]] that hides inside the code developers write, spreading automatically by stealing their work passwords.
 
-**GlassWorm** (discovered in late 2025) targets software developers ,the people who build the apps we use every day. By infecting "tools of the trade" (like VS Code extensions), it hitches a ride on every app that developer ever publishes. 
+It is a highly advanced piece of [[malware|malware]] discovered on October 17, 2025 that targets software developers.
 
-Think of it as **Malware written in Invisible Ink**:
-*   **The Trick:** It uses "Unicode" characters that are physically invisible to the eye. A programmer can look directly at a line of code and see it is "empty," but the computer reads it as a series of lethal commands to steal passwords.
-*   **The Blockchain Connection:** Instead of a central website that police can shut down, GlassWorm looks for instructions hidden inside the **Solana Cryptocurrency Blockchain**. 
-*   **Undeletable:** Since no one can delete a transaction from the blockchain, the hacker's "Command-and-Control" is permanent. Every infected computer on Earth will read the blockchain and obey.
+It specifically infects **Visual Studio Code (VS Code) extensions**, the little add-ons programmers use to make coding easier. What makes it terrifying is that the malicious code is written using **invisible characters**. A programmer can look directly at the infected file, and it will look like an empty line or normal whitespace, but the computer reads it as dangerous instructions.
 
-## The ZOMBI Phase
-Once a developer is infected, GlassWorm installs the **ZOMBI module**. This turns the developer's high-powered computer into a "Proxy." If the police track a hack back to its source, it looks like it came from the innocent developer’s house, while the real hacker is thousands of miles away.
+Once inside a developer's computer, it steals their credentials (passwords for publishing code) to automatically infect *other* projects, spreading like a worm through the software supply chain.
 
 ## FAQs
 
-*1. How can a developer spot "Invisible" code?*
-**You can't with your eyes.** You must use tools that highlight non-standard characters. Most modern code editors now have a "Show Invisible Characters" mode specifically to combat "Trojan Source" attacks like GlassWorm.
+*1. Why can't we just delete the hacker's server?*
+GlassWorm is unique because it uses **Blockchain Command & Control (C2)**.
+Usually, [[malware|malware]] connects to a specific website (e.g., `hacker-site.com`). If the police seize that website, the [[malware|malware]] dies.
+GlassWorm instead looks at public transactions on the **Solana Cryptocurrency Blockchain**. The hacker sends a transaction with a "memo" containing instructions. Since no one can delete a transaction from a blockchain, the "server" can never be taken down.
 
-*2. Why target developers?*
-**The [[supply-chain-attack|Supply Chain]].** If a hacker hacks one random person, they get one person's data. If they hack *one* popular software developer, they can hide their malware inside that developer's app and automatically infect **millions** of people.
+*2. What is the "ZOMBI" Module?*
+Once fully installed, GlassWorm deploys a payload often called the **ZOMBI module**. This turns the developer's high-powered computer into a proxy. Hackers can then route their own internet traffic through the developer's computer to attack *other* targets, making it look like the innocent developer did it.
 
 ### Further Reading
 
-*   **The Technique:** *[Trojan Source: How Code Can Be Invisible](https://trojansource.codes/)*.
-*   **The Strategy:** *[[supply-chain-attack|Supply Chain Attacks Explained]]*.
-*   **The Report:** *[Koi Security: The Discovery of GlassWorm](https://www.koi.ai/blog/glassworm-returns-new-wave-openvsx-malware-expose-attacker-infrastructure)*.
-*   **Video:** *[How Invisible Characters can hack your computer](https://www.youtube.com/watch?v=sS_o-O-8Kxw)*.
+* **The Original Discovery:** Search for *["Koi Security GlassWorm Report October 2025"](https://www.koi.ai/blog/glassworm-returns-new-wave-openvsx-malware-expose-attacker-infrastructure)*.
+* **The Technique:** Read about *"[Trojan Source Attacks](https://trojansource.codes/)"* (CVE-2021-42574) to understand how invisible characters work in code.
+* **The Defense:** Look up *"[VS Code Restricted Mode](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace#_extension-recommendations)"* and how to audit your extensions.

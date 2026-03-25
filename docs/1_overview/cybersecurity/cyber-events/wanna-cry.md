@@ -5,32 +5,28 @@ tags: CyberSecurity, Ransomware, Worm
 
 # WannaCry
 
-"The Digital Pandemic" ,a global ransomware crisis that held the world hostage in a single weekend. It proved that code could shut down national hospitals and paralyze global trade.
+The epidemic that held the world hostage.
 
-**WannaCry** (May 2017) was a world-changing **[[ransomware|Ransomware]]** attack. Within 48 hours, it infected 200,000 computers in 150 countries. It hit the UK's National Health Service, Telefónica, and even FedEx. It wasn't just scary because it locked files, but because it was **"Wormable"** ,using a stolen NSA weapon called **[[eternalblue|EternalBlue]]** to jump from computer to computer automatically. If your PC was on the internet and unpatched, you were next.
+**WannaCry** (2017) was a global **[[ransomware|Ransomware]]** attack that infected over 200,000 computers in 150 countries within a single weekend.
 
-## The Human Impact
-This wasn't just about "broken computers":
-*   **UK Hospitals (NHS):** The most famous victim. WannaCry locked patient records and operating schedules. Doctors had to cancel surgeries, ambulances were diverted, and hospitals were forced to use paper and pencil. It literally put lives at risk.
-*   **Global Gridlock:** Factories in France stopped. Trains in Germany showed the ransom note on arrival boards. Banks in India were shut down.
+It was the first time a criminal [[ransomware|ransomware]] used a military-grade weapon (the **[[eternalblue|EternalBlue]]** exploit) to spread automatically. It didn't wait for you to click an email; if your computer was connected to the internet and unpatched, it just *happened*.
 
-## The Accidental Hero: Marcus Hutchins
-The outbreak was stopped by a 22-year-old researcher in his bedroom. 
-*   **The "Kill Switch":** Marcus noticed the virus checked a specific gibberish website before attacking. If the site didn't exist, it attacked.
-*   **The $10 Fix:** Marcus bought the domain for **$10**, effectively telling the virus "Stop." The global attack shut down instantly. The hackers had likely included the switch as a "Panic Button" in case they lost control.
+## The Damage
+
+*   **NHS (UK Hospitals):** The biggest tragedy. It shut down X-ray machines, ambulances were diverted, and surgeries were cancelled. Lives were put at risk.
+*   **Telefónica (Spain):** The telecom giant was paralyzed.
+*   **FedEx & Renault:** Factories stopped production.
 
 ## FAQs
 
-*1. Am I at risk today?*
-**No, as long as you update.** Microsoft released the "vaccine" (patch MS17-010) before the attack even started. WannaCry only succeeded because so many companies were lazy about updating their software.
+*1. How was it stopped?*
+By accident. A 22-year-old security researcher named **Marcus Hutchins** found a \"Kill Switch\" in the code.
+The [[virus|virus]] checked if a specific (gibberish) website existed before attacking. If the website existed, the [[virus|virus]] stopped. Marcus bought the domain for $10, and the entire global attack instantly shut down.
 
-*2. Who did it?*
-The US government and Microsoft have officially blamed the **Lazarus Group** (North Korean state-sponsored hackers).
+*2. Did people pay?*
+Surprisingly, not much. The hackers made only about $140,000 total. The chaos cost the world nearly **$4 billion** in damages, but the criminals failed to cash in efficiently.
 
 ### Further Reading
 
-*   **The Engine:** *[[eternalblue|EternalBlue (The stolen NSA weapon)]]*.
-*   **The Category:** *[[ransomware|Ransomware Overview]]*.
-*   **Technical:** *[Microsoft's MS17-010 Security Update](https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010)*.
-*   **Story:** *[The Hacker Who Saved the Internet](https://www.wired.com/story/confessions-marcus-hutchins-hacker-who-saved-the-internet/)*.
-*   **Video:** *[WannaCry: The Ransomware that Paralyzed the World](https://www.youtube.com/watch?v=n7pTz1S7Ppw)*.
+*   **Story:** *[The Confessions of Marcus Hutchins](https://www.wired.com/story/confessions-marcus-hutchins-hacker-who-saved-the-internet/)*.
+*   **Documentary:** *[WannaCry: The Marcus Hutchins Story](https://www.youtube.com/watch?v=Getj6f9y8Gk)*.

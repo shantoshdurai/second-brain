@@ -7,36 +7,35 @@ tags: ArtificialIntelligence, Creativity, LargeLanguageModels
 
 A calculator for creativity.
 
-Traditional AI was a **Classifier**: You show it a picture, and it says "Cat." 
-**Generative AI** is a **Creator**: You say "Cat," and it *draws* a brand new picture of a cat that has literally never existed before in human history.
+Traditional AI was a **Classifier**: You show it a picture, and it says "Cat."
+**Generative AI** is a **Creator**: You say "Cat," and it *draws* a new picture of a cat that never existed before.
 
-It is the stark difference between a **Librarian** (who finds existing books for you) and an **Author** (who writes totally new ones).
+It is the difference between a **Librarian** (who finds existing books) and an **Author** (who writes new ones).
 
-Despite the hype, like all current generative technology, it is strictly a form of Narrow AI. It is entirely distinct from the theoretical, human-level [[ai-vs-agi|Artificial General Intelligence (AGI)]].
+Like all current generative technology, it is a form of Narrow AI, distinct from theoretical [[ai-vs-agi|Artificial General Intelligence (AGI)]].
 
-## How it Actually Works
+## How it Works
 
-It doesn't "think." It learns by aggressively looking at billions of human examples.
-1.  **Training:** It looks at 50 million pictures of dogs. It mathematically averages out the "concept" of a dog (ears, fur, wet nose).
-2.  **Generation:** When you ask for a dog, it isn't copy-pasting an old photo from Google Images. It paints a totally fresh, unique image pixel-by-pixel based purely on its mathematical understanding of "Dog-ness."
+It learns by looking at billions of examples.
+1.  **Training:** It looks at millions of pictures of dogs. It learns the "concept" of a dog (ears, fur, nose).
+2.  **Generation:** When you ask for a dog, it doesn't copy-paste an old photo. It paints a fresh image pixel-by-pixel based on its understanding of "Dog-ness."
 
-## The Big Three
+## Common Types
 
-*   **Text-to-Text:** (Powered by [[llm|Large Language Models]]) ChatGPT, Claude, Gemini. They write essays, code, and poems.
-*   **Text-to-Image:** Midjourney, DALL-E, Stable Diffusion. They create high-fidelity art from text prompts.
-*   **Text-to-Audio:** Suno, Udio, ElevenLabs. They compose full songs with vocals or clone human voices.
+*   **Text-to-Text:** (Powered by [[llm|Large Language Models]]) ChatGPT, Claude, Gemini (Writes essays, code, poems).
+*   **Text-to-Image:** Midjourney, DALL-E (Creates art from words).
+*   **Text-to-Audio:** Suno, Udio (Composes music).
 
 ## FAQs
 
 *1. Is it stealing art?*
-This is the single biggest legal knife-fight of the decade.
-*   **The AI Argument:** "I learned from art just like human art students learn by walking through museums. I'm not copying, I'm inspired."
-*   **The Artist Argument:** "You scraped our copyrighted work without our consent, paid us nothing, and are now actively using our life's work to bankrupt us." 
-(The courts are still deciding who wins this one).
+This is a hot legal debate.
+*   **The AI Argument:** "I learned from art just like a human student learns by looking at museums."
+*   **The Artist Argument:** "You trained on my copyrighted work without paying me, and now you compete with me."
 
-*2. Is it going to replace human workers?*
-It replaces *tasks*, not necessarily *jobs*. It is a tool. A writer who knows how to use AI is drastically faster than a writer who doesn't. But AI left alone without a human guide almost always produces generic, soulless, plastic-sounding work.
+*2. Can it replace humans?*
+It replaces *tasks*, not necessarily *jobs*. It is a tool. A writer with AI is faster than a writer without AI. But AI without a human guide often produces generic, soulless work.
 
 ### Further Reading
 
-*   **Corporate View:** *[McKinsey: What is Generative AI?](https://www.mckinsey.com/featured-insights/mckinsey-explainers/what-is-generative-ai)* (How massive consulting firms are selling the concept to Fortune 500 CEOs).
+*   **Guide:** *[McKinsey: What is Generative AI?](https://www.mckinsey.com/featured-insights/mckinsey-explainers/what-is-generative-ai)*

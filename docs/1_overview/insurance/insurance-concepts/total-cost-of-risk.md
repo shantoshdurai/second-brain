@@ -1,42 +1,36 @@
 ---
 title: Total Cost of Risk (TCoR)
-tags: [RiskEconomics, Management, Strategy]
+tags: [RiskEconomics, Management]
 ---
 
 # Total Cost of Risk (TCoR)
 
-"The Full Bill" ,the realization that the price of insurance is just the tip of the iceberg, and being truly "Safe" costs much more than just a monthly premium.
+**Total Cost of Risk (TCoR)** is the realization that the sticker price of your insurance premium is just the tip of the iceberg; you also pay for the deductible, the safety team, and the time spent managing it all.
 
-**Total Cost of Risk (TCoR)** is the sum of every dollar your company spends on "Not Being Destroyed." It proves that buying the "Cheapest" insurance is often a mistake. If you buy cheap insurance but have a massive deductible and a weak security team, your **Total Cost** will eventually be much higher than if you spent more on quality protection.
+**Total Cost of Risk (TCoR)** is the sum of all costs related to an organization's risk, including insurance premiums, retained losses (deductibles), [[risk-management|risk management]] administrative costs, and taxes/fees.
 
-Think of it like **Car Ownership**:
-*   The **Monthly Payment** (Premium) is only part of the cost.
-*   You also have to pay for **Gas**, **Tires**, and **Repairs** (Deductibles/Retained Loss).
-*   If you buy a "Cheap" unreliable car, your monthly payment is low, but your **Total Cost** will be huge when the engine explodes.
+It proves that buying cheap insurance doesn't always lower your total cost. If you buy cheap insurance (low premium) but have a high deductible and weak security (high losses), your TCoR might skyrocket.
 
-## The 4 Parts of the TCoR Calculation
+## How it Works
 
-1.  **Premiums:** The money you pay to the insurance company.
-2.  **Retained Losses:** The money you pay out of your own pocket (Deductibles, or things the insurance doesn't cover).
-3.  **Risk Control Costs:** The money you spend to *prevent* accidents (Security cameras, **[[firewall|Firewalls]]**, Safety training, MFA).
-4.  **Admin Costs:** The time and salaries of the people who manage everything.
+*   **Equation:** TCoR = Insurance Premiums + Retained Losses (Deductibles/Uninsured) + Risk Control Costs (Security tools/staff) + Administrative Costs.
+*   **Optimization:** The goal isn't to minimize premiums; it's to minimize TCoR. Sometimes spending *more* on security (Control Costs) lowers your Premiums and Retained Losses enough to reduce the total TCoR.
 
-## The Goal: Optimization, Not Minimums
-A smart manager doesn't try to "Minimize Premiums." They try to "Minimize TCoR."
-*   *Example:* If a company spends **$50,000** extra on a state-of-the-art security team (Risk Control), their insurance company might lower their Premium by **$30,000** and their likely Deductible payouts by **$100,000**. 
-*   Even though they spent *more* on security, their **TCoR** went down by **$80,000**.
+## Real-World Analogies
+
+| Context | Analogy |
+| :--- | :--- |
+| **General** | **Car Ownership:** The cost of a car isn't just the monthly loan payment (Premium). It's the Loan + Gas + Repairs + Insurance + Registration. If you buy a "cheap" unreliable car, your Repair costs might make your Total Cost higher than a reliable, expensive car. |
+| **Cyber Risk** | **The Security Budget:** `TCoR = Cyber Ins. Premium ($100k) + Deductibles Paid ($50k) + Security Team Salaries ($500k) + Endpoint Protection Software ($20k).` A CISO uses TCoR to justify buying better security tools: "This $20k tool will lower our likely deductible payouts by $100k." |
 
 ## FAQs
 
-*1. Why do companies care about TCoR?*
-Because it allows them to treat "Risk" like a controllable expense. It turns a "What if?" nightmare into a business spreadsheet.
+*1. What are "Retained Losses"?*
+The parts of the loss you pay yourself. This includes your **deductible** (the first $X amount of a claim) and any losses that are **excluded** from your policy.
 
-*2. What is the most common hidden cost in TCoR?*
-**Deductibles.** Many businesses don't realize how much they are actually spending on small, annoying losses that fall below their insurance limit.
+*2. How does [[risk-management|risk management]] lower TCoR?*
+By preventing accidents! If you invest in fire sprinklers (or MFA for cyber), you reduce the frequency of claims. This lowers your Retained Losses and eventually convinces insurers to lower your Premiums.
 
 ### Further Reading
 
-*   **The Insurance Part:** *[[risk-transfer|Risk Transfer]]* (How to lower your TCoR by moving risk).
-*   **The Hardware Part:** *[[firewall|Firewalls]]* (A classic example of a "Risk Control" cost).
-*   **Guide:** *[Calculating TCoR for your Business](https://www.rims.org/resources/risk-management-topics/tcor)* (A professional framework).
-*   **Article:** *[The Tip of the Iceberg: Hidden Risk Costs](https://www.marsh.com/us/insights/research/total-cost-of-risk-tcor.html)* (Seeing the full cost of a data breach).
+*   **[Risk Scoring]:** *[Risk Scoring (CVSS)](../../cybersecurity/defenses-and-tools/cvss.md)* (Using technical scores to argue for lower premiums).

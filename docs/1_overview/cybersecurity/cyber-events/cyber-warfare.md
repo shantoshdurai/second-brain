@@ -1,39 +1,32 @@
 ---
-title: Cyber Warfare
-tags: CyberSecurity, War, Geopolitics, NationalSecurity
+title: WannaCry
+tags: CyberSecurity, Ransomware, Worm
 ---
 
-# Cyber Warfare
+# [[wanna-cry|WannaCry]]
 
-"The Silent Frontline" ,a modern conflict where nations don't use tanks and missiles to attack an enemy, but instead use lines of code to shut down power grids, crash bank systems, and steal military secrets.
+The epidemic that held the world hostage.
 
-**Cyber Warfare** is the use of digital attacks by one country to disable another’s infrastructure or economy. Unlike traditional war, where you can see an army crossing a border, this is invisible, anonymous, and happens at light speed. A single hacker sitting 5,000 miles away can pull a digital "lever" that plunges a city into darkness.
+**WannaCry** (2017) was a global **[[ransomware|Ransomware]]** attack that infected over 200,000 computers in 150 countries within a single weekend.
 
-## The Four Weapons
-| Weapon Type | The Goal | Real-World Example |
-| :--- | :--- | :--- |
-| **Sabotage** | Physically breaking things (exploding engines, shutting off water). | **[[stuxnet|Stuxnet]]**: Destroyed Iranian nuclear centrifuges. |
-| **Espionage** | Quietly stealing secrets or weapon designs for years. | **[[solarwinds|SolarWinds]]**: Used to spy on the US Treasury & Pentagon. |
-| **Propaganda** | Using **[[botnets|Botnets]]** to spread fake news and influence elections. | **Disinformation**: Using fake accounts to turn citizens against each other. |
-| **Economic** | Crashing an enemy's stock market or banking system. | **[[notpetya|NotPetya]]**: Wiped the financial records of a whole country (Ukraine). |
+It was the first time a criminal [[ransomware|ransomware]] used a military-grade weapon (the **[[eternalblue|EternalBlue]]** exploit) to spread automatically. It didn't wait for you to click an email; if your computer was connected to the internet and unpatched, it just *happened*.
 
-## Key Characteristics
-*   **Plausible Deniability:** It is very hard to "prove" who launched an attack. A government can always say: *"It wasn't us; it was just a group of patriotic hackers."*
-*   **Asymmetric Power:** A small, poor country can build a world-class cyber army for a fraction of the cost of a single fighter jet, allowing them to punch far above their weight.
-*   **Infrastructure Targets:** Cyber Warfare almost never targets "soldiers." It targets the things regular people rely on: hospitals, sewage systems, and power plants.
+## The Damage
+
+*   **NHS (UK Hospitals):** The biggest tragedy. It shut down X-ray machines, ambulances were diverted, and surgeries were cancelled. Lives were put at risk.
+*   **Telefónica (Spain):** The telecom giant was paralyzed.
+*   **FedEx & Renault:** Factories stopped production.
 
 ## FAQs
 
-*1. Has a "Cyber War" ever been declared?*
-**Not officially.** Nations prefer to keep attacks "unofficial" to avoid starting a physical war. However, many consider the **[[notpetya|NotPetya]]** attack on Ukraine $(2017)$ one of the first times code was used as a primary weapon of war.
+*1. How was it stopped?*
+By accident. A 22-year-old security researcher named **Marcus Hutchins** found a \"Kill Switch\" in the code.
+The [[virus|virus]] checked if a specific (gibberish) website existed before attacking. If the website existed, the [[virus|virus]] stopped. Marcus bought the domain for $10, and the entire global attack instantly shut down.
 
-*2. How do we defend?*
-**Mutually Assured Destruction.** Countries maintain "Offensive Cyber" teams to strike back if they are hit first. They also focus on "Cyber Resilience" ,building systems that can survive an attack without failing.
+*2. Did people pay?*
+Surprisingly, not much. The hackers made only about $140,000 total. The chaos cost the world nearly **$4 billion** in damages, but the criminals failed to cash in efficiently.
 
 ### Further Reading
 
-*   **The First Strike:** *[[stuxnet|Stuxnet (The physical weapon)]]*.
-*   **The Most Expensive:** *[[notpetya|The $10 Billion Wiper]]*.
-*   **The Theft:** *[[equifax-breach|Equifax (Strategic Intelligence theft)]]*.
-*   **Article:** [The New Yorker: The Next World War Will Be Fought With Code](https://www.newyorker.com/magazine/2021/11/08/the-next-world-war-will-be-fought-with-code).
-*   **Video:** [The Reality of Modern Cyber Warfare](https://www.youtube.com/watch?v=A_p_BfHImlE).
+*   **Story:** *[The Confessions of Marcus Hutchins](https://www.wired.com/story/confessions-marcus-hutchins-hacker-who-saved-the-internet/)*.
+*   **Documentary:** *[WannaCry: The Marcus Hutchins Story](https://www.youtube.com/watch?v=Getj6f9y8Gk)*.

@@ -3,40 +3,37 @@ title: Risk Management Strategies
 tags: CyberSecurity, Strategy, Governance, Risk
 ---
 
-# Risk Management
+# Risk Management Strategies
 
-"The Business of Saying No" ,the process of deciding which digital threats are worth fighting, which ones are worth insuring, and which ones you are willing to ignore.
+How organizations decide which battles to fight.
 
-While hackers are focused on cool tricks, **Risk Management** is the "Adult in the Room." They look at the company as a whole and ask: *"How much money will this hack cost us, and how much will it cost to prevent it?"* They use math to decide how to spend the security budget.
+**Risk Management** is the process of identifying, assessing, and controlling threats to an organization's capital and earnings. In cybersecurity, we focus on protecting assets (digital and physical) from threats and vulnerabilities.
 
-Think of it like **Buying a Car**:
-*   **Mitigate:** You buy a car with airbags and good brakes to reduce the chance of injury.
-*   **Transfer:** You buy car insurance so that if you do crash, the insurance company pays for it.
-*   **Avoid:** You choose to walk instead of drive on a snowy, dangerous day.
-*   **Accept:** You notice a tiny scratch on the door, but you decide it isn't worth $500 to fix. You just live with it.
+## The Four Core Strategies
+When faced with a risk, organizations typically choose one of these four paths:
 
-## The 4 Paths of Survival
-When a security pro finds a weakness, they must choose one of these four paths:
-1.  **Mitigation (The Shield):** You fix the problem. You buy a **[[firewalls|Firewall]]**, install a security patch, or train your staff. Most "Big" risks are handled this way.
-2.  **Transference (The Insurance):** You hire someone else to take the hit. You buy **Cyber Insurance** so if you get hacked, they pay the lawyers and the ransom.
-3.  **Acceptance (The Gamble):** You do nothing. If you have an old server with zero secret data, and it would cost $10,000 to "secure" it, you might just accept that if it gets hacked, it doesn't matter.
-4.  **Avoidance (The Delete Button):** You stop doing the thing that is dangerous. If a specific software tool keeps getting hacked, you don't "fix" it ,you delete it from every computer and find a different way to work.
+1.  **Acceptance**: Acknowledging the risk exists but choosing not to take any action because the cost of fixing it is higher than the possible damage.
+2.  **Avoidance**: Completely eliminating the risk by stopping the activity that causes it (e.g., shutting down a vulnerable server).
+3.  **Transference**: Shifting the risk to a third party (e.g., buying **Cyber Insurance**).
+4.  **Mitigation**: Taking active steps to reduce the likelihood or impact of the risk (e.g., installing a firewall).
 
-## The Formula
-**Risk = Likelihood (What are the odds?) × Impact (How much will it hurt?)**
-If a hacker steals your lunch menu (**Low Impact**), the risk is zero even if it’s very likely to happen. If a hacker can steal your customer's bank accounts (**High Impact**), the risk is massive ,even if it’s very unlikely to happen.
+## Assets, Threats, and Vulnerabilities
+To manage risk, you must understand the relationship between these three:
 
-## FAQs
+*   **Assets**: Anything of value (SSNs, bank accounts, servers).
+*   **Threats**: Potential events that can negatively impact an asset (e.g., an [[apt|APT]] or an [[insider-threats|Insider Threat]]).
+*   **Vulnerabilities**: Weaknesses that can be exploited (e.g., a missing security patch).
 
-*1. What is the most common mistake?*
-Trying to fix **everything**. Companies that try to mitigate 100% of risks usually go bankrupt because they spend all their money on security and none on their actual business. The goal is to manage risk, not eliminate it.
+**Risk = Likelihood of a Threat * Impact on an Asset.**
 
-*2. Who decides which path to take?*
-Usually the **Chief Security Officer (CSO)** in talks with the CEO and the Legal team. It is a business decision, not just a technical one.
+## Common Vulnerabilities
+High-profile examples of weaknesses that require active management:
+*   **Log4Shell**: A critical flaw in a common logging tool.
+*   **ZeroLogon**: A flaw that allowed attackers to take over a Windows domain controller.
 
-### Further Reading
+---
 
-*   **The Framework:** *[[cissp-domains|CISSP Domain 1]]* (Risk Management).
-*   **The Failures:** *[[equifax-breach|The Equifax Breach]]* (A lesson in bad risk management).
-*   **The Guide:** *[NIST Risk Management Framework](https://csrc.nist.gov/projects/risk-management/about-rmf)*.
-*   **Article:** *[Introduction to Cyber Insurance](https://www.ftc.gov/business-guidance/small-businesses/cybersecurity/cyber-insurance)*.
+## Frameworks
+Cybersecurity professionals use standardized frameworks to guide their risk management:
+*   **NIST RMF**: The Risk Management Framework created by the U.S. government.
+*   **HITRUST**: A framework specifically designed for the healthcare industry.

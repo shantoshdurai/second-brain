@@ -3,34 +3,27 @@ title: Penetration Testing
 tags: Security, Auditing, OffensiveSecurity
 ---
 
-# Penetration Testing
+# Penetration Testing (Pen Test)
 
-"The Controlled Burn" ,a professional, authorized attempt to break into a company's computer systems to prove where the holes are before a real criminal finds them.
+The fire drill.
 
-**Penetration Testing** (or "Pen Testing") is "Moral Hacking." It involves hiring an expert to use the exact same tricks as the "bad guys" to attack your network. It answers the one question every CEO is afraid of: *"If a hacker attacked us right now, would they get in?"*
+**Penetration Testing** is a simulated cyberattack against your computer system to check for exploitable vulnerabilities. It is an authorized, planned attempt to breach security measures.
 
-Think of it like **A Security Audit for a Bank**:
-*   Instead of just counting the money in the vault, the bank hires a professional thief to see if they can pick the lock, bypass the cameras, or trick the teller. 
-*   If the thief succeeds, they don't take the money. Instead, they write a detailed report explaining exactly how they did it so the bank can fix the flaw before a real robber shows up.
+It answers the question: "Are our defenses actually working?"
 
-## The 4 Phases of an "Attack"
-1.  **Reconnaissance (The Stakeout):** Gathering info via LinkedIn, the company website, or public records to find out who works there and what software they use.
-2.  **Scanning (The Door-Jiggle):** Using automated tools to find "unlocked windows" ,like open ports or outdated software.
-3.  **Exploitation (The Break-In):** This is the actual "Hacking." The tester uses the weaknesses they found to enter the system and prove they have access to private data.
-4.  **Reporting (The Cure):** The most important part. The tester explains exactly how they got in and provides a step-by-step "Patch" to fix the hole.
+## Phases of a Pen Test
+
+1.  **Reconnaissance:** Gathering info on the target.
+2.  **Scanning:** Looking for open ports/weaknesses.
+3.  **Exploitation:** Trying to break in.
+4.  **Reporting:** Writing a PDF telling the company how you broke in and how to fix it.
 
 ## FAQs
 
 *1. Pen Test vs. Vulnerability Scan?*
-*   **Vulnerability Scan:** A "Robot." It’s an automated tool that finds "known" bugs. It’s cheap and fast, but it’s not creative.
-*   **Pen Test:** A "Human." An expert who can combine three "small" bugs into one massive "backdoor" that a robot would never see.
-
-*2. Is it legal?*
-**Only with Permission.** Without a signed contract (Rules of Engagement), this is called "Hacking" and can put you in jail. With a contract, it’s a high-paying, professional career.
+*   **Vuln Scan:** Automated. A robot checks for known issues (Unlocked doors). Cheap and fast.
+*   **Pen Test:** Manual. A human thinks creatively to chain small issues into a big breach (Climbing through the unlocked window). Expensive and thorough.
 
 ### Further Reading
 
-*   **The Elite:** *[[red-team|Red Teaming]]* (The most realistic type of attack).
-*   **The Hidden Trap:** *[[zero-day|Zero-Day Vulnerabilities]]* (The holes no one knows about yet).
-*   **Standard:** *[The Penetration Testing Execution Standard (PTES)](http://www.pentest-standard.org/)*.
-*   **Practice:** *[TryHackMe](https://tryhackme.com/)* (Learn to hack safely).
+*   **Guide:** *[Penetration Testing Execution Standard (PTES)](http://www.pentest-standard.org/index.php/Main_Page)*

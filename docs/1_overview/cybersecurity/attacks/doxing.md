@@ -5,32 +5,34 @@ tags: Cybersecurity, Privacy, SocialEngineering
 
 # Doxing
 
-"The Weaponized Resume" ,unmasking an anonymous internet persona to reveal their home address, their boss, and their family members to a hostile online mob.
+The Weaponized Resume.
 
-**Doxing** (shorthand for "dropping docs") is the act of publicly revealing a person's private identifying information online without their consent. In the digital world, anonymity is a shield. Doxing is the act of violently shattering that shield to invite real-world harassment, stalkers, and threats into a victim's life.
+**Doxing** (dropping "docs" or documents) is the act of publicly revealing previously private personal information about an individual or organization, usually through the internet.
 
-Think of it like **Digital Detective Work gone wrong**:
-*   You post online as "Batman123."
-*   A doxer uses investigative tools to connect that name to your real name ("Bruce Wayne"), your physical address ("1007 Mountain Drive"), and your workplace.
-*   Once that info is "dropped" on a public forum, people can harass you at your house or try to get you fired.
+Think of it like **Unmasking a Superhero**.
+*   **Anonymity:** You interact with "Batman" (an anonymous username). You judge them by their actions.
+*   **Doxing:** Someone finds out Batman is Bruce Wayne, lives at 1007 Mountain Drive, and works at Wayne Enterprises. They print this on flyers and drop them all over Gotham.
+Now, the mob knows where he lives, where he works, and who his family is. The digital fight becomes a real-life threat.
 
-## How the Puzzle Pieces Fit
-Doxers rarely "hack" computers; they are just incredibly patient detectives:
-1.  **The Breadcrumb Hunt:** They search forum posts from 15 years ago where you might have mentioned your hometown or your pet's name.
-2.  **The Username Connection:** Most people use the same username across multiple sites. If you use the same name on Reddit and on a public LinkedIn portfolio, you've just doxed yourself.
-3.  **Metadata Snooping:** They look for hidden GPS data (EXIF data) inside the photos you post. That photo of your cat might accidentally contain the exact longitude and latitude of your living room.
+## How it Works
+
+1.  **Reconnaissance:** Hackers (or just patient stalkers) search for breadcrumbs.
+    *   Old forum posts using the same username.
+    *   Whois records for websites you own.
+    *   Metadata in photos posted to social media.
+2.  **Aggregation:** They piece together the puzzle: "UsernameX" -> "Real Name" -> "Home Address".
+3.  **The Drop:** They publish the dossier on a public forum (Twitter, 4chan, etc.).
+4.  **Harassment:** The mob uses this info to harass the victim IRL (swatting, pizza bombs, employment threats).
 
 ## FAQs
 
-*1. Is doxing illegal?*
-**It’s a grey area.** If the info was found via "public" sources (like property records or your own social media), the act of compiling it often isn't a crime. However, if the info is used to encourage stalking or "Swatting" (calling a fake police raid on someone's house), the perpetrator can go to jail for those specific crimes.
+*1. Is it illegal?*
+Technically, often no. If the information was found in "publicly available" sources (like phone books or public social profiles), compiling it isn't always a crime. However, used for harassment or stalking, it *becomes* illegal.
 
 *2. How can I protect myself?*
-**Practice Data Hygiene.** Use different usernames for every platform. Use a "Data Removal Service" to scrub your name from "People Search" sites. And most importantly, never post a photo of your house or the view from your window ,the internet is scarily good at identifying locations from a single tree or a street sign.
+Practice "Data Hygiene." Use different usernames for different sites. Don't post photos of your house or workplace. Scrub your data from "People Search" sites.
 
 ### Further Reading
 
-*   **Self-Defense:** *[How to Dox Yourself (to see what the world knows)](https://www.nytimes.com/2017/11/14/technology/personaltech/how-to-dox-yourself-on-the-internet.html)*.
-*   **The Hub:** *[[social-engineering|Social Engineering Tactics]]*.
-*   **Article:** *[Stay Anonymous: Preventing Doxing Scams](https://www.kaspersky.com/resource-center/definitions/what-is-doxing)*.
-*   **Video:** *[How Internet Detectives Find People from a Single Photo](https://www.youtube.com/watch?v=Hu4YbmPhFKQ)*.
+*   **Article:** *[What is Doxing?](https://www.kaspersky.com/resource-center/definitions/what-is-doxing)* (Kaspersky).
+*   **Video:** *[The Dangers of Doxing](https://youtu.be/lNW5-d0GVNM)*.

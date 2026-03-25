@@ -5,32 +5,28 @@ tags: Methodology, Science, KarlPopper
 
 # Falsifiability
 
-"The Ability to be Wrong" ,the core rule that for a theory to be "Scientific," there must be a way to test it that **could** prove it false.
+The ability to be proven wrong.
 
-**Falsifiability** is the most important rule in science. It was coined by Karl Popper, who noticed a huge difference between Einstein and Freud. Einstein made a specific, "risky" prediction: that light would bend around the sun. If it didn't bend, Einstein’s whole theory was **wrong**. Freud, on the other hand, could explain any behavior "after the fact." If a patient were angry, Freud had a reason. If they were calm, he had a different reason. 
+**Falsifiability** is the defining characteristic of a scientific theory. It means that there must be a way to test the theory where it *could* fail.
+If a theory explains *everything* no matter what happens, it explains *nothing*. It is not science; it is a belief system.
 
-Popper's point: If a theory explains **everything**, it actually explains **nothing**. It is a belief, not science.
+## The Swan Analogy
 
-Think of it like **A Courtroom Case**:
-*   **Scientific Theory:** *"This person was at the library at 10 PM. Here is a photo."* 
-    *   **Is it Falsifiable?** YES. If the defense shows a video of the person at the grocery store at 10 PM, the theory is proven **False**. It is high-quality evidence because it can be checked.
-*   **Pseudoscientific Theory:** *"An invisible, ghost-like ninja stole the jewels. He leaves no tracks and he is invisible to all cameras."*
-    *   **Is it Falsifiable?** NO. No matter what evidence you show, the "Ninja" theory can never be proven wrong. This makes it useless for a trial... and for science.
-
-## The "Black Swan" Rule
-*   **The Idea:** You claim, *"All swans are white."*
-*   **The Test:** You don't prove yourself right by finding more white swans (Confirmation Bias). 
-*   **The Fact:** You only prove your theory is "Scientific" by admitting that **finding one single Black Swan** would destroy your theory. Science is the search for that black swan.
+*   **Theory:** "All swans are white."
+    *   **Is it Falsifiable?** Yes. All you need to do is find **one** [[black-swan|black swan]] to prove it false.
+*   **Theory:** "Ghosts exist, but they are invisible when you look for them."
+    *   **Is it Falsifiable?** No. There is no test you can run to prove they *don't* exist. Therefore, it is not science.
 
 ## FAQs
 
-*1. Does "Falsifiable" mean "False"?*
-**No.** It means **"Able to be proven false."** 
-"The Earth is round" is falsifiable because we can fly to space and look at it. If we saw a flat square, the theory would be false. It just happens that every time we check, it’s a sphere! Being "Proven Right" only counts if you were brave enough to be "Proven Wrong."
+*1. Who came up with this?*
+**Karl Popper**. He noticed that Einstein's Physics made risky predictions (that could be wrong), while Freud's Psychology could explain any patient's behavior after the fact. He wanted to separate the two.
+
+*2. Does "Falsifiable" mean "False"?*
+No! It means **"Able to be proven false."**
+"The Earth is round" is falsifiable (we could go to space and check). It just happens to be true.
 
 ### Further Reading
 
-*   **The Problem:** *[[demarcation-problem|The Demarcation Problem]]* (Drawing the line).
-*   **The Trap:** *[Confirmation Bias](https://thedecisionlab.com/biases/confirmation-bias)* (Why we only look for "White Swans").
-*   **Article:** *[Karl Popper’s Falsifiability](https://www.simplypsychology.org/karl-popper.html)* (Psychology vs Science).
-*   **Video:** *[Falsifiability in 60 Seconds](https://www.youtube.com/watch?v=wf-sGqBsW94)* (The core logic).
+*   **Book:** *[The Logic of Scientific Discovery](https://www.routledge.com/The-Logic-of-Scientific-Discovery/Popper/p/book/9780415278447)* by Karl Popper.
+*   **Video:** *[Karl Popper, Science, & Pseudoscience](https://www.youtube.com/watch?v=-X8Xfl0JdTQ)*.

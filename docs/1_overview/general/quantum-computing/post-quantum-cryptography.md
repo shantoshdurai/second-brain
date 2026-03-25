@@ -3,41 +3,41 @@ title: Post-Quantum Cryptography (PQC)
 tags: Cryptography, QuantumComputing, FutureProofing
 ---
 
-# Post-Quantum Cryptography (PQC)
+# Post-Quantum Cryptography
 
-"Fixing the Locks before the Master Key is Built" ,the global race to replace every security system on the internet before a **[[quantum-computing|Quantum Computer]]** becomes powerful enough to break them.
+Fixing the locks before the master key is built.
 
-Almost every password, bank transfer, and secret message on the internet today is protected by a type of math called **[[rsa|RSA]]** or **[[ecc|ECC]]**. These are great for regular computers, but they have a fatal flaw: a fast **[[shors-algorithm|Quantum Computer]]** can "solve" that math almost instantly.
+**Post-Quantum Cryptography (PQC)** refers to the development of new mathematical [[encryption|encryption]] methods that are secure against both classical computers and the future threat of **[[shors-algorithm|Quantum Computers]]**.
 
-**Post-Quantum Cryptography (PQC)** is the "New Math." It is a new set of puzzles that are designed to be so complicated that **neither** a regular computer nor a quantum computer can crack them.
+Currently, almost all internet security (RSA and ECC) can be broken by a large-scale quantum computer. PQC is the "patch" for the entire internet's plumbing.
 
-Think of it like **Upgrading a Safe**:
-*   **Current Security:** Is a high-tech combination lock. It’s great, unless someone invents a **"Skeleton Key"** (Quantum Computer) that can unlock any combination.
-*   **PQC:** Is replacing the combination lock with a **Rubik's Cube of 5-Dimensional Shapes**. Even if you have the "Skeleton Key," it doesn't fit in this new kind of lock.
+## The Quantum Threat
+Quantum computers use "[[qubits|Qubits]]" to perform calculations that are impossible for normal computers. **[[shors-algorithm|Shor's Algorithm]]** is a specific quantum recipe that can break the math behind our current [[asymmetric-encryption|Asymmetric Encryption]].
 
-## The Strategy: "Store Now, Decrypt Later"
-You might ask: *"Why do we need this now if quantum computers aren't ready yet?"*
-The answer is scary: **The Harvest Attack.**
-Hackers and government agencies are currently stealing and storing as much encrypted data as they can. They can't read it today, but they are betting that in 10 years, they will have a quantum computer to unlock it. If we don't start using PQC **today**, our secrets from this morning will be wide open in a decade.
+If a powerful quantum computer is built tomorrow, every bank account, government secret, and private message sent over the last 30 years could be unlocked.
 
-## The New Puzzles (NIST Standard)
-The world’s top mathematicians are currently picking the "Winners" of the PQC era. The most promising math is based on **Lattices** ,hiding a secret inside a massive, multi-dimensional grid of points that is literally impossible to navigate through.
-*   **The Winner:** An algorithm called **CRYSTALS-Kyber** is currently being built into Google Chrome and other browsers as the new standard for a "Quantum-Safe" internet.
+## PQC Strategies (The New Math)
+Since quantum computers are great at factoring numbers ([[rsa|RSA]]) and solving "discrete logs" ([[ecc|ECC]]), we need math problems that *don't* involve those. 
+
+1.  **Lattice-based Cryptography:** Hiding data inside a massive, multi-dimensional grid of points. This is currently the most promising candidate.
+2.  **Hash-based Signatures:** Using one-way mathematical "hashes" (like fingerprints) to verify identity.
+3.  **Code-based Cryptography:** Based on error-correcting codes.
+
+## The Race: NIST Standardization
+The US National Institute of Standards and Technology (NIST) has been running a global competition since 2016 to pick the winners of the "Quantum-Safe" era.
+*   **Current Winners:** Algorithms like **CRYSTALS-Kyber** (for encryption) and **CRYSTALS-Dilithium** (for signatures) are being rolled out globally (e.g., in Google Chrome and Cloudflare).
 
 ## FAQs
 
-*1. Is this the same as "Quantum Encryption"?*
-**No.** 
-*   **Quantum Encryption (QKD):** Uses actual lasers and light particles to send data. It is highly secure but very expensive and requires special hardware.
-*   **Post-Quantum Cryptography:** Is just **Clever Math**. It runs on your current phone and laptop, but it’s math that is "Quantum-Proof."
+*1. Is this the same as "Quantum Cryptography"?*
+No. 
+*   **Quantum Cryptography (QKD):** Uses actual quantum physics (lasers and photons) to send secrets. Requires expensive hardware.
+*   **Post-Quantum Cryptography:** Uses normal math that runs on your current phone/laptop, but is *designed* to be too hard for quantum computers to solve.
 
-*2. Will I need a new phone?*
-**No.** The magic of PQC is that it is just a software update. Your current phone is smart enough to run the "New Math."
+*2. Why do we need it now if quantum computers aren't ready?*
+Because of **"Store Now, Decrypt Later"**. Attackers are currently stealing and storing encrypted government and corporate data today, hoping to use a quantum computer to unlock it 10 years from now. We need safe [[encryption|encryption]] *today* to protect the future.
 
 ### Further Reading
 
-*   **The Threat:** *[[shors-algorithm|Shor's Algorithm]]* (The "Skeleton Key" that breaks the old math).
-*   **The Brain:** *[[quantum-computing|Quantum Computing Overview]]* (Why we need PQC in the first place).
-*   **The Math:** *[[rsa|RSA Encryption]]* (The old system we are replacing).
-*   **Official:** *[The NIST PQC Selection Project](https://csrc.nist.gov/projects/post-quantum-cryptography)* (Seeing the finalists for the new world standard).
-*   **Video:** *[The Quantum Apocalypse (Veritasium)](https://www.youtube.com/watch?v=lvTqbM5Dq4Q)* (A deep, slightly scary dive into the end of encryption).
+*   **Website:** *[NIST Post-Quantum Cryptography Project](https://csrc.nist.gov/projects/post-quantum-cryptography)*
+*   **Video:** *[The Quantum Apocalypse (Post-Quantum Cryptography)](https://www.youtube.com/watch?v=lvTqbM5Dq4Q)*

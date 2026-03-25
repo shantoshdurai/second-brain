@@ -5,32 +5,26 @@ tags: Malware, Stealth, Persistence
 
 # Rootkit
 
-"The Invisible Mask" ,the most dangerous level of malware. It doesn't just hide; it tricks your computer into believing it is perfectly healthy even while a hacker is standing in the middle of its brain.
+The invisible mask.
 
-The name comes from **"Root"** (the highest level of "God Power" on a machine) and **"Kit"** (the tools to get there). Its primary superpower is **Stealth**. Most malware is like a burglar hiding in your closet; a Rootkit is a burglar who has replaced your security cameras with a looped video of an empty, safe hallway. 
+A **Rootkit** is a collection of software tools that enable an unauthorized user to gain control of a computer system without being detected.
 
-Think of it like **"The Master Liar"**:
-1.  **You:** "Computer, show me every program that is currently running."
-2.  **The OS:** Starts to generate the list.
-3.  **The Rootkit:** Intercepts the list before it reaches your screen. It quickly "white-outs" its own name and the names of any other viruses it is protecting.
-4.  **The OS:** Shows you a clean, boring list of "safe" programs. 
+The name comes from "Root" (the admin user) + "Kit" (toolset). Its primary capability is **Stealth**. It hides itself, other [[malware|malware]], and malicious processes from the [[operating-system|operating system]] and [[antivirus]].
 
-## Why is it so hard to kill?
-*   **Kernel-Level Access:** It lives deeper than your apps or your browser. It burrows into the **Operating System Kernel** (the brain) or even the **BIOS** (the code that runs before Windows even starts).
-*   **Antivirus Blocker:** High-end Rootkits are designed to disable your antivirus the second they get on the machine ,or simply "lie" to the scanner just like they lie to you.
-*   **Permanent Presence:** Because it's invisible, it can stay on a machine for years without being found, surviving even if you change your passwords.
+## How it hides
+
+If you open Task Manager to look for the [[virus]], the Rootkit intercepts your request.
+*   You: "Show me all running programs."
+*   Rootkit: "Okay, here is the list (minus the malicious one)."
+
+It lies to the [[os-kernel|OS-kernel]] itself.
 
 ## FAQs
 
-*1. Can Windows Defender find a Rootkit?*
-It’s an arms race. Modern antiviruses are getting better at spotting the "scars" a Rootkit leaves behind, but they are still easily tricked. A computer with a Rootkit is like a detective who has been brainwashed; he can't find the crime because he doesn't believe a crime exists.
-
-*2. How do I get rid of it?*
-This is the IT nightmare. Because the Operating System is compromised, you can't "uninstall" a Rootkit. The only guaranteed fix is to **"Nuke it from Orbit"**: completely wipe the physical hard drive and reinstall everything from scratch.
+*1. How do I remove it?*
+It is extremely difficult. Since the [[operating-system|OS]] can't see it, it can't delete it. Often, the only solution is to wipe the [[hard-drive]] completely and reinstall Windows from scratch.
 
 ### Further Reading
 
-*   **The God Power:** *[[root-access|Root Access Explained]]*.
-*   **The Brain:** *[[os-kernel|OS Kernel Overview]]*.
-*   **Deep Dive:** *[What is a Rootkit? (Crowdstrike)](https://www.crowdstrike.com/cybersecurity-101/malware/rootkits/)*.
-*   **Tool:** *[Chkrootkit (Finding Rootkits on Linux)](http://www.chkrootkit.org/)*.
+*   **Article:** *[Rootkits Explained (CrowdStrike)](https://www.crowdstrike.com/cybersecurity-101/malware/rootkits/)*
+*   **Tool:** *[Chkrootkit (Linux Detector)](http://www.chkrootkit.org/)*

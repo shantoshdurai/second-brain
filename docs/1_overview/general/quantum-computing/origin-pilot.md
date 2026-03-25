@@ -5,35 +5,36 @@ tags: Quantum, OperatingSystem, Geopolitics, Hardware
 
 # Origin Pilot
 
-The "World’s First Quantum Conductor" ,the first ever open-source **[[operating-system|Operating System]]** designed to coordinate the chaotic and "noisy" orchestra of quantum hardware into a unified, usable machine.
+A quantum computer OS is like the essential conductor of a massive, incredibly complex orchestra (the quantum hardware). While individual musicians (qubits) are playing mind-bendingly difficult music at extremely high speeds, the conductor (Origin Pilot) keeps them all in perfect sync, schedules their solos, and translates the composer's sheet music (your code) into a language they can physically play.
 
-**Origin Pilot** is a massive milestone in the history of technology. Just as Windows made the first PCs usable for normal people, and Linux made the internet possible, Origin Pilot is the first attempt at a "User-Friendly" brain for **[[quantum-computing|Quantum Computers]]**. 
+**Origin Pilot** is the world's first open-source quantum [[operating-system|operating system]]. Developed by Origin Quantum Computing Technology based in Hefei, China, it was officially released for public download globally on February 26, 2026. 
 
-Developed in China, it was released to the world in early 2026. Its job is to handle the "dirty work" ,scheduling tasks, fixing errors in real-time, and helping **[[ai|AI]]** algorithms talk to quantum processors.
+It is designed as an integrated "quantum-classical-AI" [[operating-system|operating system]]. It manages core functions such as task scheduling, hardware-software coordination, parallel execution of quantum tasks, and automatic qubit calibration across various hardware platforms (such as superconducting, ion-trap, and neutral-atom processors).
 
-Think of it like a **Symphony Conductor**:
-*   The **[[qubits|Qubits]]** are the musicians. They are incredibly talented, but they are playing mind-bendingly difficult music at lightning speed.
-*   The **Origin Pilot OS** is the conductor with the baton. It keeps every musician in perfect sync, schedules their "solos," and translates your "Sheet Music" (the **[[qiskit|Qiskit]]** or Python code you wrote) into a language the musicians can physically play.
+## Integration with Wukong
 
-## The China Connection: "The Dragon’s Brain"
-Origin Pilot is the brain of China's most powerful quantum computer: **Origin Wukong** (named after the mythical Monkey King). Released with 72 **[[qubits|Qubits]]**, Wukong and Origin Pilot represent a massive push for "Technological Independence." 
-*   **No US Hardware:** It is built to run entirely without American chips or software.
-*   **The 15th Five-Year Plan:** China has explicitly stated that between 2026 and 2030, they want to achieve "Commercial Quantum Advantage" ,using this OS to solve real problems for the world’s biggest chemical and medicine companies.
+Origin Pilot currently powers China's **Origin Wukong** superconducting quantum computer. Launched in early 2024 and named after the mythical Monkey King, the Wukong features a 72-qubit superconducting quantum chip. 
 
-## Why Does an Operating System Matter?
-In the race for "Quantum Supremacy," everyone focuses on who has the most Qubits. But having 1,000 Qubits is useless if you don't have a stable way to control them. By making Origin Pilot open-source and free for everyone, China is trying to build a global **"Ecosystem"** of developers who all learn how to use *their* system first.
+With Origin Pilot acting as its brain, Wukong operates as a unified platform entirely independent of US technology. It is highly accessible via cloud platforms and has already executed hundreds of thousands of tasks for users in over 120 countries. According to recent tests, researchers successfully used the OS and hardware together to fine-tune a billion-parameter artificial intelligence model, massively reducing its size while improving its performance.
+
+## Geopolitical Significance
+
+The release of Origin Pilot is more than a software launch; it is a major geopolitical signal regarding China's technological independence.
+
+### The 15th Five-Year Plan (2026–2030)
+Quantum technology is explicitly listed as a critical, strategic sector in China's 15th Five-Year Plan. The period between 2026 and 2030 represents massive state investment into achieving "commercial quantum advantage"; the moment quantum computers become demonstrably better at solving real-world problems in pharmaceuticals, chemicals, and finance than classical [[supercomputer|Supercomputers]].
+
+### Controlling the Ecosystem
+By making Origin Pilot open-source and globally accessible, China is aggressively shifting from closed innovation to building a global developer ecosystem around its domestic quantum infrastructure. This signifies that the race for quantum supremacy is no longer merely about who can build the hardware with the most [[qubits|qubits]]; the true winner will be whichever entity controls the [[operating-system|operating system]] that shapes the entire ecosystem.
 
 ## FAQs
 
-*1. Can I download this on my Windows laptop?*
-**You can download the code, but it won't "Run" on your laptop.** Just as you can't run a Ferrari engine in a lawnmower, a Quantum OS needs quantum hardware to do its work. You can study it to see how it works, but to use it, you have to connect to a real quantum chip (like Wukong) via the cloud.
+*1. Are Google or IBM doing this?*
+While American heavyweights like IBM and Google operate advanced quantum systems and offer cloud access (like Qiskit and IBM Quantum Experience), neither has made a comparable foundational [[operating-system|Operating System]] entirely open-source and publicly downloadable for local deployment.
 
-*2. Is it better than Google or IBM's software?*
-It’s different. While **[[qiskit|IBM’s Qiskit]]** is amazing for writing the "Sheet Music" (the algorithms), Origin Pilot is a deeper **[[operating-system|Operating System]]** that manages the internal "Organs" of the computer itself.
+*2. Can I install this on my laptop?*
+You can download the open-source code to study how quantum OS architecture functions, but you cannot run quantum tasks on your laptop's standard silicon CPU without utilizing a cloud connection to actual quantum hardware. 
 
 ### Further Reading
 
-*   **The Hardware:** *[[quantum-computing|Quantum Computing Overview]]* (The machine Origin Pilot controls).
-*   **The ERA:** *[[nisq|The NISQ Era]]* (Why we need a powerful OS to manage the "noise").
-*   **The Powerhouse:** *[Origin Quantum Official Site](https://www.originqc.com/)* (Seeing the hardware behind the software).
-*   **Context:** *[[operating-system|What is an Operating System?]]* (Remembering why we need them in the first place).
+*   **Corporate Hub:** *[Origin Quantum Official Site](https://www.originqc.com/)* (Details on the company's full-stack quantum development).

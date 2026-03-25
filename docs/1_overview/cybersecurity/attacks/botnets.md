@@ -5,31 +5,28 @@ tags: CyberAttack, CyberSecurity, Malware
 
 # Botnet
 
-"The Zombie Army" ,a massive, invisible collection of computers secretly controlled by a single "General" standing miles away, unaware they are being used to attack the internet.
+Imagine an army of computers, secretly controlled by one person to attack a specific target.
 
-A **Botnet** (Robot + Network) is a collection of thousands ,sometimes millions ,of devices infected with a secret strain of malware. Once a device (your laptop, your phone, or even your smart lightbulb) is infected, it becomes a **"Bot"** or a **"Zombie."** It works normally for you, but in the background, it’s waiting for a signal from its master.
+A **Botnet** (short for "Robot Network") is a collection of internet-connected devices, like laptops, smartphones, or even smart fridges, that have been infected with malicious software.
 
-Think of it like **A Sleeping Military Force**:
-*   One laptop can't do much damage to a website like Facebook or Amazon.
-*   But **two million** laptops all trying to visit that website at the exact same second (a **[[ddos|DDoS]]** attack) can crash it instantly.
-*   The hacker doesn't need to be smart; they just need to have a bigger "army" than the target's servers can handle.
-
-## Why is it so effective?
-1.  **Invisible Control:** The malware is designed to be as quiet and "light" as possible so you don't notice any lag or pop-ups.
-2.  **IoT Recruiters:** Modern botnets (like the famous **Mirai**) don't just target PCs; they target low-security gadgets like security cameras, routers, and smart toasters.
-3.  **Hiding the Master:** When a botnet attacks, the victim sees two million different IP addresses. It’s almost impossible to trace the signal back to the "General" who sent the command.
+This software runs quietly in the background without the owner knowing. It connects the device to a central "Command & Control" server, allowing a hacker to control thousands of these devices at once to perform massive attacks.
 
 ## FAQs
 
-*1. Why would a hacker want my crappy old laptop?*
-They don't want your files; they want your **Electricity** and your **Internet Connection.** They use your device to send millions of spam emails, mine for cryptocurrency, or launch [[ddos|DDoS]] attacks while hiding their own identity behind your IP address.
+*1. Why do hackers use Botnets?*
+Hackers rarely use botnets just for fun. They are usually financially motivated:
+* **DDoS Attacks:** They threaten to crash a company's website unless the company pays a ransom.
+* **Spam:** They use the army to send millions of spam emails (so their own computer doesn't get blocked).
+* **Crypto Mining:** They use the tiny bit of electricity from thousands of computers to mine Bitcoin or Monero for themselves.
 
-*2. How do I know if my device is a "Zombie"?*
-Look for the **"Fan Test."** If your computer's fans are screaming at max speed when you aren't doing anything, or if your home internet is suddenly crawling for no reason, your device might be working a "Night Job" for a hacker.
+*2. Am I part of a Botnet?*
+You might be if:
+* Your computer fans are running loud when you aren't doing anything heavy.
+* Your internet is weirdly slow.
+* Friends tell you they received strange emails from you.
 
 ### Further Reading
 
-*   **The Big Weapon:** *[[ddos|DDoS Attacks]]* (What the army does).
-*   **History:** *[The Mirai Botnet Nightmare](https://www.theguardian.com/technology/2016/oct/26/ddos-attack-mirai-botnet-internet-of-things)*.
-*   **The Control Hub:** *[[c2-servers|Command & Control (C2) Infrastructure]]*.
-*   **Checkup:** [Have I Been Pwned?](https://haveibeenpwned.com/) (See if your accounts are in a botnet database).
+* **Article:** *"[The Morris Worm: The Internet's First Botnet](https://www.fbi.gov/news/stories/morris-worm-30-years-since-first-major-attack-on-internet-110218)"* (Search for history of botnets)
+* **Deep Dive:** [Cloudflare's guide on *"What is a DDoS Attack?"](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/)*
+* **Check your status:** [Have I Been Pwned?](https://haveibeenpwned.com/) (Website to check if your email has been compromised)
