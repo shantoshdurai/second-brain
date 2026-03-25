@@ -5,30 +5,30 @@ tags: AI, Hardware, Google
 
 # TPU (Tensor Processing Unit)
 
-The "Formula 1 Car" of AI ,a custom-built microchip designed to do one thing and one thing only: crunch the specific math of Neural Networks at speeds that make regular computers look like they are standing still.
+The Specialist.
 
-A **TPU** is an **Application-Specific Integrated Circuit (ASIC)** created by Google. While a **[[cpu|CPU]]** is a jack-of-all-trades and a **[[gpu|GPU]]** is a parallel-processing factory, the TPU is a pure-bred specialist. It has been stripped of everything a regular computer needs (it doesn't have a video port, it doesn't have a mouse driver) to make room for billions of tiny calculators that only do **Matrix Multiplication** (the math that makes AI think).
+**A TPU** is a custom microchip designed by OpenAI/Google specifically to do *one thing* extremely fast: Matrix Multiplication (the math that powers Neural Networks).
 
-Think of it like a **Dragster vs. a Family Sedan**:
-*   **The [[cpu|CPU]] (Sedan):** You can take it to the grocery store, drive it off-road, or take it on a road trip. It’s useful for everything, but its top speed is boring.
-*   **The TPU (Dragster):** It is useless for "normal" life. It can't turn corners, it can't carry groceries, and it can't drive on a normal road. But in a 1/4 mile straight line (AI math), it is the fastest thing in the world.
+Think of it like a **Dragster vs. a Sediment**.
+*   **[[cpu|CPU]] (Sedan):** Can drive anywhere (grocery store, off-road, highway). Versatile, but slow max speed.
+*   **[[gpu|GPU]] (Sports Car):** Faster. Good for racing (gaming) and carrying moderate loads (parallel tasks).
+*   **TPU (Dragster):** Useless for going to the grocery store (can't run Windows). But on a straight line (Tensor math), it is unimaginably fast.
+It strips away everything a general computer needs (cache, branch prediction) to make room for pure "number crunching" muscle.
 
-## The Secret "Heartbeat": The Systolic Array
-Most chips move data in and out of their memory like a person taking a bite of food, chewing, and then taking another bite. This is slow.
+## How it Works
 
-A TPU uses a **Systolic Array**. It pumps data through its massive grid of calculators like a **Heart pumps blood**. Once a piece of data enters the chip, it flows through every single "calculator cell" without stopping, making it incredibly fast and efficient.
+1.  **Systolic Array:** Instead of moving data in and out of memory for every calculation (like a CPU), a TPU pumps data through a massive grid of calculator units like a heart pumps blood.
+2.  **Low Precision:** It often uses "fuzzy" numbers (8-bit or bfloat16) because AI doesn't need perfect accuracy (3.14159...), it just needs to be close enough (3.14). This saves massive energy.
 
 ## FAQs
 
-*1. Can I buy a TPU for my home PC?*
-**No.** Google doesn't sell them. They keep them in their own data centers and rent them to people like you and me through **Google Cloud**. However, they do make a tiny version called the **"Edge TPU"** for robotic projects (like a self-driving toy car).
+*1. Can I buy one?*
+Not really. TPUs are mostly available only through Google Cloud. You rent them for a few dollars an hour.
 
-*2. Why use a TPU instead of a **[[gpu|GPU]]**?*
-Energy and Speed. Because a TPU only does one type of math, it does it using much less electricity than a GPU. For massive projects like training **Google Search** or **Gemini**, saving 50% on electricity adds up to millions of dollars.
+*2. Is it better than a GPU?*
+For specific AI tasks (like training Transformers), yes/faster. For general tasks or smaller models, GPUs are often more flexible and easier to use.
 
 ### Further Reading
 
-*   **The Competition:** *[[gpu|GPU (Graphics Processing Unit)]]* (The versatile rival to the TPU).
-*   **The Technology:** *[[ai|Neural Networks]]* (The math that needs the TPU in the first place).
-*   **Official Docs:** *[What is a Cloud TPU?](https://cloud.google.com/tpu/docs/intro-to-tpu)* (Google's official guide to their AI muscle).
-*   **Video:** *[How Google's TPU works](https://www.youtube.com/watch?v=MXxN4fv01c8)* (A deep dive into the heart of the chip).
+*   **Article:** *[Cloud TPU](https://cloud.google.com/tpu/docs/intro-to-tpu)* (Official Google Docs).
+*   **Video:** *[How Google's TPU works](https://www.youtube.com/watch?v=MXxN4fv01c8)*.

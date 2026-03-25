@@ -5,31 +5,33 @@ tags: EmergingTech, Physics, Computing
 
 # Quantum Computing
 
-"Solving the Impossible" ,a radical new way of computing that uses the strange, "spooky" laws of subatomic physics to solve problems that would take a regular supercomputer millions of years.
+Calculating every path through the maze at once.
 
-**Quantum Computing** is a total restart of how computers work. A classical computer (like your phone) thinks in **Bits** (0 OR 1). A Quantum computer thinks in **[[qubits|Qubits]]** (0 AND 1, at the same time). This allows them to explore thousands of solutions simultaneously, instead of checking them one-by-one.
+Classical computers (like the one you are using) think in **Bits** (0 OR 1).
+Quantum computers think in **Qubits** (0 AND 1, at the same time).
 
-Think of it like **Navigating a Maze**:
-*   **A Classical Computer:** Is like a mouse in a maze. It runs down one path, hits a wall, turns back, and tries another. It eventually finds the exit, but it takes a long time.
-*   **A Quantum Computer:** Is like **Flooding the Maze with Water**. The water goes down every single path at the exact same moment. It finds the exit, the entrance, and every shortcut instantly.
+This allows them to solve specific types of massive problems (like folding proteins for drug discovery or breaking [[encryption]]) exponentially faster than a [[supercomputer]].
 
-## The Two "Magic" Powers
+## Superposition & Entanglement
 
-1.  **Superposition (The Spinning Coin):** Imagine a coin spinning on a table. Before it lands, it is neither Heads nor Tails; it is a "blur" of both. In quantum physics, a chip can be in multiple states at once, allowing it to hold a massive amount of data in a tiny space.
-2.  **Entanglement (The Spooky Link):** Two particles can be "linked" so that they share the same fate. If you change one, the other changes **instantly**, even if it’s on the other side of the galaxy. Einstein called this "Spooky Action at a Distance," and it’s how quantum computers move data at impossible speeds.
+*   **Superposition:** A coin spinning on a table is neither Heads nor Tails; it is a blur of both. That is a Qubit.
+*   **Entanglement:** Two spinning coins are linked. If you stop one and it lands Heads, the other one *instantly* becomes Tails, even if it is on Mars.
 
 ## FAQs
 
-*1. Will this make my laptop faster?*
-**No.** Quantum computers are like Formula 1 cars ,they are incredible at the racetrack but terrible at going to the grocery store. They are designed for deep math like drug discovery, weather prediction, and breaking **[[encryption|Encryption]]**. For things like Word or Netflix, your normal computer is actually better.
+*1. Will it replace my laptop?*
+No. They are giant, fragile fridges that need to be kept near Absolute Zero (-273°C). They are for specific science/math tasks, not scrolling Twitter.
 
-*2. Where are these computers kept?*
-They are extremely fragile. Most are kept in giant, specialized refrigerators called "Dilution Refrigerators" that are colder than outer space (-273°C). If they get too warm or even if a building vibrates, the "magic" vanishes and the computer stops working.
+*2. Will it break [[encryption|encryption]]?*
+Eventually, yes. [[shors-algorithm|Shor's-Algorithm]] proves a powerful enough Quantum Computer could crack all modern flexible [[encryption]]. This is why "Post-Quantum [[cryptography|Cryptography]]" is being researched now.
+
+## How do we use them?
+
+We use software like **[[qiskit|IBM Qiskit]]**. It's a Python library that lets you write code (circuits) on your laptop, which is then sent to a real Quantum Computer (via the cloud) to be executed.
+
 
 ### Further Reading
 
-*   **The Unit:** *[[qubits|What is a Qubit?]]* (The basic building block).
-*   **The Era:** *[[nisq|The NISQ Era]]* (Why today's quantum computers are still "noisy").
-*   **The Threat:** *[[post-quantum-cryptography|Post-Quantum Cryptography]]* (Will they break the internet's security?).
-*   **Video:** *[Quantum Computers Explained (Kurzgesagt)](https://www.youtube.com/watch?v=JhHMJCUmq28)* (The most beautiful visual explanation ever made).
-*   **Try it:** *[IBM Quantum](https://www.ibm.com/quantum)* (Cloud access to real quantum computers).
+*   **Video:** *[Quantum Computers Explained (Kurzgesagt)](https://www.youtube.com/watch?v=JhHMJCUmq28)*
+*   **Article:** *[IBM Quantum Experience](https://www.ibm.com/quantum)*
+*   **Deep Dive:** *[[quantum-computing-revolution|The Quantum Computing Revolution]]*

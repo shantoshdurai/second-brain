@@ -5,31 +5,22 @@ tags: Malware, History, Replication
 
 # Computer Virus
 
-"The Parasite" ,a piece of malicious code that cannot live on its own. It must attach itself to a healthy file to survive, replicate, and spread.
+The biological flu for computers.
 
-Most people use the word "Virus" to describe anything bad on a computer, but technically, that’s incorrect. **[[malware|Malware]]** is the big category (it includes everything from ransomware to spyware). A **Virus** is a very specific type of bug that defines itself by **attachment**. If it doesn't "hitch a ride" on a real program, it isn't a virus.
+A **Virus** is a specific type of [[malware|malware]] that requires a **Host Program** to survive. It attaches its malicious code to a clean file (like `game.exe`). When you run the game, the virus runs first, infects other files on your computer, and then runs the game.
 
-Think of it like **The Biological Flu**:
-*   **The Transmission:** The virus "infects" a clean file (like `GrandTheftAuto.exe` or `Invoice.pdf`). 
-*   **The Trigger:** It sits dormant until you physically open that file. You have to "Sneeze" (click) to let it out.
-*   **The Symptoms:** Once released, it copies its "DNA" into every other file it can find. While it's spreading, it might delete your files, change your settings, or just slow your computer to a crawl.
+## Virus vs. [[malware|Malware]]
 
-## The 3 Key Traits
-1.  ** паразитарные (Parasitic):** It needs a "Host" (a real file) to hide in.
-2.  **Reproductive:** Its #1 goal is to make as many copies of itself as possible across your hard drive and USB sticks.
-3.  **User-Triggered:** Unlike a **[[worms|Worm]]**, a virus usually can't move unless *you* do something (like opening an email attachment).
+People use "Virus" to mean everything bad.
+*   *Correct:* All Viruses are [[malware|Malware]].
+*   *Incorrect:* All [[malware|Malware]] are Viruses. (Worms and Trojans are not viruses because they don't attach to hosts).
 
 ## FAQs
 
-*1. Can a virus physically explode my laptop?*
-**Usually, no.** Most viruses only damage software (deleting files, etc.). However, some advanced military-grade viruses (like **[[stuxnet|Stuxnet]]**) were designed to make industrial machinery spin so fast that the parts literally disintegrated.
-
-*2. Are viruses still the biggest threat?*
-**Surprisingly, no.** Professional hackers have mostly stopped making "simple" viruses because there's no money in just breaking your computer. Today, they prefer **[[ransomware|Ransomware]]** (to get paid) or **[[botnets|Botnets]]** (to use your computer as a weapon).
+*1. Do viruses still exist?*
+They are actually rare today. Modern hackers prefer [[ransomware]] (for money) or [[botnets]] (for power). "Old school" file-infecting viruses are less profitable.
 
 ### Further Reading
 
-*   **The Smart Rival:** *[[worms|Worms]]* (Like a virus, but doesn't need you to click).
-*   **The Deceiver:** *[[trojan|Trojans]]* (Pretends to be a useful gift).
-*   **History Lesson:** *[The First Virus (Brain.a)](https://en.wikipedia.org/wiki/Brain_(computer_virus))* (Created in 1986).
-*   **Article:** *[Virus vs Malware: What's the difference?](https://www.avast.com/c-virus-vs-malware)*.
+*   **History:** *[The Brain Virus (First PC Virus)](https://en.wikipedia.org/wiki/Brain_(computer_virus))*
+*   **Article:** *[Virus vs Worm vs [[trojan|Trojan]] (Avast)](https://www.avast.com/c-virus-vs-worm-vs-trojan)*

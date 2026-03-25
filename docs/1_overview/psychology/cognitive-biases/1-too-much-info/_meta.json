@@ -1,0 +1,6 @@
+{
+    "title": "Problem 1: Too Much Info",
+    "icon": "fas fa-filter",
+    "desc": "We can't see everything, so we filter aggressively.",
+    "view": "list"
+}

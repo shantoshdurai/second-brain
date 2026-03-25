@@ -193,7 +193,7 @@ body {
     padding: 0 24px;
     flex-shrink: 0;
     position: relative;
-    z-index: 50;
+    z-index: 200;
 }
 
 .brand {
@@ -1283,61 +1283,58 @@ body[data-theme="dark"] .mobile-header {
     }
 }
 
-/* --- GRAPH VIEW --- */
+/* --- CONSTELLATION VIEW --- */
 #graphContainer {
-    width: 100%;
-    max-width: 1100px;
-    height: 700px;
-    background: var(--bg-graph);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background-color: var(--bg-graph);
+    z-index: 100;
     display: none;
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    z-index: 10;
+    overflow: hidden;
 }
 
 #graphContainer.active {
     display: block !important;
 }
 
-.main-content.graph-mode .markdown-body,
-.main-content.graph-mode .breadcrumbs,
-.main-content.graph-mode .back-link {
-    display: none !important;
-}
-
-.graph-toggle-btn.active {
-    background: var(--text-accent);
-    color: var(--bg-sidebar) !important;
-    border-color: var(--text-accent);
-}
-
-.graph-close-overlay {
+/* --- GRAPH UI OVERLAYS --- */
+.graph-controls {
     position: absolute;
     top: 20px;
-    right: 20px;
-    z-index: 100;
-    padding: 8px 16px;
-    background: var(--bg-body);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    color: var(--text-primary);
+    right: 40px;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.close-graph-btn {
+    background: #E11D48;
+    /* Rose Red as requested/seen in screenshot */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
     font-family: var(--font-main);
-    box-shadow: var(--shadow-ambient);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-.graph-close-overlay:hover {
-    border-color: var(--text-accent);
-    color: var(--text-accent);
+.close-graph-btn:hover {
+    background: #BE123C;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(225, 29, 72, 0.4);
 }
 
 .graph-legend {
@@ -1345,17 +1342,18 @@ body[data-theme="dark"] .mobile-header {
     bottom: 24px;
     left: 24px;
     z-index: 105;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
     padding: 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-ambient);
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: var(--shadow-ambient);
-    pointer-events: auto;
     max-height: calc(100% - 48px);
     overflow-y: auto;
+    pointer-events: auto;
 }
 
 body[data-theme="dark"] .graph-legend {
@@ -1371,23 +1369,64 @@ body[data-theme="dark"] .graph-legend {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-secondary);
-    transition: none;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
     user-select: none;
-    opacity: 0.6;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    opacity: 0.7;
+}
+
+.legend-item:focus-visible {
+    outline: 2px solid var(--text-accent);
+    outline-offset: 2px;
 }
 
 .legend-item:hover,
 .legend-item.active {
     opacity: 1;
     color: var(--text-primary);
+    background: var(--surface-highest);
+}
+
+.legend-item.active {
+    background: var(--surface-high);
 }
 
 .legend-color {
     width: 12px;
     height: 12px;
-    border-radius: var(--radius);
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentcolor;
     flex-shrink: 0;
 }
+
+.graph-node-label {
+    stroke: var(--bg-body);
+    stroke-width: 3px;
+    paint-order: stroke;
+    stroke-linejoin: round;
+    font-family: var(--font-main);
+    font-weight: 500;
+}
+
+.main-content.graph-mode .markdown-body,
+.main-content.graph-mode .breadcrumbs,
+.main-content.graph-mode .back-link {
+    display: none !important;
+}
+
+.graph-toggle-btn.active {
+    background: var(--text-accent);
+    color: var(--bg-sidebar) !important;
+    border-color: var(--text-accent);
+}
+
+
 
 /* ==========================================
    ?? COMPONENT GALLERY ADDITIONS

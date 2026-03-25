@@ -5,31 +5,29 @@ tags: Statistics, HypothesisTesting, NonParametric
 
 # Chi-Square Test
 
-"The Expectations Checker" ,a tool used to determine if the "Counts" you see in the real world (like Blue vs. Red shirts sold) match what you mathematically expected to see.
+A Chi-Square Test is like counting how many people bought red versus blue shirts in your store, and mathematically checking if you genuinely sold way more blue ones than you originally predicted.
 
-The **Chi-Square ($\chi^2$)** test is different from a [[t-test|T-Test]] or an [[anova|ANOVA]] because it doesn't care about "Averages" (like height or score). It only cares about **Categories and Counts**. It asks: *"Is the frequency of these things happening purely random, or is there a pattern?"*
+**The Chi-Square Test of Independence ($\chi^2$)** is a non-parametric statistical test used to determine if there is a mathematically significant association between two categorical (nominal) variables.
 
-Think of it like **A Rigged Coin**:
-*   **The Expectation:** You flip a coin 100 times. Math says you should see **50 Heads** and **50 Tails**.
-*   **The Reality:** You actually get **80 Heads** and **20 Tails**.
-*   **The Test:** Chi-Square calculates how far your "Observed" counts are from your "Expected" counts. 
-*   **The Result:** If the "Gap" is huge, the Chi-Square score will be huge, proving that the coin is almost certainly rigged.
+Unlike an [[anova|ANOVA]] or a [[t-test|T-Test]], the Chi-Square test doesn't look at continuous numbers or averages (like height or test scores). It only cares about **counts** and **categories**.
 
-## Two Main Uses
-1.  **Test of Independence:** Do two things depend on each other? (e.g., *"Does your Eye Color depend on your Hair Color?"*).
-2.  **Goodness of Fit:** Does your data fit a specific pattern? (e.g., *"Does this bag of M&Ms actually contain the 20% blue candies that the factory promised?"*).
+Imagine you flip a coin 100 times. You *expect* around 50 heads and 50 tails. If you get 52 heads and 48 tails, that's normal statistical noise. But what if you get 80 heads and 20 tails? Is the coin rigged? The Chi-Square test compares your *Observed Frequencies* (what you actually counted) against your *Expected Frequencies* (what math says should have happened by pure luck). By adding up the differences across all possible categories, Chi-Square outputs a massive single number ($\chi^2$). If the score is huge, your coin is heavily rigged.
+
+## Key Types of Chi-Square
+
+*   **Test of Independence:** Checks if two categorical variables (e.g., Eye Color and Hair Color) are related to one another.
+*   **Goodness of Fit:** Checks a single categorical variable against a theoretical distribution (e.g., checking if M&M's actually produce exactly 20% blue candies as they claim).
+*   **The Big Rule:** The math absolutely depends on raw counts (frequencies). You cannot use percentages, fractions, or negative numbers inside the Chi-Square formula. 
 
 ## FAQs
 
-*1. Can I use percentages or averages?*
-**NO.** Chi-Square only works with **Raw Counts**. You have to use whole numbers (e.g., 50 people, 10 cars, 5 apples). You cannot use "50%" or "Average height of 5.9."
+*1. Are there limits to the Chi-Square test?*
+Yes. Because it uses raw counts to estimate probabilities, the math starts to break down if any of your categories have fewer than 5 expected responses (e.g., only 3 people out of 1000 have green hair and blue eyes). For those tiny datasets, statisticians switch to a more precise, brute-force calculation called **[[fishers-exact-test|Fisher's Exact Test]]**.
 
-*2. When is it too small to use?*
-If any of your groups have fewer than **5 items** expected in them, the math starts to break down. In those cases, you should switch to **[[fishers-exact-test|Fisher's Exact Test]]**, which is like a "Brute Force" version of Chi-Square for tiny datasets.
+*2. How does this compare to Correlation?*
+Chi-Square is used when *both* variables are categorical (e.g., Gender vs. Voted/Did Not Vote). [[pearson-correlation|Pearson Correlation]] requires continuous numbers (e.g., Age vs. Salary). [[point-biserial-correlation|Point-Biserial]] mixes one of each.
 
 ### Further Reading
 
-*   **The Tiny-Data Version:** *[[fishers-exact-test|Fisher's Exact Test]]* (When your counts are under 5).
-*   **The Opposite:** *[[pearson-correlation|Pearson Correlation]]* (When your data is continuous numbers, not categories).
-*   **Article:** *[How to use Chi-Square](https://www.simplypsychology.org/chi-square.html)*.
-*   **Video:** *[Chi-Square Test Simply Explained](https://www.youtube.com/watch?v=Hu4YbmPhFKQ)* (Animated coin flips).
+*   **Related Concept:** *[[anova|ANOVA]]* (What to use when your categories need to predict a continuous number instead of raw counts).
+*   **Related Concept:** *[[kruskal-wallis|Kruskal-Wallis Test]]* (What to use for ranked categories).

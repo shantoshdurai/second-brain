@@ -3,35 +3,32 @@ title: Cryptojacking
 tags: CyberSecurity, InformationSecurity, VulnerabilityManagement
 ---
 
-# Cryptojacking
+# Cyptojacking
 
-"The Digital Parasite" ,software that secretly hijacks your computer's brainpower to print invisible money for a hacker, leaving you with a slow machine and a massive electricity bill.
+A digital parasite that secretly steals your computer's electricity and brainpower to make money for a hacker.
 
-**Cryptojacking** isn't interested in stealing your photos or your passwords. Instead, they want your **Resources**. They install a hidden script on your device that forces your processor (CPU) to solve the insanely complex math problems required to "mine" cryptocurrency. Every time your computer solves a block, the hacker gets paid, while you are left wondering why your laptop is hot enough to fry an egg.
+It is the unauthorized use of someone else’s computer to "mine" cryptocurrency. 
 
-Think of it like **A Secret Tenant in Your House**:
-*   They don't steal your jewelry.
-*   They just plug into your electrical outlets and use your power 24/7 to run a massive, noisy factory in your basement.
-*   You pay the bill; they keep the profit.
-
-## How it gets on your machine
-1.  **Browser Drive-By:** You don't even have to download anything. Just visiting a shady movie-streaming or gambling site can trigger a script that turns your browser tab into a mini-mining rig.
-2.  **Polite Stealth:** Most cryptojackers are programmed to be "polite." They only use 20% of your power while you're active so you don't notice the lag, then ramp up to 100% the moment you walk away from your desk.
+Instead of stealing your personal data (like passwords or photos), the hacker is stealing your **resources**. They install a hidden program on your device (or hide it in a website you visit) that forces your computer to solve complex math problems. These solutions generate digital money, which goes straight to the hacker's wallet, while you are left with a slow computer and a high electricity bill.
 
 ## FAQs
 
-*1. Is it harmful?*
-**Yes.** It aggressively steals your hardware's lifespan. By running your processor at 100% capacity for hours on end, cryptojacking can physically damage your computer or cause it to overheat and fail.
+*1. How does it get on my computer?*
 
-*2. How do I know if I've been hijacked?*
-Look for the **Three Red Flags**:
-*   **The Fan Scream:** Your fans are spinning at max speed while you're just reading a simple email.
-*   **The Battery Burn:** Your phone battery, which usually lasts all day, is suddenly dying in three hours.
-*   **The CPU Spike:** If you open your Task Manager and see your browser using 90% of your "CPU," you've been hijacked.
+There are two main ways:
+*  **Browser-Based (Drive-by):** You visit a shady website (streaming or gambling sites). A script runs in the background of that web page. As long as the tab is open, your computer mines for them.
+*  **Malware-Based:** You download a file (like a "free" game crack or software). The [[cryptomining-software|mining program]] installs itself deeper in your system and runs every time you turn the computer on.
+
+*2. How do I know if I'm infected?*
+
+Cryptojacking is designed to be quiet, but look for these signs:
+* **The Fan Test:** Your laptop fans are spinning at max speed even when you are just reading text.
+* **Slowness:** Your computer feels laggy or freezes during simple tasks.
+* **Battery Drain:** Your phone or laptop battery dies much faster than usual.
+* **The Task Manager:** Open your Task Manager (Windows) or Activity Monitor (Mac). If you see "CPU Usage" at 90-100% caused by a browser or a weirdly named file, that's a red flag.
 
 ### Further Reading
 
-*   **The Technology:** *[[cryptomining-software|How Cryptomining Works]]*.
-*   **The Cure:** [Install "NoCoin" or other anti-miner extensions](https://github.com/keraf/NoCoin).
-*   **Article:** *[The Rise and Fall of Coinhive](https://www.darkreading.com/perimeter/the-rise-of-silence-and-the-fall-of-coinhive)*.
-*   **Guide:** *[Malwarebytes: Decoding the Cryptojacking Crisis](https://www.malwarebytes.com/cryptojacking)*.
+* **History:** *[The rise and fall of Coinhive](https://www.darkreading.com/perimeter/the-rise-of-silence-and-the-fall-of-coinhive)* (The most famous browser mining script).
+* **Protection:** *[How to use "NoCoin" or "MinerBlock" browser extensions.](https://fossbytes.com/block-cryptocurrency-mining-in-browser/)*
+* **Official Guide:** *[Malwarebytes: What is Cryptojacking?](https://www.malwarebytes.com/cryptojacking)*

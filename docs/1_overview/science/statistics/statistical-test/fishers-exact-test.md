@@ -5,31 +5,31 @@ tags: Statistics, HypothesisTesting, NonParametric
 
 # Fisher's Exact Test
 
-"The Brute-Force Accuracy Test" ,a tool used to calculate the **exact** probability of an outcome, mainly used when your sample size is so tiny that normal statistical estimations would fail.
+Fisher's Exact Test is like painstakingly writing out every possible winning hand in a card game to prove exactly how lucky your opponent's royal flush was, rather than just guessing based on general odds.
 
-**Fisher's Exact Test** is what you use when you want the "Perfect Answer" for a small group. While the [[chi-square|Chi-Square Test]] is an "Estimation" that works best with hundreds of people, Fisher's Exact Test uses raw math to literally calculate every possible combination of results to see how lucky you got. 
+**Fisher's Exact Test** is a statistical significance test used in the analysis of contingency tables. It is typically used as an alternative to the [[chi-square|Chi-Square Test]] when sample sizes are extremely small or when the expected frequencies in your data table are too low for Chi-Square math to work reliably.
 
-Think of it like **A Small Medical Trial**:
-*   You are testing a new medicine on only **10 people**.
-*   Group A (Medicine): 4 get well, 1 stays sick.
-*   Group B (Placebo): 1 gets well, 4 stay sick.
-*   **The Problem:** If you run a regular Chi-Square test, the math will "Break" because your groups are too small (under 5 people).
-*   **The Solution:** Fisher's Exact Test doesn't "Guess" based on a curve. It calculates the exact odds of getting that 4-to-1 result purely by chance. 
+Imagine you are testing a brand new, highly experimental medicine on a tiny group of 10 hospital patients. You give 5 of them the medicine and 5 of them a placebo. In the medicine group, 4 get better and 1 stays sick. In the placebo group, 1 gets better and 4 stay sick. 
 
-## Why not use it for everything?
-**Computing Power.** Historically, by-hand math for Fisher's test was impossible for large groups (the numbers get too big too fast). Even today, if you have 10,000 data points, a computer might struggle to calculate the "Exact" probability across all combinations. In those cases, we switch back to the [[chi-square|Chi-Square]] estimation because it gives practically the same answer for much less effort.
+If you try to run a standard **Chi-Square test** on this data, the math will break. Chi-Square relies on an approximation of a massive, continuous bell curve, and it usually requires at least 5 "expected" people in every single category to be accurate. 
+
+Fisher's Exact Test doesn't approximate anything. Instead of checking a bell curve, it uses brute-force math to literally calculate the exact probability of getting that specific arrangement of sick/healthy patients (and every arrangement more extreme than it), assuming the medicine did absolutely nothing. Because it calculates exact probabilities rather than estimating them, it is flawlessly accurate for tiny sample sizes.
+
+## Key Features
+
+*   **Exact, Not Approximated:** It calculates the exact probability (p-value), rather than an approximation based on large-number theory.
+*   **Small Sample Sizes:** It is the universally preferred test over Chi-Square when your total sample size is small or when any expected cell count in your data table is less than 5.
+*   **Computationally Heavy:** Historically, calculating exact probabilities for large numbers by hand (involving massive factorials) was impossible. Today, computers handle it instantly for small to medium datasets, but it can still be mathematically exhausting for massive contingency tables.
 
 ## FAQs
 
-*1. When IS it required?*
-Use it whenever any of your "Expected Categories" in a 2x2 table has a value **lower than 5**. If you have a category with only 2 or 3 people in it, Chi-Square will lie to you. Fisher is the only one you can trust.
+*1. Can I use Fisher's Exact Test for large sample sizes?*
+Yes, absolutely. Because it calculates the *exact* probability, it is technically always accurate. However, for massive datasets, a [[chi-square|Chi-Square Test]] will give you practically the exact same answer in a fraction of the computing power. 
 
-*2. Is it only for 2x2 tables?*
-**Usually.** While it can be expanded to larger grids, it is most famous and most powerful for "Binary" choices (e.g., Treatment/Placebo vs. Success/Failure). 
+*2. Does it only work on 2x2 tables?*
+Originally, yes (e.g., Medicine/Placebo vs. Sick/Healthy). Modern software can run Fisher's Exact Test on larger tables (like 3x3 or 4x2), but the sheer number of factorial calculations grows exponentially, sometimes causing computers to struggle or default back to Chi-Square approximations.
 
 ### Further Reading
 
-*   **The Estimation Rival:** *[[chi-square|The Chi-Square Test]]* (For large datasets).
-*   **The Legend:** *[The Lady Tasting Tea](https://en.wikipedia.org/wiki/Lady_tasting_tea)* (The famous experiment that led to this test).
-*   **Article:** *[When to use Fisher's Exact Test](https://www.statisticshowto.com/fishers-exact-test/)*.
-*   **Video:** *[Fisher's Exact Test Explained Visually](https://www.youtube.com/watch?v=Hu4YbmPhFKQ)* (The card game logic).
+*   **Related Concept:** *[[chi-square|Chi-Square Test]]* (The approximation used when your sample size is comfortably large).
+*   **Related Concept:** *[[anova|ANOVA]]* (What to use if your outcome isn't categorical "Sick/Healthy," but rather a continuous number like blood pressure).

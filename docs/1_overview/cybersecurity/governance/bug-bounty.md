@@ -5,35 +5,29 @@ tags: CyberSecurity, Career, OffensiveSec, Crowdsourcing
 
 # Bug Bounty
 
-"The Digital Bounty Hunters" ,a deal where companies like Google and Apple pay a reward to hackers who find holes in their security, turning potential enemies into a global army of volunteer defenders.
+Crowdsourced security testing.
 
-A **Bug Bounty Program** is a crowdsourced security initiative. Instead of hiring just one team, a company says: *"If you can hack us and tell us how before the bad guys find out, we will pay you in cold, hard cash."* This gives "Ethical Hackers" a legal, high-paying career and ensures the world's most talented minds work for the good guys.
+A **Bug Bounty Program** is a deal where a company (like Google or Facebook) says: *"If you can hack us and tell us how you did it, we will pay you cash."*
 
-## The Rules of Engagement
-To keep things legal, every program has strict rules:
-*   **Responsible Disclosure:** You must keep the bug secret until the company has fixed it. Tweeting about it early can cost you your payout (and get you sued).
-*   **The Scope:** The company defines what is "In Bounds." They might say: *"Attack our website, but do NOT attack our office Wi-Fi or our employees' phones."*
-*   **Safe Harbor:** As long as you follow the rules, the company promises not to call the police. This creates a "safe zone" for testing skills.
+It turns hackers into allies. Instead of selling a security flaw on the black market (for evil), the hacker sells it to the company (for good).
 
-## The Paycheck
-How much do you get paid? It depends on the **[[cvss|CVSS Score]]** (the "Severity"):
-*   **Low (The "Annoyance"):** A free T-shirt, "Swag," or $100.
-*   **Medium (The "Risk"):** $500 to $5,000.
-*   **Critical (The "Empire-Killer"):** $10,000 to $1,000,000+.
-    *   *Real World:* Apple offers up to **$1 Million** if you can hack an iPhone without the user ever clicking a link ("Zero-Click").
+## Principles
+
+*   **Responsible Disclosure:** The hacker agrees NOT to tell the public about the bug until the company fixes it.
+*   **Scope:** The company defines what is "In Bounds" (e.g., website.com) and "Out of Bounds" (e.g., employees' personal laptops).
 
 ## FAQs
 
-*1. Can a beginner do this?*
-**Yes!** Platforms like **HackerOne** and **Bugcrowd** are the "marketplaces" of the industry. You can sign up tonight, pick a company, and start hunting. Most start with small targets to learn the ropes.
+*1. How much do they pay?*
+It depends on the severity ([[cvss|[[cvss|CVSS]] Score]]).
+*   **Low (Typo):** Swag (T-shirt) or $100.
+*   **Critical (Remote Code Execution):** $10,000 - $1,000,000+.
+*   *Apple pays up to $1 Million for hacking an iPhone.*
 
-*2. Why not sell to criminals for MORE money?*
-**Legal Freedom and Prestige.** While the "Dark Web" might pay more for a bug, selling to criminals can land you in prison for life. Bug Bounties are legal, respected, and lead to high-paying jobs at top companies.
+*2. Can anyone do it?*
+Yes. Platforms like **HackerOne** and **Bugcrowd** allow anyone to sign up and start hunting on public programs legally.
 
 ### Further Reading
 
-*   **The Metric:** *[[cvss|How your bug is scored]]*.
-*   **The Hub:** *[HackerOne (Start your career here)](https://www.hackerone.com/)*.
-*   **The Hall of Fame:** *[Google Bug Hunters](https://bughunters.google.com/)*.
-*   **Video:** *[How I made $100,000 in my first year of Bug Bounty](https://www.youtube.com/watch?v=A_p_BfHImlE)*.
-*   **Guide:** *[Bugcrowd's Guide for Beginners](https://www.bugcrowd.com/university/)*.
+*   **Platform:** *[HackerOne](https://www.hackerone.com/)* (The biggest marketplace).
+*   **List:** *[Google's Bug Hunting Program Rules](https://bughunters.google.com/about/rules)*.

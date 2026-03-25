@@ -5,35 +5,32 @@ tags: CyberAttack, Malware, Crime
 
 # Ransomware
 
-"The Digital Kidnapper" ,a type of software that locks up your entire life and demands a "Ransom" in Bitcoin to give it back.
+Digital kidnapping of your files.
 
-**Ransomware** is the most aggressive form of **[[malware|malware]]**. Imagine coming home to find your front door locks changed and a note pinned to the glass: *"Pay $1,000 by midnight, or we burn the whole house down."* That is exactly what ransomware does to your computer. It encrypts (scrambles) your photos, work files, and databases using unbreakable math, then demands payment in untraceable cryptocurrency.
+**Ransomware** is a specific type of [[malware]] that locks (encrypts) your computer or files so you cannot access them. The attacker then demands a "ransom" (usually in Bitcoin) to give you the key to unlock them.
 
-Think of it like **A Master Locksmith Gone Rogue**:
-*   The hacker "wraps" every one of your files in a digital safe.
-*   They are the only person on Earth who has the combination.
-*   They set a countdown timer on your screen ,if you don't pay, the combo is deleted forever, and your files become garbage.
+Imagine coming home, but your key doesn't work, and there is a note on the door saying: *"Pay $1000 to get your new key, or we burn the house down."*
 
-## How the Kidnapping Happens
-1.  **The Infection:** You download a malicious attachment (usually via **[[phishing|phishing]]**) or visit a "poisoned" website.
-2.  **The Scramble:** The malware quietly locks every file on your drive.
-3.  **The Note:** A massive pop-up appears demanding Bitcoin or Monero.
-4.  **The Threat:** Modern hackers also steal your private info *before* locking it. They threaten to post your private messages or legal documents on the web if you don't pay.
+## How it Works
+
+1.  **Infection:** You download a bad file or click a bad link.
+2.  **Encryption:** The [[malware|malware]] quietly scrambles your photos, documents, and databases.
+3.  **The Note:** A pop-up screen appears with a countdown timer and payment instructions.
+4.  **Extortion:** If you don't pay, you lose the data forever. Sometimes, they also threaten to *leak* your private data to the public (Double Extortion).
 
 ## FAQs
 
 *1. Should I pay the ransom?*
-**The FBI says NO.** 
-*   There's no guarantee the hacker will actually send the key.
-*   Paying them funds their next attack.
-*   If you pay once, they mark you as a "high-value target" and hack you again six months later.
+**No.** (According to the FBI and experts).
+*   There is no guarantee they will actually unlock your files.
+*   It funds their operations and encourages them to attack others.
+*   You serve as a "paying customer" target for future attacks.
 
-*2. How can I be "Immune" to ransomware?*
-**Offline Backups.** If you keep a backup on an external hard drive that is **NOT** plugged into your computer most of the time, the hacker has no power over you. You can just wipe your PC and restore your files from the drive. 
+*2. How do I protect myself?*
+The only 100% cure is **Backups**.
+If you have a backup of your files on an external [[hard-drive|hard drive]] that wasn't plugged in during the attack, you can just wipe your computer and restore your files. You lose nothing but time.
 
 ### Further Reading
 
-*   **The Hall of Shame:** *[[wanna-cry|The WannaCry Attack]]* (A worldwide disaster).
-*   **The Hub:** *[No More Ransom Project](https://www.nomoreransom.org/)* (Free keys to unlock your files).
-*   **The Business:** *[How a Ransomware Gang Operates](https://www.technologyreview.com/2021/05/24/1025195/colonial-pipeline-ransomware-hack-explained/)*.
-*   **Core Tech:** *[[malware|Malware Overview]]*.
+*   **Story:** *[The Colonial Pipeline Attack](https://www.technologyreview.com/2021/05/24/1025195/colonial-pipeline-ransomware-hack-explained/)* (How a password shut down a gas pipeline).
+*   **Resource:** *[No More Ransom Project](https://www.nomoreransom.org/)* (Free tools to help unlock files without paying).

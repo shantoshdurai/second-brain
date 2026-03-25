@@ -5,32 +5,35 @@ tags: Statistics, Math, Pareto
 
 # Power Law
 
-"The Winner-Takes-All Shape" ,a pattern where a tiny number of people or events account for almost **all** of the results. In this world, the "Average" is a lie.
+Extremistan.
 
-A **Power Law** is the opposite of a **[[normal-distribution|Normal Distribution]]**. In a "Normal" world (like height), the tallest person is only a little bit taller than the average. In a "Power Law" world (like wealth or internet fame), the "Tallest" person is **one million times** bigger than the average. If you average J.K. Rowling’s net worth with 10,000 starving artists, the "Average" says everyone is a multi-millionaire. But that average is useless.
+**A Power Law** (Pareto Distribution) is a pattern where a small number of items account for the vast majority of the impact. The average is meaningless because one "[[black-swan|Black Swan]]" can skew the whole dataset.
 
-Think of it like **YouTube Views**:
-*   **The Long Tail:** Millions of people upload videos and get 10 views.
-*   **The Head:** MrBeast uploads one video and gets 100 million views.
-*   **The Power:** MrBeast’s one video has more impact than 10 million "Average" creators combined. This is a Power Law.
+Think of it like **Book Sales**.
+*   **The [[long-tail|Long Tail]]:** Millions of authors sell 10 copies.
+*   **The Head:** J.K. Rowling sells 500 million copies.
+*   **The Skew:** If you average J.K. Rowling with me, we are both best-selling authors *on average*. But the average is a lie.
 
-## The 3 Rules of a Power Law World
-1.  **The Rich Get Richer:** (Preferential Attachment). If you already have 1 million followers, getting the next 100 is easy. If you have zero, it’s impossible.
-2.  **[[black-swan|Black Swans]] are Expected:** In a Power Law, "Impossible" events happen all the time. A single viral post or a single market crash changes everything.
-3.  **The Scale Doesn't Matter:** (Fractal). If you look at the top 20% of the winners, they follow a Power Law. If you zoom into the top 1% of *those* winners, they also follow a Power Law. It’s "Winner-takes-all" at every level.
+## How it Works
 
-## FAQs
+1.  **Preferential Attachment:** "The rich get richer." If you have 1 million followers, gaining the next follower is easier than if you have 0.
+2.  **Scale Invariance:** The pattern looks the same at any scale (fractal).
+3.  **No Tyical Member:** In a Bell Curve, a variance of 10-sigma is impossible. In a Power Law, it's expected.
 
-*1. Is it the same as the 80/20 Rule?*
-**Yes.** The **[[pareto-principle|Pareto Principle]]** is just the most famous example of a Power Law. It’s the observation that 20% of causes drive 80% of results.
+## Real World Use Cases
 
-*2. Why should it scare me?*
-Because traditional risk models (like the ones banks use) often assume the world is "Normal." When a Power Law event happens (like a "Black Swan" market crash), the models break, and everyone loses their money.
+*   **Wealth:** The 80/20 Rule (80% of wealth is owned by 20% of people).
+*   **City Sizes:** A few mega-cities, thousands of small towns.
+*   **Web Traffic:** Google gets billions of hits; this page i.e., second brain gets three.
+
+## Analysis
+
+## Analysis
+
+In a Power Law world, [[risk-management|risk management]] is hard. The past does not predict the future. One single event (an earthquake, a market crash, a viral post) can change everything. See **[[black-swan|Black Swan]]**.
 
 ### Further Reading
 
-*   **The Strategy:** *[[long-tail|The Long Tail]]* (Mining the bottom of the curve).
-*   **The Rule:** *[[pareto-principle|The 80/20 Principle]]* (Efficiency).
-*   **The Disaster:** *[[black-swan|Black Swan Events]]* (Extreme outcomes).
-*   **Article:** *[The Power Law: Why the World is Not a Bell Curve](https://fs.blog/the-power-law/)* (Farnam Street).
-*   **Book:** *[The Black Swan](https://en.wikipedia.org/wiki/The_Black_Swan_(Taleb_book))* by Nassim Taleb.
+*   **Concept:** *[[long-tail|The Long Tail]]* (The business strategy).
+*   **Concept:** *[[pareto-principle|Pareto Principle]]* (The 80/20 Rule).
+*   **Book:** *[The Black Swan](https://en.wikipedia.org/wiki/The_Black_Swan_(Taleb_book))* (Nassim Taleb).

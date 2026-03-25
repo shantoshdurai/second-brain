@@ -1,36 +1,37 @@
 ---
-title: Average Annual Loss (AAL)
-tags: [RiskMetric, Economics, Insurance]
+title: Average Annual Loss
+tags: [RiskMetric, CyberEconomics]
 ---
 
-# Average Annual Loss (AAL)
+# Average Annual Loss
 
-The "Expected Bill" ,the average amount of money a company expects to lose every single year to predictable "glitches" and minor accidents, smoothed out over a long timeline.
+**Average Annual Loss (AAL)** is like the yearly budget you set aside for car maintenance; you know you'll pay for oil changes and minor repairs every year, even if you don't crash.
 
-**Average Annual Loss (AAL)** is the cost of doing business in a risky world. Instead of panicking every time a laptop breaks or a small building leak occurs, companies use AAL to estimate their "normal" yearly disaster budget. It turns the jagged, scary spikes of random accidents into a predictable monthly expense.
+In cyber risk, **Average Annual Loss (AAL)** is the expected average financial loss a company will incur from risks over a specific period (usually a year) when averaged over a very long timeline.
 
-Think of it like **Home Maintenance**:
-*   Some years, nothing breaks. You spend $0.
-*   The next year, your water heater explodes and the roof leaks. You spend $10,000.
-*   Over 10 years, you spend a total of $20,000 on repairs. Your **AAL** is $2,000 per year. Even in the "good" years, you should budget $2,000 because you know the "bad" years are coming.
+It works by smoothing out the jagged peaks of disaster costs into a predictable annual expense. Instead of panicking when a small incident happens, you treat it as a "pre-paid" operating cost.
 
-## Why AAL Matters
+## How it Works
 
-1.  **Setting the Insurance Price:** If an insurance company knows that a business's AAL is $50,000, they will never sell them a policy for $40,000. They have to charge more than the AAL just to break even.
-2.  **The "Deductible" Filter:** Most insurance companies set your **Deductible** (the part you pay yourself) near your AAL. They don't want to handle the paperwork for your "normal" accidents; they only want to help when something truly unusual happens.
-3.  **Frequency vs. Severity:** AAL is mostly driven by "Annoying" things that happen all the time (like fender-benders), rather than "Catastrophic" things that happen once a century (like a meteor strike).
+*   **The Baseline:** It calculates the "cost of doing business" regarding risk.
+*   **High Frequency, Low Severity:** AAL is mostly driven by small, frequent events (like fender benders or minor [[malware|malware]] infections) rather than the massive, rare catastrophes.
+*   **Budgeting Tool:** Companies use AAL to decide how much premium they should realistically pay for insurance. If the premium is lower than their AAL, it might be a bad deal for the insurer!
+
+## Real-World Analogies
+
+| Context | Analogy |
+| :--- | :--- |
+| **General** | **Home Maintenance:** You might budget roughly $2,000/year for fixing leaks, painting, and lawn care. Some years you spend $500, others $5,000, but the *average* over 10 years is your AAL. |
+| **Cyber Risk** | **The "Cost of Glitches":** A company expects to lose $50,000/year dealing with [[phishing|phishing]] remediation, reimaging infected laptops, and minor downtime. This is their "Cyber AAL"; the routine cost of digital friction. |
 
 ## FAQs
 
-*1. Is AAL the same as my insurance premium?*
-**No.** Your premium is what you pay the insurance company. Your AAL is what you would expect to lose if you had **no insurance at all**. Ideally, your premium should be slightly *higher* than your AAL (so the insurer stays in business) but *lower* than the cost of a total disaster.
+*1. Why should I care about AAL if I have insurance?*
+Because AAL represents the losses you are *expected* to eat. Insurers often set your **deductible** near your AAL so they don't have to handle paperwork for routine, small claims.
 
-*2. Does AAL prepare me for a total bankruptcy event?*
-**No.** AAL is an *average*. If you only save enough money to cover your AAL, you will be in huge trouble when the "Big One" hits. To prepare for total disasters, you need to look at **[[probable-maximum-loss|Probable Maximum Loss (PML)]]**.
+*2. Is AAL the worst-case scenario?*
+No! That’s **Probable Maximum Loss (PML)** or **VaR**. AAL is just the average. If you only prepare for the AAL, you will be bankrupt when the "Big One" hits.
 
 ### Further Reading
 
-*   **The Worst-Case:** *[[probable-maximum-loss|Probable Maximum Loss (PML)]]* (Preparing for the big disaster).
-*   **The Big Picture:** *[[total-cost-of-risk|Total Cost of Risk (TCoR)]]* (Calculating the full price of being in business).
-*   **The Graph:** *[[exceedance-probability-curve|The EP Curve]]* (Visualizing the odds of different loss levels).
-*   **Technical:** *[How AAL is Calculated in Catastrophe Models](https://www.rms.com/blog/2016/10/24/back-to-basics-average-annual-loss-aal)* (A guide for math enthusiasts).
+*   **[Risk Scoring]:** *[CVSS Scores](../../cybersecurity/defenses-and-tools/cvss.md)* (Understanding how individual technical vulnerabilities contribute to the overall risk calculation).

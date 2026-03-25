@@ -5,48 +5,42 @@ tags: Methodology, Logic, Thinking
 
 # Reasoning
 
-"The Three Engines of Thought" ,the different ways that humans (and AI) move from "What we see" to "What we know."
+The three engines of thought.
 
-There are three main "Styles" of logic. Think of them as three different types of investigators trying to solve a mystery. 
+There are three main ways humans (and AI) move from "what we know" to "what we think."
 
-## 1. Deduction: The Sniper
-**Logic:** Moving from the **General Rule** to a **Specific Fact.** 
-If the rules are true, the conclusion **MUST** be true. There is zero room for error.
-*   **The Rule:** All humans need water to survive.
-*   **The Fact:** Socrates is a human.
-*   **The Result:** Socrates needs water. (100% Certainty).
+## 1. Deduction (The Sniper)
+Moving from **General** to **Specific**.
+If the premises are true, the conclusion **MUST** be true.
+*   *Rule:* All men are mortal.
+*   *Observation:* Socrates is a man.
+*   *Conclusion:* Therefore, Socrates is mortal. (100% Certainty).
 
-## 2. Induction: The Surveyor
-**Logic:** Moving from **Specific Facts** to a **General Rule.**
-This is how we learn from experience. You look at patterns and guess the rule. It’s "Very Likely," but never 100% certain.
-*   **The Fact:** Every swan I have ever seen is white.
-*   **The Result:** I bet all swans are white. 
-*   **The Risk:** One [[black-swan|Black Swan]] destroys your rule instantly. (99.9% Certainty).
+## 2. Induction (The Surveyor)
+Moving from **Specific** to **General**.
+Looking at patterns to form a rule. The conclusion is **Likely**, but not certain.
+*   *Observation:* The sun has risen every morning for history.
+*   *Conclusion:* Therefore, the sun will rise tomorrow. (High Probability, but not guaranteed. The sun could explode tonight).
 
-## 3. Abduction: The Detective
-**Logic:** Finding the **Best Explanation** for a weird observation.
-You see a clue and you work backwards to guess the most "Reasonable" cause.
-*   **The Clue:** You walk outside and the grass is soaking wet. 
-*   **The Guess:** It could be a dog peed, or a neighbor used a hose, or it rained.
-*   **The Result:** It rained (because the street and the neighbor's roof are also wet). (High Probability).
-
-## How Science Uses Them
-Science is a loop of all three:
-1.  **Abduction:** You see a weird plant and "Guess" a rule for it.
-2.  **Deduction:** You say, *"If my guess is right, then this chemical should turn blue."*
-3.  **Induction:** You test 100 plants. They all turn blue. You "Update" your rule.
+## 3. Abduction (The Detective)
+Inference to the **Best Explanation**.
+Looking at a weird fact and guessing the most likely cause.
+*   *Observation:* The grass is wet.
+*   *Hypotheses:* It rained? The sprinklers turned on? A dog peed?
+*   *Conclusion:* It rained (because the street is also wet).
 
 ## FAQs
 
-*1. Which one does Artificial Intelligence use?*
-**AI (Machine Learning) is a massive Induction engine.** It looks at 10 million photos of cats (Specific Facts) and "Induces" a general rule for what "Cat-ness" looks like. This is why AI can be "Mostly Right" but sometimes "Confidently Wrong" (Hallucinations).
+*1. Which does Science use?*
+All of them.
+*   **Abduction** to invent a hypothesis.
+*   **Deduction** to predict what should happen if the hypothesis is true.
+*   **Induction** to verify it with data.
 
-*2. Which one is Sherlock Holmes?*
-**Sherlock is actually a Master of Abduction.** He famous for "Deduction," but he usually looks at a stain on a hat and "Infers the best explanation" (Abduction).
+*2. Which does AI use?*
+[[machine-learning|Machine Learning]] is a massive **Induction** engine. It looks at millions of specific cat photos to learn the general rule of "What a cat looks like."
 
 ### Further Reading
 
-*   **The Rule:** *[[falsifiability|Falsifiability Overview]]* (Why Induction is dangerous).
-*   **The Foundation:** *[[scientific-method|The Scientific Method]]* (The logic loop).
-*   **Article:** *[Deduction vs Induction vs Abduction](https://plato.stanford.edu/entries/logic-informal/)* (The formal philosophy).
-*   **Video:** *[Types of Reasoning in 3 Minutes](https://www.youtube.com/watch?v=1bDFZ31q0rE)* (A visual logic guide).
+*   **Article:** *[Deductive vs Inductive vs Abductive Reasoning](https://uregina.ca/~gingrich/319j1506.htm)*.
+*   **Video:** *[Sherlock Holmes uses Abduction, not Deduction](https://www.youtube.com/watch?v=1bDFZ31q0rE)*.

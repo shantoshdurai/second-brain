@@ -5,31 +5,31 @@ tags: Philosophy, Freedom, Sartre
 
 # Existentialism
 
-"You are the Author" ,the belief that you were born without any pre-set purpose, and it is your absolute duty (and burden) to create your own meaning through the choices you make.
+You contain the paintbrush, not just the canvas.
 
-**Existentialism** is the opposite of "Destiny." It says that for humans, **Existence precedes Essence**. This simply means you were born first (Existence), and you are a blank slate. There is no "Plan" for your life written in the stars. You decide what your "Essence" (your purpose) is through every action you take.
+For objects (like a knife), **Essence precedes Existence**. (A blacksmith thinks "I need something to cut," designs a knife, and then makes it). The *purpose* comes first.
 
-Think of it like **The Paintbrush and the Canvas**:
-*   A **Knife** is designed with a purpose before it’s made (to cut).
-*   A **Human** is like a canvas that woke up and realized it is also the **Painter**. You weren't painted by a God or by Nature; you have to pick up the brush and start painting yourself. Every day you decide what the "Painting of You" looks like.
+For humans, **Existence precedes Essence**. You are born first (You exist), and you have NO built-in purpose. You are a blank slate. You must *create* your own essence through your choices.
 
-## The "Curse" of Freedom
-Jean-Paul Sartre famously said we are **"Condemned to be free."** 
-If there is no "Grand Plan," then everything you do is 100% your responsibility. You can't blame your job, your parents, or your "Luck." You are the one making the choices. This creates a feeling of "Existential Dread" ,that dizzying realization that the world is wide open and you have no map.
+## The Burden of Freedom
+
+Jean-Paul Sartre said we are **"Condemned to be free."**
+Because there is no God/Destiny/Nature telling you what to do, *everything* you do is your fault.
+*   You didn't "have to" work that job. You chose it.
+*   You didn't "have to" get angry. You chose it.
+This responsibility creates "Existential Dread" (Anxiety).
 
 ## FAQs
 
-*1. Isn't this just Nihilism?*
-**No.** **[[nihilism|Nihilism]]** says: "There is no meaning, so nothing matters." **Existentialism** says: "There is no pre-set meaning, so **YOU** have to invent it." It is a call to action, not an excuse to give up.
+*1. Isn't this depressing?*
+It can be scary, but it is also empowering. It means you are not stuck. You can change your "essence" at any moment. You are the author of your life, not just an actor reading a script.
 
 *2. Who are the big names?*
-*   **Sartre:** The man who said we choose our own lives.
-*   **Simone de Beauvoir:** Who applied these ideas to how society treats women.
-*   **Nietzsche:** Who told us to become "Supermen" by creating our own values.
+*   **Sartre:** Radical freedom.
+*   **Nietzsche:** Becoming the "Ubermensch" (Superman) by creating your own values.
+*   **Kierkegaard:** Taking the "Leap of Faith."
 
 ### Further Reading
 
-*   **The Absurd:** *[[absurdism|Absurdism Overview]]* (Laughing at the lack of meaning).
-*   **The Void:** *[[nihilism|Nihilism Overview]]* (The belief in absolute nothingness).
-*   **Video:** *[The Philosophy of Sartre](https://www.youtube.com/watch?v=xxrmEfW4on0)* (Understanding the "Waiter" analogy).
-*   **Book:** *[Existentialism is a Humanism](https://www.marxists.org/reference/archive/sartre/works/exist/sartre.htm)* (Sartre’s most famous speech).
+*   **Book:** *[Existentialism Is a Humanism](https://www.marxists.org/reference/archive/sartre/works/exist/sartre.htm)* by Jean-Paul Sartre.
+*   **Video:** *[Sartre and the Waiter](https://www.youtube.com/watch?v=xxrmEfW4on0)* (Understanding "Bad Faith").

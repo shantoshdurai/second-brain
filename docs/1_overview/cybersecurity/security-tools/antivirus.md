@@ -5,25 +5,27 @@ tags: CyberSecurity, Defense, Tools
 
 # Antivirus
 
-"The Immune System" ,a silent, 24/7 worker that studies every file you download and every app you run, ready to pounce on anything that even smells like a digital disease.
+The immune system of your computer.
 
-**Antivirus (AV)** is your essential "Night Watchman." Its job is to detect, block, and remove **[[malware|Malware]]** before it can do damage. While older programs were slow and annoying, modern ones use "Global Brains" in the cloud to identify new threats in seconds, even if they have never been seen before.
+**Antivirus** (AV) is software that runs in the background, scanning files and programs to detect, block, and remove malicious software ([[malware|Malware]]).
 
-Think of it like **A Vigilant Security Guard with two tools**:
-1.  **The Mugshot Scanner (Signature-Based):** The AV has a database of millions of "Mugshots" of known viruses. It checks every file's thumbprint against the list. It’s 100% accurate for **old** threats.
-2.  **The Profiler (Behavioral):** This is the smart scanner. It doesn't look at what a program *is*; it looks at what it *does*. If a "Calculator" app suddenly tries to delete your family photos, the AV shouts "Stop!" and kills it. This catches **[[zero-day|New threats]]** that don't have a mugshot yet.
+It works like a bouncer at a club checking IDs against a "Banned List." If a file looks like a known troublemaker, it doesn't get in.
+
+## How it Detects Threats
+
+1.  **Signature Based (The Mugshot):** It compares every file on your PC to a massive database of verified [[virus|virus]] "signatures" (hashes). If it matches, it's deleted. *Weakness: Can't catch brand new viruses.*
+2.  **Heuristic / Behavioral (The Profiler):** It watches what a program *does*. If a Notepad file suddenly tries to delete your System32 folder, the AV shouts "Hey! That's suspicious!" and kills it. *Strength: Catches unknown ([[zero-day|Zero-Day]]) threats.*
 
 ## FAQs
 
-*1. Is the free one that came with my computer enough?*
-**Actually, yes.** In the past, you had to pay for "good" protection. Managed today, **Microsoft Defender** (built into Windows) is one of the highest-rated tools in the world. It’s consistently more secure and faster than many paid options.
+*1. Is Windows Defender enough?*
+Nowadays? **Yes.**
+Ten years ago, it was garbage. Today, Microsoft Defender is one of the top-rated AVs in the world because it sees data from billions of Windows PCs instantly.
 
-*2. Can a virus "hide" from my AV?*
-**Yes.** Advanced malware (like **[[rootkit|Rootkits]]**) burrows deep into the computer's brain and "blindfolds" the antivirus. This is why you must keep your **Operating System updated**, as those updates fix the holes that allow viruses to hide.
+*2. Do I need separate AV for Mac?*
+It is recommended. Macs *can* get viruses, though they are less targeted than Windows.
 
 ### Further Reading
 
-*   **The Enemy:** *[[malware|Malware Overview]]*.
-*   **The Best:** *[AV-TEST Independent Lab Rankings](https://www.av-test.org/en/)*.
-*   **Deep Dive:** *[How Antivirus Software Works (Norton)](https://us.norton.com/internet-security-malware-how-does-antivirus-software-work.html)*.
-*   **The Hub:** *[[siem|SIEM (Managing alerts at scale)]]*.
+*   **Comparison:** *[AV-TEST Rankings](https://www.av-test.org/en/)* (Independent lab that tests all AVs).
+*   **Article:** *[How Antivirus Software Works](https://us.norton.com/internet-security-malware-how-does-antivirus-software-work.html)*.

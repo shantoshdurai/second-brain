@@ -5,33 +5,29 @@ tags: CyberSecurity, QuantumComputing, Threats
 
 # Shor's Algorithm
 
-"The Doomsday Clock" ,a mathematical formula that, when run on a powerful enough quantum computer, could instantly shatter the encryption protecting every bank account and government secret on Earth.
+The doomsday clock for internet privacy.
 
-Current encryption stays secure because of a single bet: *"We bet it will take a hacker a billion years to guess the math."* **Shor's Algorithm** (discovered by Peter Shor in 1994) proved that with a **[[quantum-computing|Quantum Machine]]**, that billion-year task could be finished in **less than an hour**.
+**Shor's Algorithm** is a quantum math formula that can break the [[encryption|encryption]] protecting the entire internet.
 
-Think of it like **A Master Key for every digital lock**:
-*   **Traditional Strategy:** A computer tries to pick a lock one tumbler at a time ,it works hard, but it’s slow.
-*   **Shor's Strategy:** A quantum computer uses "Superposition" to check every possible combination at the exact same time. It doesn't "guess"; it computes the answer almost instantly.
+Currently, our security (RSA Encryption) relies on the fact that computers are really bad at factoring massive numbers. It would take a [[supercomputer|supercomputer]] millions of years to guess the factors.
+**Peter Shor** proved that a **[[quantum-computing|Quantum Computer]]** running his algorithm could do it in *hours*.
 
-## The Grace Period
-If Shor's Algorithm is so scary, why hasn't the internet collapsed?
-1.  **The Hardware Gap:** While the *math* is perfect, we don't have a quantum computer big enough to run it yet.
-2.  **Noisy Qubits:** Today's quantum machines make too many mistakes. To break **[[rsa|RSA]]** encryption, we need a machine with millions of stable qubits. We currently only have a few hundred.
+## The Hook
 
-## Why it matters NOW (Harvest Today, Decrypt Later)
-Hostile governments are currently vacuuming up and storing tons of encrypted internet traffic. Even though they can't read it today, they are betting that in 10 or 15 years, they can run that "old" data through a quantum computer to reveal all your current secrets.
+Imagine a lock that requires you to guess a number between 1 and Infinity.
+*   **Classic Computer:** Guesses 1, then 2, then 3... (Takes forever).
+*   **Shor's Algorithm:** Guesses *all numbers at once* and finds the pattern that leads to the answer.
 
 ## FAQs
 
-*1. Is my Bitcoin safe?*
-**Not forever.** Bitcoin uses **[[ecc|ECC]]**, which is just as vulnerable to Shor's Algorithm as RSA is. If a powerful quantum computer is built before Bitcoin updates its math, a hacker could theoretically steal any coin on the network.
+*1. Why hasn't the internet crashed yet?*
+Because we don't have a Quantum Computer big enough to run it. Yet.
+We are currently in the "[[nisq|NISQ]]" era (Noisy Intermediate-Scale Quantum). We need thousands of perfect [[qubits|Qubits]] to break RSA. We currently have hundreds of noisy ones.
 
-*2. How do we survive?*
-**"Post-Quantum Cryptography" (PQC).** Scientists are currently building "Quantum-Resistant" math ,new locks that are so complex that even a Shor's-Algorithm-powered machine can't pick them.
+*2. What are we doing about it?*
+The world is racing to switch to **Post-Quantum Cryptography (PQC)**. These are new math problems (like Lattice-based cryptography) that even quantum computers can't solve easily. NIST is currently standardizing them.
 
 ### Further Reading
 
-*   **The Danger:** *[[quantum-computing|Quantum Computing Basics]]*.
-*   **The Solution:** *[[post-quantum-cryptography|Preparing for the Quantum Apocalypse]]*.
-*   **Video:** *[Veritasium: How Quantum Computers Break Encryption](https://www.youtube.com/watch?v=lvTqbM5Dq4Q)* (The best visual guide).
-*   **Article:** *[NIST: Announcing the Post-Quantum Standard](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms)*.
+*   **Video:** *[How Quantum Computers Break [[encryption|Encryption]] (Veritasium)](https://www.youtube.com/watch?v=lvTqbM5Dq4Q)*.
+*   **Standard:** *[NIST Post-Quantum Cryptography](https://csrc.nist.gov/projects/post-quantum-cryptography)*.

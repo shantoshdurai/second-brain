@@ -5,33 +5,30 @@ tags: Cryptography, AsymmetricEncryption, Math
 
 # RSA
 
-"The Prime Number Trapdoor" ,the world's first and most famous system for sharing secrets. It is built on a simple mathematical bet: that it is easy to multiply two giant numbers together, but nearly impossible to pull them apart.
+The math of very large prime numbers.
 
-**RSA** (named after its creators Rivest, Shamir, and Adleman) is a type of **[[asymmetric-encryption|Asymmetric Encryption]]**. Since 1977, it has been the invisible backbone of the internet, securing everything from your private emails to the digital signatures that prove a software update actually came from Apple or Microsoft.
+**RSA** is the world's first and most famous [[asymmetric-encryption|Asymmetric Encryption]] algorithm. Created in 1977, it remains the foundation for much of the internet's security, including digital signatures and email [[encryption|encryption]].
 
-Think of it as **A Specialized One-Way Door**:
-*   Anyone can "push" a message through the door to you (using your **Public Key**).
-*   But only you possess the secret mathematical "lever" (the **Private Key**) to open the door from the inside and read what was sent.
+## How it Works: The Prime number trapdoor
+The security of RSA relies on one simple mathematical fact: **it is very easy to multiply two large prime numbers together, but extremely hard for a computer to do the reverse (factoring).**
 
-## The Prime Secret
-The security of global banking rests on a single mathematical "shorthand":
-*   **The Easy Task:** If I give you two massive prime numbers (each 300 digits long) and ask you to multiply them, a computer does it in a fraction of a second.
-*   **The Impossible Task:** If I give you the *result* (a 600-digit number) and ask you to find the two original prime numbers that created it, the most powerful supercomputer on Earth would have to run for billions of years to guess the answer.
+Imagine you have two massive prime numbers, `P` and `Q`.
+*   **The Easy Direction:** Multiply `P * Q` to get `N`. (A calculator does this in a millisecond).
+*   **The Hard Direction (The Trapdoor):** Give a computer the number `N` and ask it to find `P` and `Q`. If `N` is huge (e.g., 2048 bits long), even a [[supercomputer|supercomputer]] would take billions of years to guess the answer.
 
-In RSA, your **Public Key** is that giant 600-digit result. Your **Private Key** is the two original prime numbers. Because only you know the "ingredients," only you can undo the math.
+## The Keys
+*   **Public Key:** Shared with the world. It contains the number `N`. Anyone can use this to encrypt a message for you.
+*   **Private Key:** Kept secret by you. It contains the original prime numbers `P` and `Q`. Because only you know the "ingredients," only you can undo the math to read the message.
 
 ## FAQs
 
-*1. Is RSA "unbreakable"?*
-**For a normal computer, yes.** To "crack" a modern 2048-bit RSA key, you would need more energy than is produced by the Sun. However, scientists are worried that future **[[quantum-computing|Quantum Computers]]** (using **[[shors-algorithm|Shor's Algorithm]]**) could solve this math in minutes.
+*1. Is it secure?*
+Yes, but only if the keys are long enough. Today, 1024-bit RSA is considered weak. The industry standard is **2048-bit** or **4096-bit**.
 
-*2. If it's old, why do we still use it?*
-**Compatibility.** Millions of servers, gov-issued IDs, and smartcards were built to use RSA. Transitioning the entire world to a newer system (like **[[ecc|ECC]]**) takes decades.
+*2. What is the "Quantum Threat" to RSA?*
+RSA is the primary target of **[[shors-algorithm|Shor's Algorithm]]**. A large-scale quantum computer could factor the prime numbers in hours, rendering all RSA [[encryption|encryption]] useless. This is why the world is moving toward **[[post-quantum-cryptography|Post-Quantum Cryptography]]**.
 
 ### Further Reading
 
-*   **The Successor:** *[[ecc|ECC (Elliptic Curve Cryptography)]]* (The faster, smaller replacement).
-*   **The Concept:** *[[asymmetric-encryption|Asymmetric Encryption Explained]]*.
-*   **The Threat:** *[[shors-algorithm|Shor's Algorithm (The Quantum Killer)]]*.
-*   **Video:** *[Computerphile: How RSA Encryption Works](https://www.youtube.com/watch?v=M7kEpw1tn50)*.
-*   **Article:** *[The History of the RSA Algorithm](https://www.thalesgroup.com/en/markets/digital-identity-and-security/government/magazine/history-rsa-algorithm)*.
+*   **Video:** *[RSA [[encryption|Encryption]] (Computerphile)](https://www.youtube.com/watch?v=M7kEpw1tn50)*
+*   **Article:** *[How RSA works](https://en.wikipedia.org/wiki/RSA_(cryptosystem))*
