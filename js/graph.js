@@ -1,4 +1,4 @@
-// --- GRAPH VIEW LOGIC ---
+// --- CONSTELLATION VIEW LOGIC ---
 let graphSimulation = null;
 let initialFitTimer = null;
 const categoryColors = {
@@ -137,23 +137,10 @@ function renderGraph() {
     // Clear previous D3 SVG if exists
     container.innerHTML = "";
 
-    // UI Controls (Close Button & Legend)
-    let controls = document.getElementById("graphControls");
-    if (!controls) {
-        controls = document.createElement("div");
-        controls.id = "graphControls";
-        controls.className = "graph-controls";
-        controls.innerHTML = `
-            <button id="closeGraph" class="close-graph-btn"><i class="fas fa-times"></i> Close Graph</button>
-        `;
-        container.appendChild(controls);
-        document.getElementById("closeGraph").onclick = (e) => {
-            e.stopPropagation();
-            toggleGraphView();
-        };
-
-        // Create legend container separately so CSS positioning works relative to full screen
-        let legendContainer = document.createElement("div");
+    // UI Controls (Legend)
+    let legendContainer = document.getElementById("graphLegend");
+    if (!legendContainer) {
+        legendContainer = document.createElement("div");
         legendContainer.id = "graphLegend";
         legendContainer.className = "graph-legend";
         container.appendChild(legendContainer);

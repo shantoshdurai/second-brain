@@ -197,7 +197,7 @@ function init() {
   }
 
   initStackedNotes();
-  
+
   // Only render landing page if NOT loading from a stacked URL
   const stackIds = getStackedIdsFromUrl();
   if (stackIds.length === 0) {
@@ -233,7 +233,7 @@ function init() {
         toggleSearch();
         return;
       }
-      
+
       if (stackedMode) {
         e.preventDefault();
         removeFromStack(stackedIds.length - 1);
