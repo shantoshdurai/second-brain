@@ -1,6 +1,6 @@
-// --- CONSTELLATION VIEW LOGIC ---
 let graphSimulation = null;
 let initialFitTimer = null;
+let wasStackedMode = false; // Tracks if the user was in stacked mode before opening the graph
 const categoryColors = {
     ai: "#22C55E",           // Emerald
     cybersecurity: "#E11D48", // Rose/Red
@@ -24,6 +24,8 @@ function toggleGraphView() {
     }
 
     if (graphContainer.classList.contains("active")) {
+        // Save stacked mode state and remove it to show full screen graph
+        wasStackedMode = document.body.classList.contains("stacked-mode");
         document.body.classList.remove("stacked-mode");
         renderGraph();
     } else {
@@ -35,6 +37,11 @@ function toggleGraphView() {
             graphSimulation.stop();
             graphSimulation = null;
         }
+        // Restore stacked mode if it was active before opening the graph
+        if (wasStackedMode) {
+            document.body.classList.add("stacked-mode");
+        }
+        wasStackedMode = false;
     }
 }
 
@@ -413,10 +420,14 @@ function setupLegend(nodes, labelColor) {
         item.setAttribute("type", "button");
         const color = categoryColors[group.toLowerCase()] || "#94a3b8";
 
-        item.innerHTML = `
-            <div class="legend-color" style="background: ${color}"></div>
-            <span>${group.toUpperCase()}</span>
-        `;
+        const swatch = document.createElement("div");
+        swatch.className = "legend-color";
+        swatch.style.background = color;
+        item.appendChild(swatch);
+
+        const label = document.createElement("span");
+        label.textContent = group.toUpperCase();
+        item.appendChild(label);
 
         item.onclick = (e) => {
             e.stopPropagation();
