@@ -80,7 +80,15 @@ function showToast(message, icon = 'fa-check-circle') {
 
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+  
+  const iconEl = document.createElement('i');
+  iconEl.className = `fas ${icon}`;
+  
+  const textEl = document.createElement('span');
+  textEl.textContent = message;
+  
+  toast.appendChild(iconEl);
+  toast.appendChild(textEl);
   container.appendChild(toast);
 
   // Remove toast after animation ends
@@ -93,15 +101,23 @@ function showToast(message, icon = 'fa-check-circle') {
 }
 
 window.copyNoteLink = function (id) {
+  const cleanId = decodeURIComponent(id);
   const url = new URL(window.location.href);
-  url.searchParams.set('stackedNotes', id);
+  url.searchParams.set('stackedNotes', cleanId);
   navigator.clipboard.writeText(url.toString()).then(() => {
     showToast('Link copied to clipboard!');
+  }).catch(err => {
+    console.error('Failed to copy link:', err);
+    showToast('Failed to copy link', 'fa-exclamation-circle');
   });
 };
 
 function generateUtilsBarHTML(item) {
   const readTime = calculateReadingTime(item.content || "");
+  const pathParts = (item.path || (item.group + '/' + item.id + '.md')).split('/');
+  const encodedPath = pathParts.map(p => encodeURIComponent(p)).join('/');
+  const encodedId = encodeURIComponent(item.id);
+
   return `
     <div class="note-utils-bar">
       <div class="note-util-item" title="Estimated reading time">
@@ -109,14 +125,14 @@ function generateUtilsBarHTML(item) {
         <span>${readTime}</span>
       </div>
       <div class="note-util-item">
-        <button class="note-util-btn" onclick="copyNoteLink('${item.id}')" title="Copy link to this note">
+        <button class="note-util-btn" onclick="copyNoteLink('${encodedId}')" title="Copy link to this note">
           <i class="far fa-copy"></i>
           <span>Copy Link</span>
         </button>
       </div>
       <div class="note-util-item">
-        <a href="https://github.com/Asifdotexe/second-brain/blob/main/docs/${item.path || (item.group + '/' + item.id + '.md')}" 
-           target="_blank" class="note-util-btn" title="View source on GitHub">
+        <a href="https://github.com/Asifdotexe/second-brain/blob/main/docs/${encodedPath}" 
+           target="_blank" rel="noopener noreferrer" class="note-util-btn" title="View source on GitHub">
           <i class="fab fa-github"></i>
           <span>GitHub</span>
         </a>

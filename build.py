@@ -12,6 +12,11 @@ DOCS_DIR = "docs"
 OUTPUT_FILE = "js/data.js"
 
 
+def normalize_docs_rel_path(path: str) -> str:
+    """Normalize a path to be relative to DOCS_DIR with forward slashes."""
+    return os.path.relpath(path, DOCS_DIR).replace("\\", "/")
+
+
 def parse_markdown(file_path: str, group: Optional[str] = None) -> Dict[str, Any]:
     """
     Parse a markdown file to extract frontmatter and content.
@@ -21,7 +26,7 @@ def parse_markdown(file_path: str, group: Optional[str] = None) -> Dict[str, Any
     :return: A dictionary containing metadata and the markdown content.
     """
     # Get relative path for GitHub links
-    rel_path = os.path.relpath(file_path, DOCS_DIR).replace("\\", "/")
+    rel_path = normalize_docs_rel_path(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
 
@@ -129,7 +134,7 @@ def build_tree(current_path: str, group: Optional[str] = None) -> List[Dict[str,
                         "desc": meta.get("desc", ""),
                         "view": meta.get("view"),
                         "group": current_group,
-                        "path": os.path.relpath(full_path, DOCS_DIR).replace("\\", "/"),
+                        "path": normalize_docs_rel_path(full_path),
                         "children": children,
                     }
                 )
