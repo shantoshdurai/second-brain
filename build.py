@@ -20,6 +20,8 @@ def parse_markdown(file_path: str, group: Optional[str] = None) -> Dict[str, Any
     :param group: The category group this file belongs to.
     :return: A dictionary containing metadata and the markdown content.
     """
+    # Get relative path for GitHub links
+    rel_path = os.path.relpath(file_path, DOCS_DIR).replace("\\", "/")
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
 
@@ -39,6 +41,7 @@ def parse_markdown(file_path: str, group: Optional[str] = None) -> Dict[str, Any
         "tags": [],
         "links": links,
         "group": group,
+        "path": rel_path,
     }
 
     match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", content, re.DOTALL)
@@ -126,6 +129,7 @@ def build_tree(current_path: str, group: Optional[str] = None) -> List[Dict[str,
                         "desc": meta.get("desc", ""),
                         "view": meta.get("view"),
                         "group": current_group,
+                        "path": os.path.relpath(full_path, DOCS_DIR).replace("\\", "/"),
                         "children": children,
                     }
                 )

@@ -58,6 +58,73 @@ function initTheme() {
   }
 }
 
+// ==========================================
+// 🛠️ UTILITIES
+// ==========================================
+
+function calculateReadingTime(text) {
+  const wordsPerMinute = 200;
+  const noOfWords = text.split(/\s+/).length;
+  const minutes = noOfWords / wordsPerMinute;
+  const readTime = Math.ceil(minutes);
+  return `${readTime} min read`;
+}
+
+function showToast(message, icon = 'fa-check-circle') {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+  container.appendChild(toast);
+
+  // Remove toast after animation ends
+  setTimeout(() => {
+    toast.remove();
+    if (container.childNodes.length === 0) {
+      container.remove();
+    }
+  }, 3000);
+}
+
+window.copyNoteLink = function (id) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('stackedNotes', id);
+  navigator.clipboard.writeText(url.toString()).then(() => {
+    showToast('Link copied to clipboard!');
+  });
+};
+
+function generateUtilsBarHTML(item) {
+  const readTime = calculateReadingTime(item.content || "");
+  return `
+    <div class="note-utils-bar">
+      <div class="note-util-item" title="Estimated reading time">
+        <i class="far fa-clock"></i>
+        <span>${readTime}</span>
+      </div>
+      <div class="note-util-item">
+        <button class="note-util-btn" onclick="copyNoteLink('${item.id}')" title="Copy link to this note">
+          <i class="far fa-copy"></i>
+          <span>Copy Link</span>
+        </button>
+      </div>
+      <div class="note-util-item">
+        <a href="https://github.com/Asifdotexe/second-brain/blob/main/docs/${item.path || (item.group + '/' + item.id + '.md')}" 
+           target="_blank" class="note-util-btn" title="View source on GitHub">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 function init() {
   initTheme();
   initFuse();
@@ -333,6 +400,8 @@ function renderStackedColumns(ids) {
           return `[${linkText}](${wid.trim()})`;
         },
       );
+      
+      inner.innerHTML += generateUtilsBarHTML(item);
       inner.innerHTML += renderMarkdown(processedContent);
     } else if (item.children && item.children.length > 0) {
       const viewType = item.view || (rootKey === 'overview' ? 'list' : 'shelf');
@@ -992,6 +1061,7 @@ function loadContent(id) {
         },
       );
 
+      htmlContent += generateUtilsBarHTML(item);
       htmlContent += renderMarkdown(processedContent);
     }
 

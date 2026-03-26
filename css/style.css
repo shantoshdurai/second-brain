@@ -1965,3 +1965,92 @@ body[data-theme="dark"] .note-column.overlay {
     line-height: 1.5;
     white-space: normal;
 }
+
+/* --- NOTE UTILITIES BAR --- */
+.note-utils-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 100%;
+    max-width: 1100px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.note-util-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.note-util-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.note-util-btn:hover {
+    color: var(--text-accent);
+    background: var(--bg-quote);
+}
+
+.note-util-btn i {
+    font-size: 0.9rem;
+}
+
+/* --- TOAST NOTIFICATION --- */
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: toast-in-out 3s forwards;
+    opacity: 0;
+}
+
+.toast i {
+    color: var(--vibrant-green);
+}
+
+@keyframes toast-in-out {
+    0% { transform: translateY(20px); opacity: 0; }
+    15% { transform: translateY(0); opacity: 1; }
+    85% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-20px); opacity: 0; }
+}
+
+@media (max-width: 800px) {
+    .note-utils-bar {
+        font-size: 0.8rem;
+        gap: 12px;
+    }
+}
