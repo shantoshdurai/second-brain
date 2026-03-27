@@ -114,8 +114,6 @@ window.copyNoteLink = function (id) {
 
 function generateUtilsBarHTML(item) {
   const readTime = calculateReadingTime(item.content || "");
-  const pathParts = (item.path || (item.group + '/' + item.id + '.md')).split('/');
-  const encodedPath = pathParts.map(p => encodeURIComponent(p)).join('/');
   const encodedId = encodeURIComponent(item.id);
 
   return `
@@ -129,13 +127,6 @@ function generateUtilsBarHTML(item) {
           <i class="far fa-copy"></i>
           <span>Copy Link</span>
         </button>
-      </div>
-      <div class="note-util-item">
-        <a href="https://github.com/Asifdotexe/second-brain/blob/main/docs/${encodedPath}" 
-           target="_blank" rel="noopener noreferrer" class="note-util-btn" title="View source on GitHub">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
       </div>
     </div>
   `;
